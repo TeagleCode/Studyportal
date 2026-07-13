@@ -1,0 +1,275 @@
+$nav-bg:   #1a1a2e;
+$nav-h:    90px;
+$accent:   #e94560;
+$light:    #eaeaea;
+$bg:       #0f3460;
+$card-bg:  #16213e;
+$green:    #4caf50;
+$red:      #e94560;
+$transition: 0.2s ease;
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: sans-serif; background: $bg; color: $light; min-height: 100vh; }
+
+.bg-symbols {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+  span { position: absolute; color: $light; user-select: none; line-height: 1; }
+}
+
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  background: $nav-bg; height: $nav-h; padding: 0 32px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+
+  &-left a {
+    text-decoration: none; color: $light;
+    h1 { font-size: 2.2rem; display: flex; align-items: center; gap: 4px; img { height: 42px; } }
+  }
+}
+
+.timer {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: $light;
+  &--warning { color: $red; animation: pulse 1s infinite; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.progress-bar {
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  &__fill { height: 100%; background: $accent; transition: width 0.4s ease; }
+}
+
+.test {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 24px;
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    opacity: 0.7;
+  }
+
+  &__card {
+    background: $card-bg;
+    border-radius: 16px;
+    padding: 36px 32px;
+    margin-top: 24px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+  }
+
+  &__question {
+    font-size: 1.4rem;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    font-weight: 600;
+  }
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.answer-btn {
+  background: rgba(255,255,255,0.06);
+  border: 2px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  color: $light;
+  padding: 18px 16px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background $transition, border-color $transition, transform $transition;
+  text-align: center;
+  line-height: 1.4;
+
+  &:hover:not(:disabled) {
+    background: rgba(255,255,255,0.12);
+    border-color: $accent;
+    transform: translateY(-2px);
+  }
+
+  &--correct {
+    background: rgba($green, 0.2) !important;
+    border-color: $green !important;
+    color: $green !important;
+  }
+
+  &--wrong {
+    background: rgba($red, 0.2) !important;
+    border-color: $red !important;
+    color: $red !important;
+  }
+
+  &:disabled { cursor: default; transform: none; }
+}
+
+.feedback {
+  font-size: 1.1rem;
+  font-weight: 700;
+  min-height: 1.5em;
+  margin-bottom: 20px;
+
+  &--correct { color: $green; }
+  &--wrong   { color: $red; }
+}
+
+.explanation-panel {
+  background: rgba(245, 197, 24, 0.07);
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease;
+
+  &__header {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f5c518;
+    margin-bottom: 10px;
+  }
+
+  &__text {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.text-answer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  input {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255,255,255,0.07);
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    color: $light;
+    padding: 14px 16px;
+    font-size: 1.05rem;
+    transition: border-color $transition;
+
+    &:focus { outline: none; border-color: $accent; }
+    &:disabled { opacity: 0.7; }
+  }
+
+  button {
+    background: $accent;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    padding: 14px 28px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity $transition;
+    &:hover:not(:disabled) { opacity: 0.85; }
+    &:disabled { opacity: 0.45; cursor: default; }
+  }
+}
+
+.text-correct-answer {
+  width: 100%;
+  font-size: 0.9rem;
+  color: $green;
+  margin-top: 4px;
+}
+
+.next-btn {
+  background: $accent;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  padding: 14px 32px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity $transition;
+  &:hover { opacity: 0.85; }
+}
+
+// Results screen
+.results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - $nav-h);
+
+  &__card {
+    background: $card-bg;
+    border-radius: 20px;
+    padding: 56px 48px;
+    text-align: center;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+    min-width: 380px;
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin-bottom: 32px;
+  }
+
+  &__score {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: $accent;
+    margin-bottom: 12px;
+  }
+
+  &__time {
+    font-size: 1.1rem;
+    opacity: 0.6;
+    margin-bottom: 40px;
+  }
+
+  &__rubies {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #f5c518;
+    margin-bottom: 6px;
+  }
+
+  &__total {
+    font-size: 0.95rem;
+    opacity: 0.55;
+    margin-bottom: 32px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  &__btn {
+    border: none;
+    border-radius: 10px;
+    padding: 14px 28px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity $transition;
+    &:hover { opacity: 0.85; }
+
+    &--retry { background: $accent; color: #fff; }
+    &--back  { background: rgba(255,255,255,0.1); color: $light; }
+  }
+}

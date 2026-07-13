@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyPortal - Subjects</title>
+    <link rel="stylesheet" href="../../style/grades/grades.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-symbols" id="bgSymbols"></div>
+
+    <div class="nav">
+      <div class="nav-left">
+        <a href="../home.html">
+          <h1>StudyP<img src="../../img/portal.png" alt="" />rtal</h1>
+        </a>
+      </div>
+      <div class="nav-grade" id="navGrade"></div>
+    </div>
+
+    <main class="subjects">
+      <div class="hexagon" id="hexagon">
+        <a class="subject-btn" id="btn-georgian"  href="">
+          <span>ქართული</span>
+        </a>
+        <a class="subject-btn" id="btn-math"      href="">
+          <span>მათემატიკა</span>
+        </a>
+        <a class="subject-btn" id="btn-english"   href="">
+          <span>ინგლისური</span>
+        </a>
+        <a class="subject-btn" id="btn-physics"   href="">
+          <span>ფიზიკა</span>
+        </a>
+        <a class="subject-btn" id="btn-chemistry" href="">
+          <span>ქიმია</span>
+        </a>
+        <a class="subject-btn" id="btn-history"   href="">
+          <span>ისტორია</span>
+        </a>
+      </div>
+    </main>
+
+    <script>
+      // Read grade from URL
+      const grade = new URLSearchParams(window.location.search).get('grade') || '7';
+      const suffixes = { 7:'th', 8:'th', 9:'th', 10:'th', 11:'th' };
+      document.title = `StudyPortal - Grade ${grade}`;
+      document.getElementById('navGrade').textContent = `${grade}${suffixes[grade]} Grade`;
+
+      // Wire up subject links
+      const subjects = ['georgian','math','english','physics','chemistry','history'];
+      subjects.forEach(s => {
+        document.getElementById(`btn-${s}`).href = `./chapters.html?grade=${grade}&subject=${s}`;
+      });
+
+    </script>
+    <script src="../../scripts/bg-symbols.js"></script>
+  </body>
+</html>

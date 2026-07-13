@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyPortal - Account</title>
+    <link rel="stylesheet" href="../style/accountManagement/accountManagement.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-symbols" id="bgSymbols"></div>
+    <div class="nav">
+      <div class="nav-left">
+        <a href="./home.html">
+          <h1>StudyP<img src="../img/portal.png" alt="" />rtal</h1>
+        </a>
+      </div>
+    </div>
+
+    <main class="account">
+      <h2 class="account__title">Account Settings</h2>
+
+      <section class="account__section">
+        <h3>Profile Picture</h3>
+        <div class="avatar-wrap">
+          <img id="currentAvatar" src="" alt="Profile picture" class="avatar-wrap__img" />
+          <div class="avatar-wrap__placeholder" id="avatarPlaceholder">?</div>
+        </div>
+        <form id="avatarForm" class="account__form">
+          <input type="file" id="avatarInput" accept="image/*" />
+          <button type="submit">Upload Picture</button>
+        </form>
+        <p class="account__msg" id="avatarMsg"></p>
+      </section>
+
+      <section class="account__section">
+        <h3>Change Username</h3>
+        <form id="usernameForm" class="account__form">
+          <label for="newUsername">New Username</label>
+          <input type="text" id="newUsername" required />
+          <button type="submit">Save</button>
+        </form>
+        <p class="account__msg" id="usernameMsg"></p>
+      </section>
+
+      <section class="account__section">
+        <h3>Change Password</h3>
+        <form id="passwordForm" class="account__form">
+          <label for="currentPassword">Current Password</label>
+          <input type="password" id="currentPassword" required />
+          <label for="newPassword">New Password</label>
+          <input type="password" id="newPassword" required />
+          <button type="submit">Save</button>
+        </form>
+        <p class="account__msg" id="passwordMsg"></p>
+      </section>
+    </main>
+
+    <script src="../scripts/accountManagement.js"></script>
+    <script src="../scripts/bg-symbols.js"></script>
+  </body>
+</html>

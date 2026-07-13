@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyPortal - Test</title>
+    <link rel="stylesheet" href="../style/test/test.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="bg-symbols" id="bgSymbols"></div>
+
+    <div class="nav">
+      <div class="nav-left">
+        <a href="./home.html">
+          <h1>StudyP<img src="../img/portal.png" alt="" />rtal</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <span class="timer" id="timer">10:00</span>
+      </div>
+    </div>
+
+    <!-- Test screen -->
+    <main class="test" id="testScreen">
+      <div class="test__meta">
+        <span class="test__progress" id="progress">Question 1 of 10</span>
+        <span class="test__score"    id="scoreDisplay">Score: 0</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-bar__fill" id="progressFill"></div>
+      </div>
+
+      <div class="test__card">
+        <p class="test__question" id="questionText"></p>
+
+        <!-- Multiple choice answers -->
+        <div class="answers" id="answers"></div>
+
+        <!-- Text answer input -->
+        <div class="text-answer" id="textAnswer" style="display:none">
+          <input type="text" id="textInput" placeholder="Type your answer…" autocomplete="off" />
+          <button id="textSubmit">Submit</button>
+        </div>
+
+        <p class="feedback" id="feedback"></p>
+
+        <!-- Explanation panel (shown on wrong answer) -->
+        <div class="explanation-panel" id="explanationPanel" style="display:none">
+          <div class="explanation-panel__header">
+            💡 How to solve this
+            <span class="step-progress" id="stepProgress"></span>
+          </div>
+          <div class="explanation-panel__text" id="explanationText"></div>
+          <button class="next-step-btn" id="nextStepBtn" style="display:none">Show next step →</button>
+        </div>
+
+        <button class="next-btn" id="nextBtn" style="display:none">Next Question →</button>
+      </div>
+    </main>
+
+    <!-- Results screen -->
+    <div class="results" id="resultsScreen" style="display:none">
+      <div class="results__card">
+        <h2 class="results__title">Test Complete!</h2>
+        <p class="results__score"  id="finalScore"></p>
+        <p class="results__time"   id="finalTime"></p>
+        <p class="results__rubies" id="rubyEarned"></p>
+        <p class="results__total"  id="rubyTotal"></p>
+        <div class="results__actions">
+          <button class="results__btn results__btn--retry" id="retryBtn">Try Again</button>
+          <button class="results__btn results__btn--back"  id="backBtn">Back to Topics</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../scripts/test.js"></script>
+    <script src="../scripts/bg-symbols.js"></script>
+  </body>
+</html>

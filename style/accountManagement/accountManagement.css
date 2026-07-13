@@ -1,0 +1,147 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: #0f3460;
+  color: #eaeaea;
+  min-height: 100vh;
+}
+
+.bg-symbols {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-symbols span {
+  position: absolute;
+  color: #eaeaea;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  line-height: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  background: #1a1a2e;
+  height: 60px;
+  padding: 0 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.nav-left a {
+  text-decoration: none;
+  color: #eaeaea;
+}
+.nav-left a h1 {
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-left a h1 img {
+  height: 28px;
+}
+
+.account {
+  max-width: 560px;
+  margin: 48px auto;
+  padding: 0 20px;
+}
+.account__title {
+  font-size: 1.6rem;
+  margin-bottom: 32px;
+}
+.account__section {
+  background: #16213e;
+  border-radius: 12px;
+  padding: 28px 24px;
+  margin-bottom: 24px;
+}
+.account__section h3 {
+  font-size: 1.05rem;
+  margin-bottom: 20px;
+  color: #eaeaea;
+  opacity: 0.85;
+}
+.account__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.account__form label {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+.account__form input[type=text],
+.account__form input[type=password] {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #eaeaea;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+.account__form input[type=text]:focus,
+.account__form input[type=password]:focus {
+  outline: none;
+  border-color: #e94560;
+}
+.account__form input[type=file] {
+  color: #eaeaea;
+  font-size: 0.9rem;
+}
+.account__form button {
+  align-self: flex-start;
+  background: #e94560;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.account__form button:hover {
+  opacity: 0.85;
+}
+.account__msg {
+  margin-top: 10px;
+  font-size: 0.88rem;
+}
+.account__msg--ok {
+  color: #4caf50;
+}
+.account__msg--err {
+  color: #e94560;
+}
+
+.avatar-wrap {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.avatar-wrap__img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: none;
+}
+.avatar-wrap__placeholder {
+  font-size: 2.2rem;
+  color: rgba(255, 255, 255, 0.4);
+}/*# sourceMappingURL=accountManagement.css.map */

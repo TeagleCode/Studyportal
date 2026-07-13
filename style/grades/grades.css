@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: #0f3460;
+  color: #eaeaea;
+  min-height: 100vh;
+}
+
+.bg-symbols {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-symbols span {
+  position: absolute;
+  color: #eaeaea;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  line-height: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1a1a2e;
+  height: 90px;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.nav-left a {
+  text-decoration: none;
+  color: #eaeaea;
+}
+.nav-left a h1 {
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-left a h1 img {
+  height: 42px;
+}
+.nav-grade {
+  font-size: 1.3rem;
+  font-weight: 600;
+  opacity: 0.75;
+}
+
+.subjects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 90px);
+}
+
+.hexagon {
+  position: relative;
+  width: 700px;
+  height: 700px;
+}
+
+.subject-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: #16213e;
+  border: 2px solid #e94560;
+  color: #eaeaea;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 16px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.3;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 0 12px rgba(233, 69, 96, 0.2);
+}
+.subject-btn:hover {
+  background: #e94560;
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 0 36px rgba(233, 69, 96, 0.7);
+}
+.subject-btn:nth-child(1) {
+  top: calc(50% - 240px);
+  left: 50%;
+}
+.subject-btn:nth-child(2) {
+  top: calc(50% - 120px);
+  left: calc(50% + 208px);
+}
+.subject-btn:nth-child(3) {
+  top: calc(50% + 120px);
+  left: calc(50% + 208px);
+}
+.subject-btn:nth-child(4) {
+  top: calc(50% + 240px);
+  left: 50%;
+}
+.subject-btn:nth-child(5) {
+  top: calc(50% + 120px);
+  left: calc(50% - 208px);
+}
+.subject-btn:nth-child(6) {
+  top: calc(50% - 120px);
+  left: calc(50% - 208px);
+}/*# sourceMappingURL=grades.css.map */

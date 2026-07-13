@@ -1,0 +1,339 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background: #0f3460;
+  color: #eaeaea;
+  min-height: 100vh;
+}
+
+.bg-symbols {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+.bg-symbols span {
+  position: absolute;
+  color: #eaeaea;
+  user-select: none;
+  line-height: 1;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1a1a2e;
+  height: 90px;
+  padding: 0 32px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.nav-left a {
+  text-decoration: none;
+  color: #eaeaea;
+}
+.nav-left a h1 {
+  font-size: 2.2rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-left a h1 img {
+  height: 42px;
+}
+
+.timer {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #eaeaea;
+}
+.timer--warning {
+  color: #e94560;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+.progress-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.progress-bar__fill {
+  height: 100%;
+  background: #e94560;
+  transition: width 0.4s ease;
+}
+
+.test {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 0 24px;
+}
+.test__meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+.test__card {
+  background: #16213e;
+  border-radius: 16px;
+  padding: 36px 32px;
+  margin-top: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+.test__question {
+  font-size: 1.4rem;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  font-weight: 600;
+}
+
+.answers {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.answer-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: #eaeaea;
+  padding: 18px 16px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  text-align: center;
+  line-height: 1.4;
+}
+.answer-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: #e94560;
+  transform: translateY(-2px);
+}
+.answer-btn--correct {
+  background: rgba(76, 175, 80, 0.2) !important;
+  border-color: #4caf50 !important;
+  color: #4caf50 !important;
+}
+.answer-btn--wrong {
+  background: rgba(233, 69, 96, 0.2) !important;
+  border-color: #e94560 !important;
+  color: #e94560 !important;
+}
+.answer-btn:disabled {
+  cursor: default;
+  transform: none;
+}
+
+.feedback {
+  font-size: 1.1rem;
+  font-weight: 700;
+  min-height: 1.5em;
+  margin-bottom: 20px;
+}
+.feedback--correct {
+  color: #4caf50;
+}
+.feedback--wrong {
+  color: #e94560;
+}
+
+.explanation-panel {
+  background: rgba(245, 197, 24, 0.07);
+  border: 1px solid rgba(245, 197, 24, 0.35);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin-bottom: 20px;
+  animation: fadeIn 0.3s ease;
+}
+.explanation-panel__header {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #f5c518;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.step-progress {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.65;
+  margin-left: auto;
+}
+.explanation-panel__text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+.next-step-btn {
+  margin-top: 14px;
+  background: rgba(245, 197, 24, 0.15);
+  border: 1px solid rgba(245, 197, 24, 0.5);
+  color: #f5c518;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.next-step-btn:hover {
+  background: rgba(245, 197, 24, 0.28);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.text-answer {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.text-answer input {
+  flex: 1;
+  min-width: 200px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  color: #eaeaea;
+  padding: 14px 16px;
+  font-size: 1.05rem;
+  transition: border-color 0.2s ease;
+}
+.text-answer input:focus {
+  outline: none;
+  border-color: #e94560;
+}
+.text-answer input:disabled {
+  opacity: 0.7;
+}
+.text-answer button {
+  background: #e94560;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  padding: 14px 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.text-answer button:hover:not(:disabled) {
+  opacity: 0.85;
+}
+.text-answer button:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.text-correct-answer {
+  width: 100%;
+  font-size: 0.9rem;
+  color: #4caf50;
+  margin-top: 4px;
+}
+
+.next-btn {
+  background: #e94560;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  padding: 14px 32px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.next-btn:hover {
+  opacity: 0.85;
+}
+
+.results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 90px);
+}
+.results__card {
+  background: #16213e;
+  border-radius: 20px;
+  padding: 56px 48px;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+  min-width: 380px;
+}
+.results__title {
+  font-size: 2rem;
+  margin-bottom: 32px;
+}
+.results__score {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #e94560;
+  margin-bottom: 12px;
+}
+.results__time {
+  font-size: 1.1rem;
+  opacity: 0.6;
+  margin-bottom: 40px;
+}
+.results__rubies {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #f5c518;
+  margin-bottom: 6px;
+}
+.results__total {
+  font-size: 0.95rem;
+  opacity: 0.55;
+  margin-bottom: 32px;
+}
+.results__actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+.results__btn {
+  border: none;
+  border-radius: 10px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+.results__btn:hover {
+  opacity: 0.85;
+}
+.results__btn--retry {
+  background: #e94560;
+  color: #fff;
+}
+.results__btn--back {
+  background: rgba(255, 255, 255, 0.1);
+  color: #eaeaea;
+}
+
+/*# sourceMappingURL=test.css.map */
