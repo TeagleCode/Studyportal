@@ -51,6 +51,7 @@
       </a>
       <hr class="nav-menu__divider" />
       <nav>
+        <a href="./dashboard.html" class="nav-menu__link">📊 Dashboard</a>
         <a href="#about" class="nav-menu__link">About</a>
         <a href="#contact" class="nav-menu__link">Contact</a>
         <a href="#settings" class="nav-menu__link">Settings</a>
@@ -104,9 +105,10 @@
       navOverlay.addEventListener('click', closeMenu);
 
       const username = sessionStorage.getItem('username');
-      if (username) {
+      const token = sessionStorage.getItem('token');
+      if (username && token) {
         document.getElementById('profileName').textContent = username;
-        fetch(`/api/user/${username}`)
+        fetch(`/api/user/${username}`, { headers: { Authorization: `Bearer ${token}` } })
           .then(r => r.json())
           .then(data => {
             if (data.avatar_url) {

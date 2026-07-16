@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyPortal - Dashboard</title>
+    <link rel="stylesheet" href="../style/dashboard/dashboard.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="bg-symbols" id="bgSymbols"></div>
+
+    <div class="nav">
+      <div class="nav-left">
+        <a href="./home.html">
+          <h1>StudyP<img src="../img/portal.png" alt="" />rtal</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="./home.html" class="nav-back">← Back</a>
+        <div class="ruby-balance"><span>💎</span><span id="rubyCount">0</span></div>
+      </div>
+    </div>
+
+    <main class="dashboard">
+      <h2 class="dashboard__greeting" id="greeting">Dashboard</h2>
+
+      <!-- Overall stats -->
+      <section class="stats-row">
+        <div class="stat-card">
+          <span class="stat-card__value" id="statAnswered">–</span>
+          <span class="stat-card__label">questions answered</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__value" id="statAccuracy">–</span>
+          <span class="stat-card__label">overall accuracy</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__value" id="statQuizzes">–</span>
+          <span class="stat-card__label">quizzes finished</span>
+        </div>
+      </section>
+
+      <div class="dashboard__grid">
+        <!-- Subject progress -->
+        <section class="panel">
+          <h3 class="panel__title">Progress by subject</h3>
+          <div id="subjectList" class="subject-list">
+            <p class="panel__empty" id="subjectEmpty">No quizzes yet — start one below!</p>
+          </div>
+        </section>
+
+        <!-- Weak areas -->
+        <section class="panel">
+          <h3 class="panel__title">Weak areas</h3>
+          <div id="weakList" class="weak-list">
+            <p class="panel__empty" id="weakEmpty">Nothing weak yet. Keep it up! 💪</p>
+          </div>
+        </section>
+
+        <!-- Recent quizzes -->
+        <section class="panel">
+          <h3 class="panel__title">Recent quizzes</h3>
+          <div id="recentList" class="recent-list">
+            <p class="panel__empty" id="recentEmpty">No finished quizzes yet.</p>
+          </div>
+        </section>
+
+        <!-- Last 14 days -->
+        <section class="panel">
+          <h3 class="panel__title">Last 14 days</h3>
+          <div id="dailyChart" class="daily-chart"></div>
+          <p class="panel__empty" id="dailyEmpty">No activity in the last two weeks.</p>
+        </section>
+      </div>
+
+      <!-- Start a quiz -->
+      <section class="panel panel--wide">
+        <h3 class="panel__title">Start a quiz</h3>
+        <div class="start-grid" id="startGrid"></div>
+      </section>
+    </main>
+
+    <script src="../scripts/dashboard.js"></script>
+    <script src="../scripts/bg-symbols.js"></script>
+  </body>
+</html>

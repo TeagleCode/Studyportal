@@ -86,3 +86,33 @@ CREATE TABLE answers (
   is_correct  BOOLEAN NOT NULL DEFAULT FALSE,
   FOREIGN KEY (question_id) REFERENCES questions(id)
 );
+
+-- ── Quiz attempts ─────────────────────────────────────────────────────────
+-- One row per quiz a student starts. user_id is NULL for guests.
+CREATE TABLE quiz_attempts (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  user_id     INT NULL,
+  topic_id    INT NOT NULL,
+  score       INT NOT NULL DEFAULT 0,
+  total       INT NOT NULL DEFAULT 0,
+  started_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  finished_at TIMESTAMP NULL,
+  FOREIGN KEY (user_id)  REFERENCES users(id),
+  FOREIGN KEY (topic_id) REFERENCES topics(id)
+);
+
+-- ── Attempt questions ─────────────────────────────────────────────────────
+-- One row per question served in an attempt. generated_values stores the
+-- exact parametric values the student saw, so grading and explanations can
+-- always be reproduced for that attempt.
+CREATE TABLE attempt_questions (
+  id               INT AUTO_INCREMENT PRIMARY KEY,
+  attempt_id       INT NOT NULL,
+  question_id      INT NOT NULL,
+  generated_values LONGTEXT,          -- JSON: {"a":4,"b":7} (NULL for static)
+  submitted_answer TEXT,
+  is_correct       TINYINT(1) NULL,   -- NULL = never answered
+  answered_at      TIMESTAMP NULL,
+  FOREIGN KEY (attempt_id)  REFERENCES quiz_attempts(id),
+  FOREIGN KEY (question_id) REFERENCES questions(id)
+);

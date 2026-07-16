@@ -3,6 +3,7 @@ const topicId  = params.get('topicId');
 const grade    = params.get('grade')   || '7';
 const subject  = params.get('subject') || 'math';
 const username = sessionStorage.getItem('username');
+const token    = sessionStorage.getItem('token');
 
 let questions  = [];
 let current    = 0;
@@ -21,8 +22,11 @@ async function init() {
 
   const res  = await fetch('/api/test/start', {
     method:  'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body:    JSON.stringify({ topicId, username }),
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    },
+    body:    JSON.stringify({ topicId }),
   });
   const data = await res.json();
   sessionId  = data.sessionId;

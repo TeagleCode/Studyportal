@@ -5,7 +5,19 @@ const db       = require('./db');
 const path     = require('path');
 const fs       = require('fs');
 const crypto   = require('crypto');
-const { evaluate } = require('mathjs');
+// Restricted mathjs evaluate (per mathjs security docs): formulas can do
+// arithmetic but can't import functions, define units, or nest evaluate/parse.
+const { create, all } = require('mathjs');
+const math = create(all);
+const evaluate = math.evaluate;
+math.import({
+  import:     () => { throw new Error('import is disabled'); },
+  createUnit: () => { throw new Error('createUnit is disabled'); },
+  evaluate:   () => { throw new Error('evaluate is disabled'); },
+  parse:      () => { throw new Error('parse is disabled'); },
+  simplify:   () => { throw new Error('simplify is disabled'); },
+  derivative: () => { throw new Error('derivative is disabled'); },
+}, { override: true });
 
 const app = express();
 app.use(express.json());
@@ -26,11 +38,79 @@ const upload = multer({
   },
 });
 
-app.use(express.static(path.join(__dirname)));
+// Only expose public assets — never the project root (.env, db.js, seed
+// scripts with answers, etc. must not be reachable over HTTP).
+app.use('/pages',   express.static(path.join(__dirname, 'pages')));
+app.use('/style',   express.static(path.join(__dirname, 'style')));
+app.use('/img',     express.static(path.join(__dirname, 'img')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// scripts/ also holds seed/import tooling; only client scripts are served.
+const CLIENT_SCRIPTS = new Set([
+  'login.js', 'test.js', 'chapters.js', 'dashboard.js',
+  'accountManagement.js', 'bg-symbols.js',
+]);
+app.get('/scripts/:file', (req, res) => {
+  if (!CLIENT_SCRIPTS.has(req.params.file)) return res.status(404).end();
+  res.sendFile(path.join(__dirname, 'scripts', req.params.file));
+});
+
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'login.html')));
+app.get('/login.html', (req, res) => res.sendFile(path.join(__dirname, 'login.html')));
+
+// ── Auth tokens (in-memory) ──────────────────────────────────────
+// Login issues a bearer token; user-specific endpoints derive the username
+// from the token instead of trusting whatever the client sends.
+const authTokens = new Map();                    // token -> { username, expires }
+const TOKEN_TTL  = 7 * 24 * 60 * 60 * 1000;      // 7 days
+
+function tokenUser(req) {
+  const h = req.headers.authorization || '';
+  if (!h.startsWith('Bearer ')) return null;
+  const entry = authTokens.get(h.slice(7));
+  if (!entry) return null;
+  if (Date.now() > entry.expires) { authTokens.delete(h.slice(7)); return null; }
+  return entry.username;
+}
+
+function requireAuth(req, res, next) {
+  const username = tokenUser(req);
+  if (!username) return res.status(401).json({ error: 'unauthorized' });
+  req.username = username;
+  next();
+}
+
+// ── Login rate limiting (in-memory) ──────────────────────────────
+const loginAttempts = new Map();                 // ip -> { count, resetAt }
+const LOGIN_WINDOW  = 15 * 60 * 1000;
+const LOGIN_MAX     = 10;
+
+function loginLimiter(req, res, next) {
+  const now = Date.now();
+  let e = loginAttempts.get(req.ip);
+  if (!e || now > e.resetAt) { e = { count: 0, resetAt: now + LOGIN_WINDOW }; loginAttempts.set(req.ip, e); }
+  if (e.count >= LOGIN_MAX) return res.status(429).json({ error: 'too_many_attempts' });
+  e.count++;
+  next();
+}
+setInterval(() => {
+  const now = Date.now();
+  for (const [ip, e] of loginAttempts) if (now > e.resetAt) loginAttempts.delete(ip);
+}, LOGIN_WINDOW).unref();
 
 // ── Test session store (in-memory) ───────────────────────────────
 const testSessions = new Map();
+
+// Fisher–Yates; returns [value, originalIndex] pairs so shuffled option ids
+// can be traced back to the authored index (option_explanations keys).
+function shuffleWithIndex(arr) {
+  const a = arr.map((v, i) => [v, i]);
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 function generateValues(variables) {
   const vals = {};
@@ -61,11 +141,53 @@ function fillTemplate(template, values) {
 }
 
 function normalizeText(s) {
-  return String(s).toLowerCase().trim().replace(/\s+/g, ' ');
+  return String(s)
+    .normalize('NFC')                                  // Georgian & accented scripts
+    .toLowerCase()
+    .replace(/[.,!?;:'"«»„“”‘’`()[\]{}\\/|_~^*+=<>]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+// Parse a student-typed number: fractions ("3/4", "1 1/2"), comma decimals
+// ("3,5"), thousands separators ("1.234.567", "1,234.5"), trailing units
+// ("25 კმ", "3.5cm", "50%"), unicode minus.
+function parseNumeric(raw) {
+  if (raw === null || raw === undefined) return NaN;
+  let s = String(raw).normalize('NFC').trim().replace(/[−–]/g, '-');
+  s = s.replace(/\s*(?:[a-zა-ჿ]+\.?|%|°)\s*$/i, '');
+
+  const mixed = s.match(/^(-?)(\d+)\s+(\d+)\s*\/\s*(\d+)$/);
+  if (mixed) {
+    const den = +mixed[4];
+    if (!den) return NaN;
+    const v = +mixed[2] + (+mixed[3] / den);
+    return mixed[1] === '-' ? -v : v;
+  }
+  const frac = s.match(/^(-?\d+)\s*\/\s*(\d+)$/);
+  if (frac) {
+    const den = +frac[2];
+    return den ? +frac[1] / den : NaN;
+  }
+
+  s = s.replace(/[   \s]+/g, '');
+  const hasComma = s.includes(','), hasDot = s.includes('.');
+  if (hasComma && hasDot) {
+    // Rightmost separator is the decimal point; the other one groups thousands
+    if (s.lastIndexOf(',') > s.lastIndexOf('.')) s = s.replace(/\./g, '').replace(',', '.');
+    else s = s.replace(/,/g, '');
+  } else if (hasComma) {
+    // Single comma = decimal comma; multiple = thousands separators
+    s = (s.match(/,/g).length === 1) ? s.replace(',', '.') : s.replace(/,/g, '');
+  } else if (hasDot && s.match(/\./g).length > 1) {
+    s = s.replace(/\./g, '');  // "1.234.567" → 1234567
+  }
+
+  return s && /^-?\d*\.?\d+(e-?\d+)?$/i.test(s) ? Number(s) : NaN;
 }
 
 function numericMatch(a, b) {
-  const na = parseFloat(a), nb = parseFloat(b);
+  const na = parseNumeric(a), nb = parseNumeric(b);
   if (isNaN(na) || isNaN(nb)) return false;
   const tol = Math.max(Math.abs(nb) * 0.01, 0.01);
   return Math.abs(na - nb) <= tol;
@@ -111,7 +233,11 @@ function gradeAnswer(sq, submittedAnswer) {
       if (q.option_explanations) {
         try {
           const optEx = JSON.parse(q.option_explanations);
-          const specific = optEx[String(submittedAnswer)];
+          // option_explanations keys are authored indexes; served ids are shuffled
+          const authoredIdx = sq.option_index_map
+            ? sq.option_index_map[Number(submittedAnswer)]
+            : Number(submittedAnswer);
+          const specific = optEx[String(authoredIdx)];
           if (specific) explanation = specific + (explanation ? '\n\n' + explanation : '');
         } catch (_) {}
       }
@@ -119,15 +245,16 @@ function gradeAnswer(sq, submittedAnswer) {
     return { correct: isCorrect, correct_id: sq.correct_answer_id, explanation, steps };
   }
 
-  // Text answer
-  const norm    = normalizeText(submittedAnswer);
+  // Text answer — numeric compare on raw strings first (keeps fractions like
+  // "3/4" intact), then normalized text compare, then acceptable_answers.
   const correct = sq.computed_answer ?? q.correct_answer;
-  const normC   = normalizeText(correct);
+  const norm    = normalizeText(submittedAnswer);
 
-  let isCorrect = numericMatch(norm, normC) || norm === normC;
+  let isCorrect = numericMatch(submittedAnswer, correct) || norm === normalizeText(correct);
   if (!isCorrect && q.acceptable_answers) {
     try {
-      isCorrect = JSON.parse(q.acceptable_answers).some(a => normalizeText(a) === norm);
+      isCorrect = JSON.parse(q.acceptable_answers).some(a =>
+        normalizeText(a) === norm || numericMatch(submittedAnswer, a));
     } catch (_) {}
   }
 
@@ -141,7 +268,7 @@ function gradeAnswer(sq, submittedAnswer) {
 }
 
 // ── Auth ──────────────────────────────────────────────────────────
-app.post('/api/login', async (req, res) => {
+app.post('/api/login', loginLimiter, async (req, res) => {
   const { username, password } = req.body;
   try {
     const [rows] = await db.execute('SELECT * FROM users WHERE username = ?', [username]);
@@ -150,53 +277,60 @@ app.post('/api/login', async (req, res) => {
     const match = await bcrypt.compare(password, rows[0].password_hash);
     if (!match) return res.status(401).json({ error: 'wrong_password' });
 
-    res.json({ success: true });
+    loginAttempts.delete(req.ip);
+    const token = crypto.randomUUID();
+    authTokens.set(token, { username: rows[0].username, expires: Date.now() + TOKEN_TTL });
+    res.json({ success: true, token });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'server_error' });
   }
 });
 
-// ── User ──────────────────────────────────────────────────────────
-app.get('/api/user/:username', async (req, res) => {
+// ── User (all token-scoped: you can only read/change your own account) ────
+app.get('/api/user/:username', requireAuth, async (req, res) => {
+  if (req.params.username !== req.username) return res.status(403).json({ error: 'forbidden' });
   try {
     const [rows] = await db.execute(
       'SELECT username, email, first_name, last_name, avatar_url, rubies FROM users WHERE username = ?',
-      [req.params.username]
+      [req.username]
     );
     if (!rows.length) return res.status(404).json({ error: 'not_found' });
     res.json(rows[0]);
   } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
 });
 
-app.put('/api/user/username', async (req, res) => {
-  const { currentUsername, newUsername } = req.body;
+app.put('/api/user/username', requireAuth, async (req, res) => {
+  const { newUsername } = req.body;
+  if (!newUsername || !newUsername.trim()) return res.status(400).json({ error: 'invalid' });
   try {
     const [existing] = await db.execute('SELECT id FROM users WHERE username = ?', [newUsername]);
     if (existing.length) return res.status(409).json({ error: 'taken' });
-    await db.execute('UPDATE users SET username = ? WHERE username = ?', [newUsername, currentUsername]);
+    await db.execute('UPDATE users SET username = ? WHERE username = ?', [newUsername, req.username]);
+    for (const entry of authTokens.values())
+      if (entry.username === req.username) entry.username = newUsername;
     res.json({ success: true });
   } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
 });
 
-app.put('/api/user/password', async (req, res) => {
-  const { username, currentPassword, newPassword } = req.body;
+app.put('/api/user/password', requireAuth, async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
   try {
-    const [rows] = await db.execute('SELECT password_hash FROM users WHERE username = ?', [username]);
+    const [rows] = await db.execute('SELECT password_hash FROM users WHERE username = ?', [req.username]);
     if (!rows.length) return res.status(404).json({ error: 'not_found' });
     const match = await bcrypt.compare(currentPassword, rows[0].password_hash);
     if (!match) return res.status(401).json({ error: 'wrong_password' });
     const hash = await bcrypt.hash(newPassword, 10);
-    await db.execute('UPDATE users SET password_hash = ? WHERE username = ?', [hash, username]);
+    await db.execute('UPDATE users SET password_hash = ? WHERE username = ?', [hash, req.username]);
     res.json({ success: true });
   } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
 });
 
-app.post('/api/user/avatar', upload.single('avatar'), async (req, res) => {
-  const { username } = req.body;
+app.post('/api/user/avatar', requireAuth, upload.single('avatar'), async (req, res) => {
+  if (!req.file) return res.status(400).json({ error: 'no_file' });
   const avatarUrl = '/uploads/avatars/' + req.file.filename;
   try {
-    await db.execute('UPDATE users SET avatar_url = ? WHERE username = ?', [avatarUrl, username]);
+    await db.execute('UPDATE users SET avatar_url = ? WHERE username = ?', [avatarUrl, req.username]);
     res.json({ success: true, avatar_url: avatarUrl });
   } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
 });
@@ -226,7 +360,8 @@ app.get('/api/chapters/:grade/:subject', async (req, res) => {
 
 // ── Test session ──────────────────────────────────────────────────
 app.post('/api/test/start', async (req, res) => {
-  const { topicId, username } = req.body;
+  const { topicId } = req.body;
+  const username = tokenUser(req);   // null for guests; never trusted from body
   try {
     const limit = 10;
     const [questions] = await db.execute(
@@ -235,8 +370,19 @@ app.post('/api/test/start', async (req, res) => {
     );
     if (!questions.length) return res.json({ sessionId: null, questions: [] });
 
+    let userId = null;
+    if (username) {
+      const [[user]] = await db.execute('SELECT id FROM users WHERE username = ?', [username]);
+      if (user) userId = user.id;
+    }
+    const [attemptRes] = await db.execute(
+      'INSERT INTO quiz_attempts (user_id, topic_id, total) VALUES (?, ?, ?)',
+      [userId, topicId, questions.length]
+    );
+    const attemptId = attemptRes.insertId;
+
     const sessionId = crypto.randomUUID();
-    const session   = { username, sessionQuestions: [], score: 0 };
+    const session   = { username, attemptId, sessionQuestions: [], score: 0 };
     const clientQs  = [];
 
     for (const q of questions) {
@@ -255,14 +401,14 @@ app.post('/api/test/start', async (req, res) => {
         }
 
         if ((q.question_type || 'multiple_choice') === 'multiple_choice' && q.option_formulas) {
-          const formulas = JSON.parse(q.option_formulas);
-          const opts = formulas.map((f) => {
+          const shuffled = shuffleWithIndex(JSON.parse(q.option_formulas));
+          const opts = shuffled.map(([f]) => {
             let val;
             try { val = +evaluate(f.formula, values).toFixed(2); } catch { val = f.fallback || '?'; }
             return { answer_text: formatGeo(val), _correct: !!f.is_correct };
           });
-          opts.sort(() => Math.random() - 0.5);
           cq.options = opts.map((o, i) => ({ id: i, answer_text: o.answer_text }));
+          sq.option_index_map = shuffled.map(([, orig]) => orig);  // served id → authored index
           let correctIdx = opts.findIndex(o => o._correct);
           if (correctIdx < 0 && sq.computed_answer !== null) {
             correctIdx = opts.findIndex(o =>
@@ -275,20 +421,24 @@ app.post('/api/test/start', async (req, res) => {
         cq.question_text = q.question_text;
 
         if ((q.question_type || 'multiple_choice') === 'multiple_choice') {
+          // Authored order (by id), shuffled in JS so served option ids can be
+          // mapped back to authored indexes for option_explanations.
           const [answers] = await db.execute(
-            'SELECT id, answer_text FROM answers WHERE question_id = ? ORDER BY RAND()',
+            'SELECT answer_text, is_correct FROM answers WHERE question_id = ? ORDER BY id',
             [q.id]
           );
-          const [[correctRow]] = await db.execute(
-            'SELECT id FROM answers WHERE question_id = ? AND is_correct = 1 LIMIT 1',
-            [q.id]
-          );
-          // Re-index to 0..n so IDs are always small integers
-          cq.options = answers.map((a, i) => ({ id: i, answer_text: a.answer_text, _dbId: a.id }));
-          sq.correct_answer_id = cq.options.findIndex(o => o._dbId === correctRow?.id);
-          cq.options = cq.options.map(({ id, answer_text }) => ({ id, answer_text }));
+          const shuffled = shuffleWithIndex(answers);
+          cq.options = shuffled.map(([a], i) => ({ id: i, answer_text: a.answer_text }));
+          sq.correct_answer_id = shuffled.findIndex(([a]) => a.is_correct);
+          sq.option_index_map  = shuffled.map(([, orig]) => orig);
         }
       }
+
+      const [aqRes] = await db.execute(
+        'INSERT INTO attempt_questions (attempt_id, question_id, generated_values) VALUES (?, ?, ?)',
+        [attemptId, q.id, sq.generated_values ? JSON.stringify(sq.generated_values) : null]
+      );
+      sq.attemptQuestionId = aqRes.insertId;
 
       session.sessionQuestions.push(sq);
       clientQs.push(cq);
@@ -301,16 +451,25 @@ app.post('/api/test/start', async (req, res) => {
   } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
 });
 
-app.post('/api/test/answer', (req, res) => {
+app.post('/api/test/answer', async (req, res) => {
   const { sessionId, questionIndex, answer } = req.body;
   const session = testSessions.get(sessionId);
   if (!session) return res.status(404).json({ error: 'session_not_found' });
 
   const sq = session.sessionQuestions[questionIndex];
   if (!sq) return res.status(400).json({ error: 'invalid_question' });
+  if (sq.answered) return res.status(409).json({ error: 'already_answered' });
+  sq.answered = true;
 
   const result = gradeAnswer(sq, answer);
   if (result.correct) session.score++;
+
+  try {
+    await db.execute(
+      'UPDATE attempt_questions SET submitted_answer = ?, is_correct = ?, answered_at = NOW() WHERE id = ?',
+      [String(answer), result.correct ? 1 : 0, sq.attemptQuestionId]
+    );
+  } catch (e) { console.error('attempt record error:', e); }
 
   res.json(result);
 });
@@ -326,6 +485,13 @@ app.post('/api/test/finish', async (req, res) => {
   const rubies = Math.round(pct / 10);
   let newBalance = 0;
 
+  try {
+    await db.execute(
+      'UPDATE quiz_attempts SET score = ?, finished_at = NOW() WHERE id = ?',
+      [score, session.attemptId]
+    );
+  } catch (e) { console.error('attempt record error:', e); }
+
   if (session.username && rubies > 0) {
     try {
       await db.execute('UPDATE users SET rubies = rubies + ? WHERE username = ?', [rubies, session.username]);
@@ -336,6 +502,110 @@ app.post('/api/test/finish', async (req, res) => {
 
   testSessions.delete(sessionId);
   res.json({ score, total, pct, rubies, newBalance });
+});
+
+// ── Progress ──────────────────────────────────────────────────────
+app.get('/api/progress/:username', requireAuth, async (req, res) => {
+  if (req.params.username !== req.username) return res.status(403).json({ error: 'forbidden' });
+  try {
+    const [[user]] = await db.execute('SELECT id FROM users WHERE username = ?', [req.username]);
+    if (!user) return res.status(404).json({ error: 'not_found' });
+
+    const [[overall]] = await db.execute(`
+      SELECT COUNT(*) AS answered, COALESCE(SUM(aq.is_correct), 0) AS correct
+      FROM attempt_questions aq
+      JOIN quiz_attempts qa ON aq.attempt_id = qa.id
+      WHERE qa.user_id = ? AND aq.is_correct IS NOT NULL
+    `, [user.id]);
+
+    const [subjects] = await db.execute(`
+      SELECT s.slug, s.display_name, g.grade_num,
+             COUNT(*) AS answered, COALESCE(SUM(aq.is_correct), 0) AS correct
+      FROM attempt_questions aq
+      JOIN quiz_attempts qa ON aq.attempt_id = qa.id
+      JOIN questions q  ON aq.question_id = q.id
+      JOIN topics t     ON q.topic_id = t.id
+      JOIN chapters c   ON t.chapter_id = c.id
+      JOIN subjects s   ON c.subject_id = s.id
+      JOIN grades g     ON c.grade_id = g.id
+      WHERE qa.user_id = ? AND aq.is_correct IS NOT NULL
+      GROUP BY s.id, g.id
+      ORDER BY s.display_name, g.grade_num
+    `, [user.id]);
+
+    const [weakTopics] = await db.execute(`
+      SELECT t.id AS topic_id, t.title AS topic, c.title AS chapter,
+             s.slug AS subject, s.display_name AS subject_name, g.grade_num,
+             COUNT(*) AS answered, COALESCE(SUM(aq.is_correct), 0) AS correct
+      FROM attempt_questions aq
+      JOIN quiz_attempts qa ON aq.attempt_id = qa.id
+      JOIN questions q  ON aq.question_id = q.id
+      JOIN topics t     ON q.topic_id = t.id
+      JOIN chapters c   ON t.chapter_id = c.id
+      JOIN subjects s   ON c.subject_id = s.id
+      JOIN grades g     ON c.grade_id = g.id
+      WHERE qa.user_id = ? AND aq.is_correct IS NOT NULL
+      GROUP BY t.id
+      HAVING COUNT(*) >= 5 AND COALESCE(SUM(aq.is_correct), 0) / COUNT(*) < 0.6
+      ORDER BY COALESCE(SUM(aq.is_correct), 0) / COUNT(*) ASC
+      LIMIT 5
+    `, [user.id]);
+
+    const [recent] = await db.execute(`
+      SELECT qa.id, qa.score, qa.total, qa.finished_at,
+             t.id AS topic_id, t.title AS topic, c.title AS chapter,
+             s.slug AS subject, s.display_name AS subject_name, g.grade_num
+      FROM quiz_attempts qa
+      JOIN topics t   ON qa.topic_id = t.id
+      JOIN chapters c ON t.chapter_id = c.id
+      JOIN subjects s ON c.subject_id = s.id
+      JOIN grades g   ON c.grade_id = g.id
+      WHERE qa.user_id = ? AND qa.finished_at IS NOT NULL
+      ORDER BY qa.finished_at DESC
+      LIMIT 10
+    `, [user.id]);
+
+    const [daily] = await db.execute(`
+      SELECT DATE(aq.answered_at) AS day,
+             COUNT(*) AS answered, COALESCE(SUM(aq.is_correct), 0) AS correct
+      FROM attempt_questions aq
+      JOIN quiz_attempts qa ON aq.attempt_id = qa.id
+      WHERE qa.user_id = ? AND aq.is_correct IS NOT NULL
+        AND aq.answered_at >= NOW() - INTERVAL 14 DAY
+      GROUP BY DATE(aq.answered_at)
+      ORDER BY day
+    `, [user.id]);
+
+    res.json({
+      overall: {
+        answered: Number(overall.answered),
+        correct:  Number(overall.correct),
+        accuracy: overall.answered ? Math.round((overall.correct / overall.answered) * 100) : null,
+      },
+      subjects: subjects.map(r => ({
+        subject: r.slug, subject_name: r.display_name, grade: r.grade_num,
+        answered: Number(r.answered), correct: Number(r.correct),
+        accuracy: Math.round((r.correct / r.answered) * 100),
+      })),
+      weak_topics: weakTopics.map(r => ({
+        topic_id: r.topic_id, topic: r.topic, chapter: r.chapter,
+        subject: r.subject, subject_name: r.subject_name, grade: r.grade_num,
+        answered: Number(r.answered), correct: Number(r.correct),
+        accuracy: Math.round((r.correct / r.answered) * 100),
+      })),
+      recent_quizzes: recent.map(r => ({
+        topic_id: r.topic_id, topic: r.topic, chapter: r.chapter,
+        subject: r.subject, subject_name: r.subject_name, grade: r.grade_num,
+        score: r.score, total: r.total,
+        pct: r.total ? Math.round((r.score / r.total) * 100) : 0,
+        finished_at: r.finished_at,
+      })),
+      daily: daily.map(r => ({
+        day: r.day, answered: Number(r.answered), correct: Number(r.correct),
+        accuracy: Math.round((r.correct / r.answered) * 100),
+      })),
+    });
+  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
 });
 
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));

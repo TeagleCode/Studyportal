@@ -1,5 +1,7 @@
 const username = sessionStorage.getItem('username');
-if (!username) window.location.href = '../login.html';
+const token    = sessionStorage.getItem('token');
+if (!username || !token) window.location.href = '../login.html';
+const AUTH = { Authorization: `Bearer ${token}` };
 
 function showMsg(id, text, ok) {
   const el = document.getElementById(id);
@@ -8,7 +10,7 @@ function showMsg(id, text, ok) {
 }
 
 // Load current user data
-fetch(`/api/user/${username}`)
+fetch(`/api/user/${username}`, { headers: AUTH })
   .then(r => r.json())
   .then(data => {
     if (data.avatar_url) {
@@ -27,9 +29,8 @@ document.getElementById('avatarForm').addEventListener('submit', async (e) => {
 
   const form = new FormData();
   form.append('avatar', file);
-  form.append('username', username);
 
-  const res = await fetch('/api/user/avatar', { method: 'POST', body: form });
+  const res = await fetch('/api/user/avatar', { method: 'POST', headers: AUTH, body: form });
   const data = await res.json();
 
   if (res.ok) {
@@ -49,8 +50,8 @@ document.getElementById('usernameForm').addEventListener('submit', async (e) => 
 
   const res = await fetch('/api/user/username', {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ currentUsername: username, newUsername }),
+    headers: { 'Content-Type': 'application/json', ...AUTH },
+    body: JSON.stringify({ newUsername }),
   });
   const data = await res.json();
 
@@ -72,8 +73,8 @@ document.getElementById('passwordForm').addEventListener('submit', async (e) => 
 
   const res = await fetch('/api/user/password', {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username: sessionStorage.getItem('username'), currentPassword, newPassword }),
+    headers: { 'Content-Type': 'application/json', ...AUTH },
+    body: JSON.stringify({ currentPassword, newPassword }),
   });
   const data = await res.json();
 

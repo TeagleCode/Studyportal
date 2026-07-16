@@ -19,6 +19,7 @@ document.querySelector('form').addEventListener('submit', async (e) => {
 
     if (response.ok && data.success) {
       sessionStorage.setItem('username', username);
+      sessionStorage.setItem('token', data.token);
       window.location.href = './pages/home.html';
       return;
     }
@@ -28,6 +29,8 @@ document.querySelector('form').addEventListener('submit', async (e) => {
       message = 'This account does not exist. Please sign up first.';
     } else if (data.error === 'wrong_password') {
       message = 'Incorrect password. Please try again.';
+    } else if (data.error === 'too_many_attempts') {
+      message = 'Too many login attempts. Please wait 15 minutes and try again.';
     } else {
       message = 'Something went wrong. Please try again later.';
     }

@@ -1,0 +1,65 @@
+{
+  "grade": 7,
+  "subject": "math",
+  "chapters": [
+    {
+      "title": "სამაგალითო თავი (ფორმატის დემო)",
+      "topics": [
+        {
+          "title": "ოთხივე ტიპის მაგალითი",
+          "questions": [
+            {
+              "type": "multiple_choice",
+              "text": "რომელი რიცხვია ლუწი?",
+              "options": ["14", "7", "9", "21"],
+              "correct": 0,
+              "explanation": "ლუწია რიცხვი, რომელიც 2-ზე უნაშთოდ იყოფა. 14 ÷ 2 = 7.",
+              "option_explanations": {
+                "1": "7 კენტია — 2-ზე გაყოფისას ნაშთი 1 რჩება.",
+                "2": "9 კენტია — 2-ზე გაყოფისას ნაშთი 1 რჩება.",
+                "3": "21 კენტია — 2-ზე გაყოფისას ნაშთი 1 რჩება."
+              },
+              "difficulty": 1
+            },
+            {
+              "type": "text",
+              "text": "დაასახელეთ უმცირესი მარტივი რიცხვი.",
+              "answer": "2",
+              "acceptable": ["ორი"],
+              "explanation": "2 ერთადერთი ლუწი მარტივი რიცხვია და უმცირესიც."
+            },
+            {
+              "type": "text",
+              "parametric": true,
+              "text": "რას უდრის {a} + {b}?",
+              "variables": {
+                "a": { "min": 12, "max": 89 },
+                "b": { "min": 12, "max": 89 }
+              },
+              "formula": "a + b",
+              "explanation_template": "შეკრიბეთ: {a} + {b} = {answer}.",
+              "explanation_steps": [
+                "ჯერ შეკრიბეთ ერთეულები, შემდეგ ათეულები.",
+                "{a} + {b} = {answer}."
+              ],
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "parametric": true,
+              "text": "რას უდრის {a} × {b}?",
+              "variables": {
+                "a": { "min": 3, "max": 12 },
+                "b": { "min": 3, "max": 12 }
+              },
+              "formula": "a * b",
+              "options": ["a * b", "a * b + a", "a * b - b", "a + b"],
+              "explanation_template": "{a} × {b} = {answer}.",
+              "difficulty": 2
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
