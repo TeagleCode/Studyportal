@@ -28,6 +28,11 @@ async function init() {
     },
     body:    JSON.stringify({ topicId }),
   });
+  if (res.status === 401) {   // session revoked (logged in elsewhere) or expired
+    sessionStorage.clear();
+    window.location.href = '/';
+    return;
+  }
   const data = await res.json();
   sessionId  = data.sessionId;
   questions  = data.questions;

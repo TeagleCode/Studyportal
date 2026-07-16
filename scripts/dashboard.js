@@ -28,8 +28,11 @@ async function init() {
   $('greeting').textContent = `${username}'s dashboard`;
 
   fetch(`/api/user/${username}`, { headers: AUTH })
-    .then(r => r.json())
-    .then(u => { $('rubyCount').textContent = u.rubies ?? 0; })
+    .then(r => {
+      if (r.status === 401) { sessionStorage.clear(); window.location.href = '/'; return null; }
+      return r.json();
+    })
+    .then(u => { if (u) $('rubyCount').textContent = u.rubies ?? 0; })
     .catch(() => {});
 
   fetch('/api/streak', { headers: AUTH })
@@ -42,7 +45,7 @@ async function init() {
   let data;
   try {
     const res = await fetch(`/api/progress/${username}`, { headers: AUTH });
-    if (res.status === 401) { window.location.href = '/'; return; }
+    if (res.status === 401) { sessionStorage.clear(); window.location.href = '/'; return; }
     if (!res.ok) throw new Error('progress fetch failed');
     data = await res.json();
   } catch (e) {

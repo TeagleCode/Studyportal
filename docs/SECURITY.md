@@ -32,6 +32,11 @@ Result of the security pass (plan task, 11 Jul 2026). Verified / fixed:
   `/api/test/start` credits rubies to the token's user and ignores any
   client-sent username; guests can still take quizzes.
 - **Login rate limiting.** Max 10 attempts per IP per 15 minutes → 429.
+- **Single active session per account** (18 Jul 2026). A new login revokes
+  every previous token for that user, so a stolen/shared session dies the
+  moment the owner logs in again. Revoked sessions get 401 everywhere
+  (including quiz start — no silent downgrade to guest) and the frontend
+  clears its stored credentials and returns to the login page.
 - Avatar upload now requires auth (was: any client could overwrite any
   user's avatar).
 

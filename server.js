@@ -349,6 +349,10 @@ app.post('/api/login', loginLimiter, async (req, res) => {
     if (!match) return res.status(401).json({ error: 'wrong_password' });
 
     loginAttempts.delete(req.ip);
+    // Single active session per account: a new login revokes every existing
+    // token for this user (also bounds the map to one entry per user).
+    for (const [t, entry] of authTokens)
+      if (entry.username === rows[0].username) authTokens.delete(t);
     const token = crypto.randomUUID();
     authTokens.set(token, { username: rows[0].username, expires: Date.now() + TOKEN_TTL });
     res.json({ success: true, token });
@@ -432,6 +436,10 @@ app.get('/api/chapters/:grade/:subject', async (req, res) => {
 // ── Test session ──────────────────────────────────────────────────
 app.post('/api/test/start', async (req, res) => {
   const { topicId } = req.body;
+  // A revoked/expired token gets a clear 401 (client thinks it's logged in —
+  // don't silently downgrade to guest). No Authorization header = guest.
+  if (req.headers.authorization && !tokenUser(req))
+    return res.status(401).json({ error: 'unauthorized' });
   const username = tokenUser(req);   // null for guests; never trusted from body
   try {
     const limit = 10;

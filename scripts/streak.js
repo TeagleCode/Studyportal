@@ -24,7 +24,7 @@ async function init() {
   let data;
   try {
     const res = await fetch('/api/streak', { headers: AUTH });
-    if (res.status === 401) { window.location.href = '/'; return; }
+    if (res.status === 401) { sessionStorage.clear(); window.location.href = '/'; return; }
     data = await res.json();
   } catch (e) {
     $('statusLine').textContent = 'Could not load your streak. Try again later.';

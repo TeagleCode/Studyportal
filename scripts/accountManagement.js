@@ -3,6 +3,16 @@ const token    = sessionStorage.getItem('token');
 if (!username || !token) window.location.href = '../login.html';
 const AUTH = { Authorization: `Bearer ${token}` };
 
+// Session revoked (logged in on another device) or expired → back to login
+function guard401(res) {
+  if (res.status === 401) {
+    sessionStorage.clear();
+    window.location.href = '../login.html';
+    throw new Error('session_revoked');
+  }
+  return res;
+}
+
 function showMsg(id, text, ok) {
   const el = document.getElementById(id);
   el.textContent = text;
@@ -11,6 +21,7 @@ function showMsg(id, text, ok) {
 
 // Load current user data
 fetch(`/api/user/${username}`, { headers: AUTH })
+  .then(guard401)
   .then(r => r.json())
   .then(data => {
     if (data.avatar_url) {
@@ -30,7 +41,7 @@ document.getElementById('avatarForm').addEventListener('submit', async (e) => {
   const form = new FormData();
   form.append('avatar', file);
 
-  const res = await fetch('/api/user/avatar', { method: 'POST', headers: AUTH, body: form });
+  const res = guard401(await fetch('/api/user/avatar', { method: 'POST', headers: AUTH, body: form }));
   const data = await res.json();
 
   if (res.ok) {
@@ -48,11 +59,11 @@ document.getElementById('usernameForm').addEventListener('submit', async (e) => 
   e.preventDefault();
   const newUsername = document.getElementById('newUsername').value.trim();
 
-  const res = await fetch('/api/user/username', {
+  const res = guard401(await fetch('/api/user/username', {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', ...AUTH },
     body: JSON.stringify({ newUsername }),
-  });
+  }));
   const data = await res.json();
 
   if (res.ok) {
@@ -77,6 +88,14 @@ document.getElementById('passwordForm').addEventListener('submit', async (e) => 
     body: JSON.stringify({ currentPassword, newPassword }),
   });
   const data = await res.json();
+
+  // 401 here can mean either a revoked session or a wrong current password —
+  // only the former should log the user out
+  if (res.status === 401 && data.error === 'unauthorized') {
+    sessionStorage.clear();
+    window.location.href = '../login.html';
+    return;
+  }
 
   if (res.ok) {
     showMsg('passwordMsg', 'Password updated.', true);

@@ -110,8 +110,16 @@
       if (username && token) {
         document.getElementById('profileName').textContent = username;
         fetch(`/api/user/${username}`, { headers: { Authorization: `Bearer ${token}` } })
-          .then(r => r.json())
+          .then(r => {
+            if (r.status === 401) {   // session revoked (logged in elsewhere) or expired
+              sessionStorage.clear();
+              window.location.href = '/';
+              return null;
+            }
+            return r.json();
+          })
           .then(data => {
+            if (!data) return;
             if (data.avatar_url) {
               const img = document.getElementById('profileAvatar');
               img.src = data.avatar_url;
