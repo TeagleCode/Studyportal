@@ -47,7 +47,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // scripts/ also holds seed/import tooling; only client scripts are served.
 const CLIENT_SCRIPTS = new Set([
-  'login.js', 'test.js', 'chapters.js', 'dashboard.js',
+  'login.js', 'signup.js', 'test.js', 'chapters.js', 'dashboard.js',
   'accountManagement.js', 'bg-symbols.js', 'streak.js',
 ]);
 app.get('/scripts/:file', (req, res) => {
@@ -57,6 +57,7 @@ app.get('/scripts/:file', (req, res) => {
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'login.html')));
 app.get('/login.html', (req, res) => res.sendFile(path.join(__dirname, 'login.html')));
+app.get('/signup.html', (req, res) => res.sendFile(path.join(__dirname, 'signup.html')));
 
 // ── Auth tokens (in-memory) ──────────────────────────────────────
 // Login issues a bearer token; user-specific endpoints derive the username
@@ -360,6 +361,28 @@ app.post('/api/login', loginLimiter, async (req, res) => {
     console.error(err);
     res.status(500).json({ error: 'server_error' });
   }
+});
+
+app.post('/api/signup', loginLimiter, async (req, res) => {
+  const { username, password } = req.body || {};
+  // Letters (Latin or Georgian), digits, _ . -; 3–30 chars
+  if (!username || !/^[a-zA-Z0-9_.ა-ჰ-]{3,30}$/.test(username))
+    return res.status(400).json({ error: 'invalid_username' });
+  if (!password || password.length < 6)
+    return res.status(400).json({ error: 'weak_password' });
+
+  try {
+    const [existing] = await db.execute('SELECT id FROM users WHERE username = ?', [username]);
+    if (existing.length) return res.status(409).json({ error: 'taken' });
+
+    const hash = await bcrypt.hash(password, 10);
+    await db.execute('INSERT INTO users (username, password_hash) VALUES (?, ?)', [username, hash]);
+
+    // Auto-login the fresh account
+    const token = crypto.randomUUID();
+    authTokens.set(token, { username, expires: Date.now() + TOKEN_TTL });
+    res.status(201).json({ success: true, token });
+  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
 });
 
 // ── User (all token-scoped: you can only read/change your own account) ────

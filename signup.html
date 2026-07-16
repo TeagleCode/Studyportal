@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyPortal - Sign up</title>
+    <link rel="stylesheet" href="./style/login/login.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="logo">
+      <a href="./login.html">
+        <h1>StudyP<img src="./img/portal.png" alt="" />rtal</h1>
+      </a>
+    </div>
+
+    <div class="login-container">
+      <h2>Sign up</h2>
+
+      <form action="">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" autocomplete="username" required />
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" autocomplete="new-password" required />
+
+        <label for="confirm">Confirm password:</label>
+        <input type="password" id="confirm" name="confirm" autocomplete="new-password" required />
+
+        <button type="submit">Create account</button>
+      </form>
+
+      <p>Already have an account? <a href="./login.html">Log in here</a>.</p>
+    </div>
+
+    <script src="./scripts/signup.js"></script>
+  </body>
+</html>
