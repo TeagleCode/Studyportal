@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudyPortal - Streak</title>
+    <link rel="stylesheet" href="../style/streak/streak.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="bg-symbols" id="bgSymbols"></div>
+
+    <div class="nav">
+      <div class="nav-left">
+        <a href="./home.html">
+          <h1>StudyP<img src="../img/portal.png" alt="" />rtal</h1>
+        </a>
+      </div>
+      <div class="nav-right">
+        <a href="./dashboard.html" class="nav-back">← Dashboard</a>
+      </div>
+    </div>
+
+    <main class="streak">
+      <!-- Hero flame -->
+      <section class="hero">
+        <div class="flame flame--hero stage-0" id="heroFlame">
+          <div class="flame__glow"></div>
+          <div class="flame__ring"></div>
+          <div class="flame__body">
+            <div class="flame__outer"></div>
+            <div class="flame__mid"></div>
+            <div class="flame__core"></div>
+          </div>
+        </div>
+
+        <p class="hero__count"><span id="streakCount">0</span><span class="hero__count-unit"> day streak</span></p>
+        <p class="hero__stage" id="stageName">…</p>
+        <p class="hero__status" id="statusLine"></p>
+
+        <div class="hero__progress">
+          <div class="bar"><div class="bar__fill" id="progressFill"></div></div>
+          <p class="hero__progress-label" id="progressLabel"></p>
+        </div>
+
+        <a href="./home.html" class="hero__cta" id="ctaBtn" style="display:none">Start a quiz 🔥</a>
+      </section>
+
+      <!-- Last 7 days -->
+      <section class="panel">
+        <h3 class="panel__title">This week</h3>
+        <div class="week" id="weekStrip"></div>
+      </section>
+
+      <!-- Stats -->
+      <section class="stats-row">
+        <div class="stat-card">
+          <span class="stat-card__value" id="statCurrent">–</span>
+          <span class="stat-card__label">current streak</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__value" id="statLongest">–</span>
+          <span class="stat-card__label">longest streak</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__value" id="statBadges">–</span>
+          <span class="stat-card__label">badges earned</span>
+        </div>
+      </section>
+
+      <!-- Stage gallery -->
+      <section class="panel">
+        <h3 class="panel__title">Streak stages</h3>
+        <div class="stages" id="stageGrid"></div>
+        <p class="panel__hint">Finish at least one quiz every day to keep your flame alive.
+          Your first badge lights at a 3-day streak — the flame grows all the way to 200 days.</p>
+      </section>
+    </main>
+
+    <script src="../scripts/streak.js"></script>
+    <script src="../scripts/bg-symbols.js"></script>
+  </body>
+</html>

@@ -117,6 +117,15 @@ body {
   font-size: 0.85rem;
   opacity: 0.7;
 }
+.stat-card--link {
+  text-decoration: none;
+  color: #eaeaea;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.stat-card--link:hover {
+  border-color: #e94560;
+  background: rgba(233, 69, 96, 0.08);
+}
 
 .panel {
   background: #16213e;

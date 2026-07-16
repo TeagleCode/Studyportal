@@ -32,6 +32,11 @@ async function init() {
     .then(u => { $('rubyCount').textContent = u.rubies ?? 0; })
     .catch(() => {});
 
+  fetch('/api/streak', { headers: AUTH })
+    .then(r => r.json())
+    .then(s => { $('statStreak').textContent = `🔥 ${s.current}`; })
+    .catch(() => {});
+
   buildStartGrid();
 
   let data;

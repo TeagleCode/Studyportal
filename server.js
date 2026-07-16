@@ -48,7 +48,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 // scripts/ also holds seed/import tooling; only client scripts are served.
 const CLIENT_SCRIPTS = new Set([
   'login.js', 'test.js', 'chapters.js', 'dashboard.js',
-  'accountManagement.js', 'bg-symbols.js',
+  'accountManagement.js', 'bg-symbols.js', 'streak.js',
 ]);
 app.get('/scripts/:file', (req, res) => {
   if (!CLIENT_SCRIPTS.has(req.params.file)) return res.status(404).end();
@@ -97,6 +97,77 @@ setInterval(() => {
   const now = Date.now();
   for (const [ip, e] of loginAttempts) if (now > e.resetAt) loginAttempts.delete(ip);
 }, LOGIN_WINDOW).unref();
+
+// ── Streaks ───────────────────────────────────────────────────────
+// Daily study streak (Duolingo-style): finishing at least one quiz per
+// calendar day keeps the flame alive. First badge at 3 days, cap at 200.
+const STREAK_CAP = 200;
+const STREAK_STAGES = [
+  { level: 1,  name: 'Spark',         threshold: 3   },
+  { level: 2,  name: 'Ember',         threshold: 7   },
+  { level: 3,  name: 'Kindled Flame', threshold: 14  },
+  { level: 4,  name: 'Steady Blaze',  threshold: 21  },
+  { level: 5,  name: 'Bonfire',       threshold: 30  },
+  { level: 6,  name: 'Azure Flame',   threshold: 50  },
+  { level: 7,  name: 'Violet Inferno',threshold: 75  },
+  { level: 8,  name: 'White-Hot',     threshold: 100 },
+  { level: 9,  name: 'Golden Flame',  threshold: 150 },
+  { level: 10, name: 'Eternal Flame', threshold: 200 },
+];
+const stageFor     = days => [...STREAK_STAGES].reverse().find(s => days >= s.threshold) || null;
+const nextStageFor = days => STREAK_STAGES.find(s => s.threshold > days) || null;
+
+// DB timestamps use the DB server's clock (UTC in the container); shift to
+// this machine's local timezone before taking calendar dates.
+const TZ_OFFSET_MIN = -new Date().getTimezoneOffset();
+
+function localDate(offsetDays = 0) {
+  const d = new Date();
+  d.setDate(d.getDate() + offsetDays);
+  return d.toLocaleDateString('en-CA');            // YYYY-MM-DD
+}
+
+// Called when a logged-in user finishes a quiz. Returns { current, extended }.
+async function bumpStreak(userId) {
+  const today = localDate(0), yesterday = localDate(-1);
+  const [[row]] = await db.execute(
+    "SELECT current_streak, longest_streak, DATE_FORMAT(last_active_date, '%Y-%m-%d') AS last FROM user_streaks WHERE user_id = ?",
+    [userId]
+  );
+  if (!row) {
+    await db.execute(
+      'INSERT INTO user_streaks (user_id, current_streak, longest_streak, last_active_date) VALUES (?, 1, 1, ?)',
+      [userId, today]
+    );
+    return { current: 1, extended: true };
+  }
+  if (row.last === today) return { current: row.current_streak, extended: false };
+
+  const current = row.last === yesterday ? Math.min(row.current_streak + 1, STREAK_CAP) : 1;
+  const longest = Math.max(row.longest_streak, current);
+  await db.execute(
+    'UPDATE user_streaks SET current_streak = ?, longest_streak = ?, last_active_date = ? WHERE user_id = ?',
+    [current, longest, today, userId]
+  );
+  return { current, extended: true };
+}
+
+// Read-only streak state. A streak whose last active day is before yesterday
+// is broken: reported as 0 without writing (next finish resets it anyway).
+async function readStreak(userId) {
+  const today = localDate(0), yesterday = localDate(-1);
+  const [[row]] = await db.execute(
+    "SELECT current_streak, longest_streak, DATE_FORMAT(last_active_date, '%Y-%m-%d') AS last FROM user_streaks WHERE user_id = ?",
+    [userId]
+  );
+  let current = 0, longest = 0, activeToday = false;
+  if (row) {
+    longest = row.longest_streak;
+    if (row.last === today)          { current = row.current_streak; activeToday = true; }
+    else if (row.last === yesterday) { current = row.current_streak; }
+  }
+  return { current, longest, activeToday };
+}
 
 // ── Test session store (in-memory) ───────────────────────────────
 const testSessions = new Map();
@@ -382,7 +453,7 @@ app.post('/api/test/start', async (req, res) => {
     const attemptId = attemptRes.insertId;
 
     const sessionId = crypto.randomUUID();
-    const session   = { username, attemptId, sessionQuestions: [], score: 0 };
+    const session   = { username, userId, attemptId, sessionQuestions: [], score: 0 };
     const clientQs  = [];
 
     for (const q of questions) {
@@ -500,8 +571,53 @@ app.post('/api/test/finish', async (req, res) => {
     } catch (e) { console.error(e); }
   }
 
+  let streak = null;
+  if (session.userId) {
+    try {
+      const s = await bumpStreak(session.userId);
+      const stage = stageFor(s.current);
+      streak = { current: s.current, extended: s.extended, stage: stage ? stage.name : null };
+    } catch (e) { console.error('streak error:', e); }
+  }
+
   testSessions.delete(sessionId);
-  res.json({ score, total, pct, rubies, newBalance });
+  res.json({ score, total, pct, rubies, newBalance, streak });
+});
+
+// ── Streak ────────────────────────────────────────────────────────
+app.get('/api/streak', requireAuth, async (req, res) => {
+  try {
+    const [[user]] = await db.execute('SELECT id FROM users WHERE username = ?', [req.username]);
+    if (!user) return res.status(404).json({ error: 'not_found' });
+
+    const { current, longest, activeToday } = await readStreak(user.id);
+
+    // Activity dots for the last 7 days (from attempt history)
+    const [activeRows] = await db.execute(`
+      SELECT DISTINCT DATE_FORMAT(finished_at + INTERVAL ? MINUTE, '%Y-%m-%d') AS day
+      FROM quiz_attempts
+      WHERE user_id = ? AND finished_at IS NOT NULL
+        AND finished_at >= NOW() - INTERVAL 8 DAY
+    `, [TZ_OFFSET_MIN, user.id]);
+    const activeDays = new Set(activeRows.map(r => r.day));
+    const week = [];
+    for (let i = 6; i >= 0; i--) {
+      const day = localDate(-i);
+      week.push({ date: day, active: activeDays.has(day) });
+    }
+
+    const stage = stageFor(current);
+    const next  = nextStageFor(current);
+    res.json({
+      current, longest, active_today: activeToday, max: STREAK_CAP,
+      stage: stage ? { level: stage.level, name: stage.name, threshold: stage.threshold } : null,
+      next_stage: next
+        ? { level: next.level, name: next.name, threshold: next.threshold, days_left: next.threshold - current }
+        : null,
+      week,
+      stages: STREAK_STAGES.map(s => ({ ...s, unlocked: longest >= s.threshold })),
+    });
+  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
 });
 
 // ── Progress ──────────────────────────────────────────────────────

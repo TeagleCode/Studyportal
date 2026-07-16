@@ -1,0 +1,280 @@
+$nav-bg:    #1a1a2e;
+$nav-h:     90px;
+$accent:    #e94560;
+$light:     #eaeaea;
+$bg:        #0f3460;
+$card-bg:   #16213e;
+$good:      #4caf50;
+$transition: 0.25s ease;
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: sans-serif; background: $bg; color: $light; min-height: 100vh; }
+
+.bg-symbols {
+  position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+  span { position: absolute; color: $light; user-select: none; line-height: 1; }
+}
+
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  background: $nav-bg; height: $nav-h; padding: 0 32px;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+
+  &-left a {
+    text-decoration: none; color: $light;
+    h1 { font-size: 2.2rem; display: flex; align-items: center; gap: 4px; img { height: 42px; } }
+  }
+
+  &-right { display: flex; align-items: center; gap: 20px; }
+
+  &-back {
+    text-decoration: none; color: $light; font-size: 0.95rem;
+    opacity: 0.7; transition: opacity $transition;
+    &:hover { opacity: 1; }
+  }
+}
+
+.streak {
+  max-width: 860px;
+  margin: 40px auto 60px;
+  padding: 0 24px;
+}
+
+// ══════════════════════════════════════════════════════════════════
+// The flame — one component, 10+ stage skins via CSS custom props.
+// --size: overall height; --outer/--mid/--core: layer colors;
+// --glow: halo color; --flicker: animation speed.
+// ══════════════════════════════════════════════════════════════════
+.flame {
+  --size:    110px;
+  --outer:   #666;
+  --mid:     #888;
+  --core:    #aaa;
+  --glow:    rgba(120, 120, 120, 0.15);
+  --flicker: 2.4s;
+
+  position: relative;
+  width:  var(--size);
+  height: var(--size);
+  display: inline-block;
+
+  &__glow {
+    position: absolute; inset: -30%;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 65%);
+  }
+
+  &__ring { display: none; }   // Eternal Flame only
+
+  &__body {
+    position: absolute; inset: 0;
+    animation: flame-flicker var(--flicker) ease-in-out infinite;
+    transform-origin: 50% 100%;
+  }
+
+  &__outer, &__mid, &__core {
+    position: absolute;
+    left: 50%; bottom: 0;
+    border-radius: 0 50% 50% 50%;
+  }
+
+  &__outer {
+    width: 72%; height: 72%;
+    transform: translateX(-50%) rotate(-45deg);
+    background: var(--outer);
+    box-shadow: 0 0 calc(var(--size) * 0.25) var(--glow);
+    animation: flame-sway calc(var(--flicker) * 1.3) ease-in-out infinite;
+  }
+
+  &__mid {
+    width: 48%; height: 48%;
+    transform: translateX(-50%) rotate(-45deg);
+    background: var(--mid);
+    animation: flame-sway var(--flicker) ease-in-out infinite reverse;
+  }
+
+  &__core {
+    width: 26%; height: 26%;
+    transform: translateX(-50%) rotate(-45deg);
+    background: var(--core);
+    animation: flame-sway calc(var(--flicker) * 0.7) ease-in-out infinite;
+  }
+
+  &--hero { margin-bottom: 8px; }
+
+  &--mini { --size: 56px !important; }
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scaleY(1)    scaleX(1); }
+  30%      { transform: scaleY(1.06) scaleX(0.97); }
+  55%      { transform: scaleY(0.95) scaleX(1.03); }
+  80%      { transform: scaleY(1.04) scaleX(0.98); }
+}
+
+@keyframes flame-sway {
+  0%, 100% { transform: translateX(-50%) rotate(-45deg); }
+  50%      { transform: translateX(-53%) rotate(-49deg); }
+}
+
+// ── Stage skins: bigger and hotter, orange → blue → violet → white → gold ──
+.stage-0 {         // flame out / never lit
+  --outer: #4a4f63; --mid: #5d6377; --core: #757b8f;
+  --glow: rgba(140, 145, 165, 0.12);
+  .flame__body { animation: none; }
+  .flame__outer, .flame__mid, .flame__core { animation: none; }
+  opacity: 0.75;
+}
+.stage-lit {       // 1–2 days, badge not earned yet
+  --size: 96px;
+  --outer: #ff9d3f; --mid: #ff7a1f; --core: #ffd27a;
+  --glow: rgba(255, 140, 40, 0.30);
+}
+.stage-1  { --size: 110px; --outer: #ff9d3f; --mid: #ff7a1f; --core: #ffd27a; --glow: rgba(255,140,40,0.35); }
+.stage-2  { --size: 122px; --outer: #ff8c2e; --mid: #ff5f1f; --core: #ffc964; --glow: rgba(255,120,30,0.40); }
+.stage-3  { --size: 134px; --outer: #ff7a26; --mid: #ff4b12; --core: #ffdd66; --glow: rgba(255,100,20,0.45); --flicker: 2.1s; }
+.stage-4  { --size: 148px; --outer: #ff6a1a; --mid: #f43a0e; --core: #fff08a; --glow: rgba(255,80,10,0.50);  --flicker: 2.0s; }
+.stage-5  { --size: 162px; --outer: #ff5f14; --mid: #e8300b; --core: #fff6c9; --glow: rgba(255,70,10,0.55);  --flicker: 1.9s; }
+.stage-6  { --size: 176px; --outer: #3fa9ff; --mid: #1f6dff; --core: #bfe8ff; --glow: rgba(60,150,255,0.55); --flicker: 1.8s; }
+.stage-7  { --size: 190px; --outer: #a25bff; --mid: #7a1fff; --core: #e3c8ff; --glow: rgba(150,80,255,0.55); --flicker: 1.7s; }
+.stage-8  { --size: 204px; --outer: #dfe9ff; --mid: #aac4ff; --core: #ffffff; --glow: rgba(210,225,255,0.60); --flicker: 1.6s; }
+.stage-9  { --size: 218px; --outer: #ffd23f; --mid: #ffab00; --core: #fff7c2; --glow: rgba(255,190,40,0.65);  --flicker: 1.5s; }
+.stage-10 {
+  --size: 232px; --outer: #ffdf5e; --mid: #ff9e00; --core: #ffffff;
+  --glow: rgba(255,200,60,0.80); --flicker: 1.3s;
+
+  .flame__ring {
+    display: block;
+    position: absolute; inset: -14%;
+    border-radius: 50%;
+    background: conic-gradient(#ffdf5e, #ff9e00, #e94560, #a25bff, #3fa9ff, #ffdf5e);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+    animation: ring-spin 5s linear infinite;
+  }
+}
+.stage-locked {
+  --outer: #3c415a; --mid: #4a5069; --core: #5a6079;
+  --glow: transparent;
+  .flame__body { animation: none; }
+  .flame__outer, .flame__mid, .flame__core { animation: none; }
+  opacity: 0.55;
+}
+
+@keyframes ring-spin { to { transform: rotate(360deg); } }
+
+// ══════════════════════════════════════════════════════════════════
+
+.hero {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  padding: 36px 0 28px;
+
+  &__count {
+    font-size: 3rem; font-weight: 800; line-height: 1;
+    &-unit { font-size: 1.2rem; font-weight: 400; opacity: 0.7; }
+  }
+
+  &__stage  { font-size: 1.1rem; font-weight: 600; margin-top: 6px; color: $accent; }
+  &__status { font-size: 0.95rem; opacity: 0.75; margin-top: 6px; }
+
+  &__progress { width: min(420px, 100%); margin-top: 20px; }
+  &__progress-label { font-size: 0.85rem; opacity: 0.65; margin-top: 6px; }
+
+  &__cta {
+    margin-top: 18px;
+    text-decoration: none; color: $light;
+    background: $accent; border-radius: 10px;
+    padding: 12px 26px; font-weight: 700;
+    transition: opacity $transition;
+    &:hover { opacity: 0.85; }
+  }
+}
+
+.bar {
+  height: 10px; border-radius: 5px; overflow: hidden;
+  background: rgba(255,255,255,0.1);
+
+  &__fill {
+    height: 100%; border-radius: 5px;
+    background: linear-gradient(90deg, #ff9d3f, $accent);
+    transition: width 0.6s ease;
+  }
+}
+
+.panel {
+  background: $card-bg;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 20px;
+
+  &__title { font-size: 1.05rem; margin-bottom: 16px; opacity: 0.9; }
+  &__hint  { font-size: 0.85rem; opacity: 0.6; margin-top: 16px; }
+}
+
+.week {
+  display: flex; justify-content: space-between; gap: 8px;
+
+  &__day {
+    flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px;
+    padding: 10px 0; border-radius: 10px;
+    background: rgba(255,255,255,0.04);
+
+    &--active { background: rgba(255, 140, 40, 0.12); }
+  }
+
+  &__flame { font-size: 1.3rem; line-height: 1; }
+  &__label { font-size: 0.75rem; opacity: 0.6; }
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  background: $card-bg;
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px;
+  padding: 20px 24px;
+  display: flex; flex-direction: column; gap: 4px;
+
+  &__value { font-size: 2rem; font-weight: 700; color: $accent; }
+  &__label { font-size: 0.85rem; opacity: 0.7; }
+}
+
+.stages {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+}
+
+.stage-card {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px;
+  padding: 16px 10px 14px;
+  text-align: center;
+
+  &__flame {
+    height: 66px; display: flex; align-items: flex-end; justify-content: center;
+  }
+
+  &__name { font-size: 0.9rem; font-weight: 600; }
+  &__req  { font-size: 0.75rem; opacity: 0.55; }
+
+  &--locked &__name { opacity: 0.6; }
+}
+
+@media (max-width: 600px) {
+  .nav { padding: 0 16px; &-left a h1 { font-size: 1.6rem; img { height: 30px; } } }
+  .streak { margin: 24px auto 40px; }
+  .flame--hero { --size: 140px !important; }
+  .week__flame { font-size: 1rem; }
+}

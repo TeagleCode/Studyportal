@@ -198,7 +198,7 @@ async function finishTest() {
   const m = Math.floor(elapsed / 60);
   const s = elapsed % 60;
 
-  let rubies = 0, newBalance = 0, pct = 0, finalScore = score;
+  let rubies = 0, newBalance = 0, pct = 0, finalScore = score, streak = null;
 
   if (sessionId) {
     const res  = await fetch('/api/test/finish', {
@@ -211,6 +211,7 @@ async function finishTest() {
     newBalance = data.newBalance;
     pct        = data.pct;
     finalScore = data.score;
+    streak     = data.streak;
   }
 
   $('testScreen').style.display    = 'none';
@@ -219,6 +220,13 @@ async function finishTest() {
   $('finalTime').textContent       = `Time: ${m}:${s.toString().padStart(2, '0')}`;
   $('rubyEarned').textContent      = `💎 +${rubies} rubies earned`;
   if (newBalance) $('rubyTotal').textContent = `Total balance: 💎 ${newBalance}`;
+
+  if (streak && streak.current > 0) {
+    $('streakLine').textContent = streak.extended
+      ? `🔥 ${streak.current}-day streak${streak.stage ? ` — ${streak.stage}` : ''}!`
+      : `🔥 ${streak.current}-day streak going strong`;
+    $('streakLine').style.display = 'inline-block';
+  }
 }
 
 init();

@@ -101,6 +101,18 @@ CREATE TABLE quiz_attempts (
   FOREIGN KEY (topic_id) REFERENCES topics(id)
 );
 
+-- ── User streaks ──────────────────────────────────────────────────────────
+-- Duolingo-style daily streak: bumped when a logged-in user finishes a quiz.
+-- Kept as its own table (not derived from quiz_attempts) so streak history
+-- survives content re-imports that delete old attempts. Streak caps at 200.
+CREATE TABLE user_streaks (
+  user_id          INT PRIMARY KEY,
+  current_streak   INT NOT NULL DEFAULT 0,
+  longest_streak   INT NOT NULL DEFAULT 0,
+  last_active_date DATE NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 -- ── Attempt questions ─────────────────────────────────────────────────────
 -- One row per question served in an attempt. generated_values stores the
 -- exact parametric values the student saw, so grading and explanations can
