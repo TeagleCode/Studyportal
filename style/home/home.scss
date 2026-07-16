@@ -203,26 +203,34 @@ body {
 }
 
 // ── Pentagon grade selector ───────────────────────────────────────
+// Geometry driven by CSS vars so it scales for tablets; collapses to a
+// 2-column grid on phones (≤640px).
 
 .grades {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - $nav-height);
+  padding: 24px 16px;
 }
 
 .pentagon {
+  --size:   800px;   // container
+  --r:      280px;   // vertex radius
+  --btn:    230px;   // button diameter
+  --center: 140px;   // portal image
+
   position: relative;
-  width: 800px;
-  height: 800px;
+  width: var(--size);
+  height: var(--size);
 
   &__center {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 140px;
-    height: 140px;
+    width: var(--center);
+    height: var(--center);
     object-fit: contain;
     filter: drop-shadow(0 0 18px rgba($accent, 0.6));
     pointer-events: none;
@@ -232,8 +240,8 @@ body {
 .grade-btn {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 230px;
-  height: 230px;
+  width: var(--btn);
+  height: var(--btn);
   border-radius: 50%;
   background: $menu-bg;
   border: 2px solid $accent;
@@ -266,10 +274,53 @@ body {
     box-shadow: 0 0 40px rgba($accent, 0.7);
   }
 
-  // Pentagon vertex positions (radius 280px)
-  &:nth-child(1) { top: calc(50% - 280px); left: 50%; }
-  &:nth-child(2) { top: calc(50% - 87px);  left: calc(50% + 266px); }
-  &:nth-child(3) { top: calc(50% + 227px); left: calc(50% + 165px); }
-  &:nth-child(4) { top: calc(50% + 227px); left: calc(50% - 165px); }
-  &:nth-child(5) { top: calc(50% - 87px);  left: calc(50% - 266px); }
+  // Pentagon vertices: unit circle × --r (sin/cos of 72°/36°)
+  &:nth-child(1) { top: calc(50% - var(--r));          left: 50%; }
+  &:nth-child(2) { top: calc(50% - var(--r) * 0.309);  left: calc(50% + var(--r) * 0.951); }
+  &:nth-child(3) { top: calc(50% + var(--r) * 0.809);  left: calc(50% + var(--r) * 0.588); }
+  &:nth-child(4) { top: calc(50% + var(--r) * 0.809);  left: calc(50% - var(--r) * 0.588); }
+  &:nth-child(5) { top: calc(50% - var(--r) * 0.309);  left: calc(50% - var(--r) * 0.951); }
+}
+
+// ── Tablet: shrink the pentagon ──────────────────────────────────
+@media (max-width: 880px) {
+  .pentagon { --size: 540px; --r: 195px; --btn: 158px; --center: 96px; }
+  .grade-btn__num   { font-size: 1.9rem; }
+  .grade-btn__label { font-size: 0.75rem; }
+}
+
+// ── Phone: pentagon becomes a simple grid ────────────────────────
+@media (max-width: 640px) {
+  .pentagon {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-items: center;
+
+    &__center { display: none; }
+  }
+
+  .grade-btn {
+    position: static;
+    transform: none;
+    width: clamp(120px, 40vw, 160px);
+    height: auto;
+    aspect-ratio: 1 / 1;
+
+    &:hover { transform: scale(1.05); }
+    &:last-of-type { grid-column: 1 / -1; }
+  }
+}
+
+// ── Small-screen nav ─────────────────────────────────────────────
+@media (max-width: 600px) {
+  .nav {
+    padding: 0 14px;
+    &-left a h1 { font-size: 1.5rem; img { height: 30px; } }
+  }
+  .ruby-balance { padding: 5px 10px; font-size: 0.9rem; margin-right: 8px; }
+  .nav-menu { width: min($menu-width, 84vw); }
 }

@@ -21,9 +21,7 @@ body {
 .bg-symbols span {
   position: absolute;
   color: #eaeaea;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   line-height: 1;
 }
 
@@ -137,11 +135,25 @@ body {
 .avatar-wrap__img {
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   display: none;
 }
 .avatar-wrap__placeholder {
   font-size: 2.2rem;
   color: rgba(255, 255, 255, 0.4);
-}/*# sourceMappingURL=accountManagement.css.map */
+}
+
+@media (max-width: 600px) {
+  .account {
+    margin: 24px auto;
+    padding: 0 14px;
+  }
+  .account__section {
+    padding: 20px 16px;
+  }
+  .account__form button {
+    align-self: stretch;
+  }
+}
+
+/*# sourceMappingURL=accountManagement.css.map */

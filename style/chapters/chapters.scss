@@ -121,3 +121,15 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
   opacity: 0.5;
   font-size: 0.95rem;
 }
+
+// ── Phones ────────────────────────────────────────────────────────
+@media (max-width: 600px) {
+  .nav {
+    padding: 0 14px;
+    &-left a h1 { font-size: 1.5rem; img { height: 30px; } }
+    &-context { font-size: 0.95rem; }
+  }
+  .chapters-page { margin: 24px auto; padding: 0 14px; }
+  .chapter-card__header { padding: 16px 16px; font-size: 1rem; }
+  .topic-list__item { padding: 13px 16px 13px 34px; &::before { left: 14px; } }
+}

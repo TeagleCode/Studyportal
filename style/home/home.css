@@ -155,8 +155,7 @@ body {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   display: none;
   border: 2px solid #e94560;
 }
@@ -171,9 +170,7 @@ body {
 .bg-symbols span {
   position: absolute;
   color: #eaeaea;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   line-height: 1;
 }
 
@@ -182,22 +179,26 @@ body {
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 90px);
+  padding: 24px 16px;
 }
 
 .pentagon {
+  --size: 800px;
+  --r: 280px;
+  --btn: 230px;
+  --center: 140px;
   position: relative;
-  width: 800px;
-  height: 800px;
+  width: var(--size);
+  height: var(--size);
 }
 .pentagon__center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 140px;
-  height: 140px;
-  -o-object-fit: contain;
-     object-fit: contain;
+  width: var(--center);
+  height: var(--center);
+  object-fit: contain;
   filter: drop-shadow(0 0 18px rgba(233, 69, 96, 0.6));
   pointer-events: none;
 }
@@ -205,8 +206,8 @@ body {
 .grade-btn {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 230px;
-  height: 230px;
+  width: var(--btn);
+  height: var(--btn);
   border-radius: 50%;
   background: #16213e;
   border: 2px solid #e94560;
@@ -237,22 +238,85 @@ body {
   box-shadow: 0 0 40px rgba(233, 69, 96, 0.7);
 }
 .grade-btn:nth-child(1) {
-  top: calc(50% - 280px);
+  top: calc(50% - var(--r));
   left: 50%;
 }
 .grade-btn:nth-child(2) {
-  top: calc(50% - 87px);
-  left: calc(50% + 266px);
+  top: calc(50% - var(--r) * 0.309);
+  left: calc(50% + var(--r) * 0.951);
 }
 .grade-btn:nth-child(3) {
-  top: calc(50% + 227px);
-  left: calc(50% + 165px);
+  top: calc(50% + var(--r) * 0.809);
+  left: calc(50% + var(--r) * 0.588);
 }
 .grade-btn:nth-child(4) {
-  top: calc(50% + 227px);
-  left: calc(50% - 165px);
+  top: calc(50% + var(--r) * 0.809);
+  left: calc(50% - var(--r) * 0.588);
 }
 .grade-btn:nth-child(5) {
-  top: calc(50% - 87px);
-  left: calc(50% - 266px);
-}/*# sourceMappingURL=home.css.map */
+  top: calc(50% - var(--r) * 0.309);
+  left: calc(50% - var(--r) * 0.951);
+}
+
+@media (max-width: 880px) {
+  .pentagon {
+    --size: 540px;
+    --r: 195px;
+    --btn: 158px;
+    --center: 96px;
+  }
+  .grade-btn__num {
+    font-size: 1.9rem;
+  }
+  .grade-btn__label {
+    font-size: 0.75rem;
+  }
+}
+@media (max-width: 640px) {
+  .pentagon {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-items: center;
+  }
+  .pentagon__center {
+    display: none;
+  }
+  .grade-btn {
+    position: static;
+    transform: none;
+    width: clamp(120px, 40vw, 160px);
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+  .grade-btn:hover {
+    transform: scale(1.05);
+  }
+  .grade-btn:last-of-type {
+    grid-column: 1/-1;
+  }
+}
+@media (max-width: 600px) {
+  .nav {
+    padding: 0 14px;
+  }
+  .nav-left a h1 {
+    font-size: 1.5rem;
+  }
+  .nav-left a h1 img {
+    height: 30px;
+  }
+  .ruby-balance {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    margin-right: 8px;
+  }
+  .nav-menu {
+    width: min(260px, 84vw);
+  }
+}
+
+/*# sourceMappingURL=home.css.map */

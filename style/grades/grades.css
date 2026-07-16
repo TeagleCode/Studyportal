@@ -21,9 +21,7 @@ body {
 .bg-symbols span {
   position: absolute;
   color: #eaeaea;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   line-height: 1;
 }
 
@@ -63,19 +61,23 @@ body {
   justify-content: center;
   align-items: center;
   min-height: calc(100vh - 90px);
+  padding: 24px 16px;
 }
 
 .hexagon {
+  --size: 700px;
+  --r: 240px;
+  --btn: 190px;
   position: relative;
-  width: 700px;
-  height: 700px;
+  width: var(--size);
+  height: var(--size);
 }
 
 .subject-btn {
   position: absolute;
   transform: translate(-50%, -50%);
-  width: 190px;
-  height: 190px;
+  width: var(--btn);
+  height: var(--btn);
   border-radius: 50%;
   background: #16213e;
   border: 2px solid #e94560;
@@ -98,26 +100,75 @@ body {
   box-shadow: 0 0 36px rgba(233, 69, 96, 0.7);
 }
 .subject-btn:nth-child(1) {
-  top: calc(50% - 240px);
+  top: calc(50% - var(--r));
   left: 50%;
 }
 .subject-btn:nth-child(2) {
-  top: calc(50% - 120px);
-  left: calc(50% + 208px);
+  top: calc(50% - var(--r) * 0.5);
+  left: calc(50% + var(--r) * 0.866);
 }
 .subject-btn:nth-child(3) {
-  top: calc(50% + 120px);
-  left: calc(50% + 208px);
+  top: calc(50% + var(--r) * 0.5);
+  left: calc(50% + var(--r) * 0.866);
 }
 .subject-btn:nth-child(4) {
-  top: calc(50% + 240px);
+  top: calc(50% + var(--r));
   left: 50%;
 }
 .subject-btn:nth-child(5) {
-  top: calc(50% + 120px);
-  left: calc(50% - 208px);
+  top: calc(50% + var(--r) * 0.5);
+  left: calc(50% - var(--r) * 0.866);
 }
 .subject-btn:nth-child(6) {
-  top: calc(50% - 120px);
-  left: calc(50% - 208px);
-}/*# sourceMappingURL=grades.css.map */
+  top: calc(50% - var(--r) * 0.5);
+  left: calc(50% - var(--r) * 0.866);
+}
+
+@media (max-width: 780px) {
+  .hexagon {
+    --size: 500px;
+    --r: 175px;
+    --btn: 140px;
+  }
+  .subject-btn {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+@media (max-width: 560px) {
+  .hexagon {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    justify-items: center;
+  }
+  .subject-btn {
+    position: static;
+    transform: none;
+    width: clamp(120px, 40vw, 160px);
+    height: auto;
+    aspect-ratio: 1/1;
+  }
+  .subject-btn:hover {
+    transform: scale(1.05);
+  }
+}
+@media (max-width: 600px) {
+  .nav {
+    padding: 0 14px;
+  }
+  .nav-left a h1 {
+    font-size: 1.5rem;
+  }
+  .nav-left a h1 img {
+    height: 30px;
+  }
+  .nav-grade {
+    font-size: 1rem;
+  }
+}
+
+/*# sourceMappingURL=grades.css.map */

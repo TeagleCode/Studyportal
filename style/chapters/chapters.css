@@ -22,9 +22,7 @@ body {
 .bg-symbols span {
   position: absolute;
   color: #eaeaea;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
   line-height: 1;
 }
 
@@ -156,4 +154,35 @@ body {
   padding: 20px 24px;
   opacity: 0.5;
   font-size: 0.95rem;
-}/*# sourceMappingURL=chapters.css.map */
+}
+
+@media (max-width: 600px) {
+  .nav {
+    padding: 0 14px;
+  }
+  .nav-left a h1 {
+    font-size: 1.5rem;
+  }
+  .nav-left a h1 img {
+    height: 30px;
+  }
+  .nav-context {
+    font-size: 0.95rem;
+  }
+  .chapters-page {
+    margin: 24px auto;
+    padding: 0 14px;
+  }
+  .chapter-card__header {
+    padding: 16px 16px;
+    font-size: 1rem;
+  }
+  .topic-list__item {
+    padding: 13px 16px 13px 34px;
+  }
+  .topic-list__item::before {
+    left: 14px;
+  }
+}
+
+/*# sourceMappingURL=chapters.css.map */

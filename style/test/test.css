@@ -260,7 +260,7 @@ body {
   padding: 56px 48px;
   text-align: center;
   box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
-  min-width: 380px;
+  width: min(420px, 100vw - 32px);
 }
 .results__title {
   font-size: 2rem;
@@ -307,6 +307,7 @@ body {
   display: flex;
   gap: 16px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 .results__btn {
   border: none;
@@ -326,6 +327,41 @@ body {
 .results__btn--back {
   background: rgba(255, 255, 255, 0.1);
   color: #eaeaea;
+}
+
+@media (max-width: 640px) {
+  .nav {
+    padding: 0 14px;
+  }
+  .nav-left a h1 {
+    font-size: 1.5rem;
+  }
+  .nav-left a h1 img {
+    height: 30px;
+  }
+  .timer {
+    font-size: 1.2rem;
+  }
+  .test {
+    margin: 20px auto;
+    padding: 0 14px;
+  }
+  .test__card {
+    padding: 24px 18px;
+  }
+  .test__question {
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+  }
+  .answers {
+    grid-template-columns: 1fr;
+  }
+  .results__card {
+    padding: 36px 22px;
+  }
+  .results__score {
+    font-size: 2.2rem;
+  }
 }
 
 /*# sourceMappingURL=test.css.map */

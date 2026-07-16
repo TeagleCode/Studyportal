@@ -158,3 +158,10 @@ body {
     color: rgba(255, 255, 255, 0.4);
   }
 }
+
+// ── Phones ────────────────────────────────────────────────────────
+@media (max-width: 600px) {
+  .account { margin: 24px auto; padding: 0 14px; }
+  .account__section { padding: 20px 16px; }
+  .account__form button { align-self: stretch; }
+}
