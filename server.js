@@ -22,6 +22,11 @@ math.import({
 const app = express();
 app.use(express.json());
 
+// Behind the cloudflared tunnel every request reaches us from 127.0.0.1;
+// trust proxy headers from loopback only, so req.ip is the real visitor IP
+// (otherwise all internet visitors share one rate-limit bucket).
+app.set('trust proxy', 'loopback');
+
 // ── File uploads ─────────────────────────────────────────────────
 const avatarDir = path.join(__dirname, 'uploads/avatars');
 if (!fs.existsSync(avatarDir)) fs.mkdirSync(avatarDir, { recursive: true });
@@ -377,6 +382,7 @@ app.post('/api/signup', loginLimiter, async (req, res) => {
 
     const hash = await bcrypt.hash(password, 10);
     await db.execute('INSERT INTO users (username, password_hash) VALUES (?, ?)', [username, hash]);
+    loginAttempts.delete(req.ip);
 
     // Auto-login the fresh account
     const token = crypto.randomUUID();
