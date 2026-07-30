@@ -27,6 +27,41 @@ app.use(express.json());
 // (otherwise all internet visitors share one rate-limit bucket).
 app.set('trust proxy', 'loopback');
 
+// ── Error codes ───────────────────────────────────────────────────
+// Every error response carries a stable SP-xxx code the UI can display.
+// Full reference: docs/ERROR-CODES.md (keep both in sync).
+const ERROR_CODES = {
+  not_registered:       'SP-100',
+  wrong_password:       'SP-101',
+  too_many_attempts:    'SP-102',
+  unauthorized:         'SP-103',
+  forbidden:            'SP-104',
+  invalid_username:     'SP-105',
+  weak_password:        'SP-106',
+  taken:                'SP-107',
+  no_file:              'SP-109',
+  session_not_found:    'SP-200',
+  invalid_question:     'SP-201',
+  already_answered:     'SP-202',
+  not_found:            'SP-300',
+  server_error:         'SP-500',
+  database_unavailable: 'SP-501',
+};
+const fail = (res, status, error) =>
+  res.status(status).json({ error, code: ERROR_CODES[error] || 'SP-500' });
+
+// mysql2 connection-level failures → SP-501 so "DB not running" is
+// distinguishable from every other server error.
+const DB_DOWN_CODES = new Set([
+  'ECONNREFUSED', 'PROTOCOL_CONNECTION_LOST', 'ETIMEDOUT',
+  'EHOSTUNREACH', 'ENOTFOUND', 'ER_CON_COUNT_ERROR',
+]);
+function failErr(res, err) {
+  console.error(err);
+  if (err && DB_DOWN_CODES.has(err.code)) return fail(res, 503, 'database_unavailable');
+  return fail(res, 500, 'server_error');
+}
+
 // ── File uploads ─────────────────────────────────────────────────
 const avatarDir = path.join(__dirname, 'uploads/avatars');
 if (!fs.existsSync(avatarDir)) fs.mkdirSync(avatarDir, { recursive: true });
@@ -81,7 +116,7 @@ function tokenUser(req) {
 
 function requireAuth(req, res, next) {
   const username = tokenUser(req);
-  if (!username) return res.status(401).json({ error: 'unauthorized' });
+  if (!username) return fail(res, 401, 'unauthorized');
   req.username = username;
   next();
 }
@@ -95,7 +130,7 @@ function loginLimiter(req, res, next) {
   const now = Date.now();
   let e = loginAttempts.get(req.ip);
   if (!e || now > e.resetAt) { e = { count: 0, resetAt: now + LOGIN_WINDOW }; loginAttempts.set(req.ip, e); }
-  if (e.count >= LOGIN_MAX) return res.status(429).json({ error: 'too_many_attempts' });
+  if (e.count >= LOGIN_MAX) return fail(res, 429, 'too_many_attempts');
   e.count++;
   next();
 }
@@ -349,10 +384,10 @@ app.post('/api/login', loginLimiter, async (req, res) => {
   const { username, password } = req.body;
   try {
     const [rows] = await db.execute('SELECT * FROM users WHERE username = ?', [username]);
-    if (!rows.length) return res.status(401).json({ error: 'not_registered' });
+    if (!rows.length) return fail(res, 401, 'not_registered');
 
     const match = await bcrypt.compare(password, rows[0].password_hash);
-    if (!match) return res.status(401).json({ error: 'wrong_password' });
+    if (!match) return fail(res, 401, 'wrong_password');
 
     loginAttempts.delete(req.ip);
     // Single active session per account: a new login revokes every existing
@@ -363,8 +398,7 @@ app.post('/api/login', loginLimiter, async (req, res) => {
     authTokens.set(token, { username: rows[0].username, expires: Date.now() + TOKEN_TTL });
     res.json({ success: true, token });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'server_error' });
+    failErr(res, err);
   }
 });
 
@@ -372,13 +406,13 @@ app.post('/api/signup', loginLimiter, async (req, res) => {
   const { username, password } = req.body || {};
   // Letters (Latin or Georgian), digits, _ . -; 3–30 chars
   if (!username || !/^[a-zA-Z0-9_.ა-ჰ-]{3,30}$/.test(username))
-    return res.status(400).json({ error: 'invalid_username' });
+    return fail(res, 400, 'invalid_username');
   if (!password || password.length < 6)
-    return res.status(400).json({ error: 'weak_password' });
+    return fail(res, 400, 'weak_password');
 
   try {
     const [existing] = await db.execute('SELECT id FROM users WHERE username = ?', [username]);
-    if (existing.length) return res.status(409).json({ error: 'taken' });
+    if (existing.length) return fail(res, 409, 'taken');
 
     const hash = await bcrypt.hash(password, 10);
     await db.execute('INSERT INTO users (username, password_hash) VALUES (?, ?)', [username, hash]);
@@ -388,55 +422,55 @@ app.post('/api/signup', loginLimiter, async (req, res) => {
     const token = crypto.randomUUID();
     authTokens.set(token, { username, expires: Date.now() + TOKEN_TTL });
     res.status(201).json({ success: true, token });
-  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
+  } catch (err) { failErr(res, err); }
 });
 
 // ── User (all token-scoped: you can only read/change your own account) ────
 app.get('/api/user/:username', requireAuth, async (req, res) => {
-  if (req.params.username !== req.username) return res.status(403).json({ error: 'forbidden' });
+  if (req.params.username !== req.username) return fail(res, 403, 'forbidden');
   try {
     const [rows] = await db.execute(
       'SELECT username, email, first_name, last_name, avatar_url, rubies FROM users WHERE username = ?',
       [req.username]
     );
-    if (!rows.length) return res.status(404).json({ error: 'not_found' });
+    if (!rows.length) return fail(res, 404, 'not_found');
     res.json(rows[0]);
-  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
+  } catch (err) { failErr(res, err); }
 });
 
 app.put('/api/user/username', requireAuth, async (req, res) => {
   const { newUsername } = req.body;
-  if (!newUsername || !newUsername.trim()) return res.status(400).json({ error: 'invalid' });
+  if (!newUsername || !newUsername.trim()) return fail(res, 400, 'invalid_username');
   try {
     const [existing] = await db.execute('SELECT id FROM users WHERE username = ?', [newUsername]);
-    if (existing.length) return res.status(409).json({ error: 'taken' });
+    if (existing.length) return fail(res, 409, 'taken');
     await db.execute('UPDATE users SET username = ? WHERE username = ?', [newUsername, req.username]);
     for (const entry of authTokens.values())
       if (entry.username === req.username) entry.username = newUsername;
     res.json({ success: true });
-  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
+  } catch (err) { failErr(res, err); }
 });
 
 app.put('/api/user/password', requireAuth, async (req, res) => {
   const { currentPassword, newPassword } = req.body;
   try {
     const [rows] = await db.execute('SELECT password_hash FROM users WHERE username = ?', [req.username]);
-    if (!rows.length) return res.status(404).json({ error: 'not_found' });
+    if (!rows.length) return fail(res, 404, 'not_found');
     const match = await bcrypt.compare(currentPassword, rows[0].password_hash);
-    if (!match) return res.status(401).json({ error: 'wrong_password' });
+    if (!match) return fail(res, 401, 'wrong_password');
     const hash = await bcrypt.hash(newPassword, 10);
     await db.execute('UPDATE users SET password_hash = ? WHERE username = ?', [hash, req.username]);
     res.json({ success: true });
-  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
+  } catch (err) { failErr(res, err); }
 });
 
 app.post('/api/user/avatar', requireAuth, upload.single('avatar'), async (req, res) => {
-  if (!req.file) return res.status(400).json({ error: 'no_file' });
+  if (!req.file) return fail(res, 400, 'no_file');
   const avatarUrl = '/uploads/avatars/' + req.file.filename;
   try {
     await db.execute('UPDATE users SET avatar_url = ? WHERE username = ?', [avatarUrl, req.username]);
     res.json({ success: true, avatar_url: avatarUrl });
-  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
+  } catch (err) { failErr(res, err); }
 });
 
 // ── Content ───────────────────────────────────────────────────────
@@ -459,7 +493,7 @@ app.get('/api/chapters/:grade/:subject', async (req, res) => {
       ch.topics = topics;
     }
     res.json(chapters);
-  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
+  } catch (err) { failErr(res, err); }
 });
 
 // ── Test session ──────────────────────────────────────────────────
@@ -468,7 +502,7 @@ app.post('/api/test/start', async (req, res) => {
   // A revoked/expired token gets a clear 401 (client thinks it's logged in —
   // don't silently downgrade to guest). No Authorization header = guest.
   if (req.headers.authorization && !tokenUser(req))
-    return res.status(401).json({ error: 'unauthorized' });
+    return fail(res, 401, 'unauthorized');
   const username = tokenUser(req);   // null for guests; never trusted from body
   try {
     const limit = 10;
@@ -556,17 +590,17 @@ app.post('/api/test/start', async (req, res) => {
     setTimeout(() => testSessions.delete(sessionId), 2 * 60 * 60 * 1000);
 
     res.json({ sessionId, questions: clientQs });
-  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
+  } catch (err) { failErr(res, err); }
 });
 
 app.post('/api/test/answer', async (req, res) => {
   const { sessionId, questionIndex, answer } = req.body;
   const session = testSessions.get(sessionId);
-  if (!session) return res.status(404).json({ error: 'session_not_found' });
+  if (!session) return fail(res, 404, 'session_not_found');
 
   const sq = session.sessionQuestions[questionIndex];
-  if (!sq) return res.status(400).json({ error: 'invalid_question' });
-  if (sq.answered) return res.status(409).json({ error: 'already_answered' });
+  if (!sq) return fail(res, 400, 'invalid_question');
+  if (sq.answered) return fail(res, 409, 'already_answered');
   sq.answered = true;
 
   const result = gradeAnswer(sq, answer);
@@ -585,7 +619,7 @@ app.post('/api/test/answer', async (req, res) => {
 app.post('/api/test/finish', async (req, res) => {
   const { sessionId } = req.body;
   const session = testSessions.get(sessionId);
-  if (!session) return res.status(404).json({ error: 'session_not_found' });
+  if (!session) return fail(res, 404, 'session_not_found');
 
   const total  = session.sessionQuestions.length;
   const score  = session.score;
@@ -625,7 +659,7 @@ app.post('/api/test/finish', async (req, res) => {
 app.get('/api/streak', requireAuth, async (req, res) => {
   try {
     const [[user]] = await db.execute('SELECT id FROM users WHERE username = ?', [req.username]);
-    if (!user) return res.status(404).json({ error: 'not_found' });
+    if (!user) return fail(res, 404, 'not_found');
 
     const { current, longest, activeToday } = await readStreak(user.id);
 
@@ -654,15 +688,15 @@ app.get('/api/streak', requireAuth, async (req, res) => {
       week,
       stages: STREAK_STAGES.map(s => ({ ...s, unlocked: longest >= s.threshold })),
     });
-  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
+  } catch (err) { failErr(res, err); }
 });
 
 // ── Progress ──────────────────────────────────────────────────────
 app.get('/api/progress/:username', requireAuth, async (req, res) => {
-  if (req.params.username !== req.username) return res.status(403).json({ error: 'forbidden' });
+  if (req.params.username !== req.username) return fail(res, 403, 'forbidden');
   try {
     const [[user]] = await db.execute('SELECT id FROM users WHERE username = ?', [req.username]);
-    if (!user) return res.status(404).json({ error: 'not_found' });
+    if (!user) return fail(res, 404, 'not_found');
 
     const [[overall]] = await db.execute(`
       SELECT COUNT(*) AS answered, COALESCE(SUM(aq.is_correct), 0) AS correct
@@ -758,7 +792,7 @@ app.get('/api/progress/:username', requireAuth, async (req, res) => {
         accuracy: Math.round((r.correct / r.answered) * 100),
       })),
     });
-  } catch (err) { console.error(err); res.status(500).json({ error: 'server_error' }); }
+  } catch (err) { failErr(res, err); }
 });
 
 app.listen(3000, () => console.log('Server running on http://localhost:3000'));

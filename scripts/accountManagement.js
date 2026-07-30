@@ -13,9 +13,10 @@ function guard401(res) {
   return res;
 }
 
-function showMsg(id, text, ok) {
+// Error codes are documented in docs/ERROR-CODES.md
+function showMsg(id, text, ok, code) {
   const el = document.getElementById(id);
-  el.textContent = text;
+  el.textContent = ok ? text : `${text} [${code || 'SP-500'}]`;
   el.className = 'account__msg ' + (ok ? 'account__msg--ok' : 'account__msg--err');
 }
 
@@ -36,7 +37,7 @@ fetch(`/api/user/${username}`, { headers: AUTH })
 document.getElementById('avatarForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const file = document.getElementById('avatarInput').files[0];
-  if (!file) return showMsg('avatarMsg', 'Please select a file.', false);
+  if (!file) return showMsg('avatarMsg', 'Please select a file.', false, 'SP-109');
 
   const form = new FormData();
   form.append('avatar', file);
@@ -50,7 +51,7 @@ document.getElementById('avatarForm').addEventListener('submit', async (e) => {
     document.getElementById('avatarPlaceholder').style.display = 'none';
     showMsg('avatarMsg', 'Profile picture updated.', true);
   } else {
-    showMsg('avatarMsg', data.error || 'Failed to upload.', false);
+    showMsg('avatarMsg', 'Failed to upload.', false, data.code);
   }
 });
 
@@ -72,7 +73,7 @@ document.getElementById('usernameForm').addEventListener('submit', async (e) => 
     document.getElementById('newUsername').placeholder = newUsername;
     document.getElementById('newUsername').value = '';
   } else {
-    showMsg('usernameMsg', data.error === 'taken' ? 'Username already taken.' : 'Failed to update.', false);
+    showMsg('usernameMsg', data.error === 'taken' ? 'Username already taken.' : 'Failed to update.', false, data.code);
   }
 });
 
@@ -102,6 +103,6 @@ document.getElementById('passwordForm').addEventListener('submit', async (e) => 
     document.getElementById('passwordForm').reset();
   } else {
     const msg = data.error === 'wrong_password' ? 'Current password is incorrect.' : 'Failed to update.';
-    showMsg('passwordMsg', msg, false);
+    showMsg('passwordMsg', msg, false, data.code);
   }
 });

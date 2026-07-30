@@ -27,7 +27,7 @@ async function init() {
     if (res.status === 401) { sessionStorage.clear(); window.location.href = '/'; return; }
     data = await res.json();
   } catch (e) {
-    $('statusLine').textContent = 'Could not load your streak. Try again later.';
+    $('statusLine').textContent = 'Could not load your streak. Try again later. [SP-000]';
     return;
   }
 

@@ -8,6 +8,17 @@
 set -e
 cd "$(dirname "$0")/.."
 
+# The DB container doesn't survive reboots — start it if it's stopped
+# (otherwise every login fails with SP-501).
+if command -v podman >/dev/null && ! podman ps --format '{{.Names}}' | grep -q '^studyportal-test-db$'; then
+  echo "▶ starting database container…"
+  podman start studyportal-test-db
+  for i in $(seq 1 30); do
+    podman exec studyportal-test-db mariadb -ustudyportal -p193824 studyportal -e "SELECT 1" >/dev/null 2>&1 && break
+    sleep 2
+  done
+fi
+
 if ! curl -sf -o /dev/null http://localhost:3000/; then
   echo "▶ starting server…"
   node server.js &

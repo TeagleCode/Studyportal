@@ -8,21 +8,22 @@ document.querySelector('form').addEventListener('submit', async (e) => {
   const existing = document.getElementById('signup-error');
   if (existing) existing.remove();
 
-  function showError(message) {
+  // Error codes are documented in docs/ERROR-CODES.md
+  function showError(message, code) {
     const errorEl = document.createElement('p');
     errorEl.id = 'signup-error';
-    errorEl.textContent = message;
+    errorEl.textContent = `${message} [${code || 'SP-500'}]`;
     document.querySelector('form').appendChild(errorEl);
   }
 
   if (!/^[a-zA-Z0-9_.ა-ჰ-]{3,30}$/.test(username)) {
-    return showError('Username must be 3–30 characters (letters, numbers, _ . -).');
+    return showError('Username must be 3–30 characters (letters, numbers, _ . -).', 'SP-105');
   }
   if (password.length < 6) {
-    return showError('Password must be at least 6 characters.');
+    return showError('Password must be at least 6 characters.', 'SP-106');
   }
   if (password !== confirm) {
-    return showError('Passwords do not match.');
+    return showError('Passwords do not match.', 'SP-108');
   }
 
   try {
@@ -42,18 +43,20 @@ document.querySelector('form').addEventListener('submit', async (e) => {
     }
 
     if (data.error === 'taken') {
-      showError('That username is already taken.');
+      showError('That username is already taken.', data.code);
     } else if (data.error === 'invalid_username') {
-      showError('Username must be 3–30 characters (letters, numbers, _ . -).');
+      showError('Username must be 3–30 characters (letters, numbers, _ . -).', data.code);
     } else if (data.error === 'weak_password') {
-      showError('Password must be at least 6 characters.');
+      showError('Password must be at least 6 characters.', data.code);
     } else if (data.error === 'too_many_attempts') {
-      showError('Too many attempts. Please wait 15 minutes and try again.');
+      showError('Too many attempts. Please wait 15 minutes and try again.', data.code);
+    } else if (data.error === 'database_unavailable') {
+      showError('The database is not reachable right now. Please tell the site owner.', data.code);
     } else {
-      showError('Something went wrong. Please try again later.');
+      showError('Something went wrong. Please try again later.', data.code);
     }
   } catch (err) {
     console.error(err);
-    showError('Could not reach the server. Please try again.');
+    showError('Cannot reach the server. Check your connection and try again.', 'SP-000');
   }
 });
