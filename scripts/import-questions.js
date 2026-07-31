@@ -204,13 +204,26 @@ async function main() {
     let inserted = 0;
     for (let ci = 0; ci < data.chapters.length; ci++) {
       const ch = data.chapters[ci];
+      // Order from the title's "N." prefix when present (chapters usually
+      // arrive one per file, so a per-file index would make every chapter 1);
+      // otherwise append after the existing ones.
+      const titleNum = (ch.title.match(/^\s*(\d+)\./) || [])[1];
+      let order = titleNum ? Number(titleNum) : null;
+      if (order === null) {
+        const [[mx]] = await conn.execute(
+          'SELECT COALESCE(MAX(order_num), 0) AS m FROM chapters WHERE grade_id=? AND subject_id=?', [grade.id, subj.id]);
+        order = mx.m + ci + 1;
+      }
+
       let [[chRow]] = await conn.execute(
         'SELECT id FROM chapters WHERE grade_id=? AND subject_id=? AND title=?', [grade.id, subj.id, ch.title]);
       if (!chRow) {
         const [r] = await conn.execute(
           'INSERT INTO chapters (grade_id, subject_id, title, order_num) VALUES (?,?,?,?)',
-          [grade.id, subj.id, ch.title, ci + 1]);
+          [grade.id, subj.id, ch.title, order]);
         chRow = { id: r.insertId };
+      } else {
+        await conn.execute('UPDATE chapters SET order_num=? WHERE id=?', [order, chRow.id]);
       }
       for (let ti = 0; ti < ch.topics.length; ti++) {
         const t = ch.topics[ti];

@@ -1,0 +1,377 @@
+{
+  "grade": 8,
+  "subject": "math",
+  "chapters": [
+    {
+      "title": "1. გამეორება. პროცენტი. პროცენტის გამოყენება",
+      "topics": [
+        {
+          "title": "1.1. რიცხვები და მათზე მოქმედებები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: ({a}) + ({b})",
+              "variables": { "a": { "min": -40, "max": -2 }, "b": { "min": -40, "max": -2 } },
+              "formula": "a + b",
+              "explanation_template": "ორივე რიცხვი უარყოფითია, ამიტომ მოდულები იკრიბება: {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: {a} − ({b})",
+              "variables": { "a": { "min": 5, "max": 40 }, "b": { "min": -30, "max": -2 }, "nb": { "formula": "-b" } },
+              "formula": "a - b",
+              "explanation_template": "უარყოფითის გამოკლება მიმატებას უდრის: {a} + {nb} = {answer}.",
+              "explanation_steps": ["მინუს-მინუსი პლუსს იძლევა.", "{a} − ({b}) = {answer}."]
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: ({a}) · ({b})",
+              "variables": { "a": { "min": -12, "max": -2 }, "b": { "min": -12, "max": -2 } },
+              "formula": "a * b",
+              "explanation_template": "ორი უარყოფითის ნამრავლი დადებითია: {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: {a} + {b} · {c}",
+              "variables": { "a": { "min": 2, "max": 30 }, "b": { "min": 2, "max": 12 }, "c": { "min": 2, "max": 12 } },
+              "formula": "a + b * c",
+              "explanation_template": "ჯერ გამრავლება: {b} · {c}; შემდეგ მიმატება → {answer}.",
+              "explanation_steps": ["მოქმედებათა რიგით ჯერ გამრავლდება {b} · {c}.", "შემდეგ ემატება {a}.", "შედეგი: {answer}."]
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: ({a} + {b}) · {c}",
+              "variables": { "a": { "min": 2, "max": 20 }, "b": { "min": 2, "max": 20 }, "c": { "min": 2, "max": 10 } },
+              "formula": "(a + b) * c",
+              "explanation_template": "ჯერ ფრჩხილები: {a} + {b}; შემდეგ ვამრავლებთ {c}-ზე → {answer}."
+            },
+            {
+              "type": "text",
+              "text": "გამოთვალეთ: 0,25 + 0,75",
+              "answer": "1",
+              "acceptable": ["1,0", "1.0"],
+              "explanation": "0,25 + 0,75 = 1."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "გამოთვალეთ: ({a}) · ({b})",
+              "variables": { "a": { "min": -10, "max": -2 }, "b": { "min": -10, "max": -2 } },
+              "formula": "a * b",
+              "options": ["a * b", "-(a * b)", "a + b", "abs(a) - abs(b)"],
+              "explanation_template": "ორი უარყოფითის ნამრავლი დადებითია: {answer}."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "გამოთვალეთ: {a} − {b} · {c}",
+              "variables": { "a": { "min": 30, "max": 90 }, "b": { "min": 2, "max": 8 }, "c": { "min": 2, "max": 8 } },
+              "formula": "a - b * c",
+              "options": ["a - b * c", "(a - b) * c", "a - b + c", "a * c - b"],
+              "explanation_template": "ჯერ გამრავლება, მერე გამოკლება: {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მოქმედებათა შესრულების სწორი რიგია:",
+              "options": ["ფრჩხილები → ხარისხი → გამრავლება/გაყოფა → შეკრება/გამოკლება", "მარცხნიდან მარჯვნივ ყოველთვის", "შეკრება ყოველთვის პირველი", "გამრავლება ყოველთვის ბოლოს"],
+              "correct": 0,
+              "explanation": "ეს მოქმედებათა რიგის ძირითადი წესია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რომელი რიცხვია ირაციონალური?",
+              "options": ["√2", "0,5", "3/4", "−7"],
+              "correct": 0,
+              "explanation": "√2 არ ჩაიწერება წილადის სახით — ის ირაციონალურია.",
+              "option_explanations": { "1": "0,5 = 1/2 — რაციონალურია." }
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რიცხვის მოდული ყოველთვის:",
+              "options": ["არაუარყოფითია", "დადებითია", "უარყოფითია", "ნულის ტოლია"],
+              "correct": 0,
+              "explanation": "|a| ≥ 0; ნულის მოდული ნულია, დანარჩენებისა — დადებითი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "გამოთვალეთ: (−8) ÷ 2",
+              "options": ["−4", "4", "−16", "16"],
+              "correct": 0,
+              "explanation": "სხვადასხვა ნიშნის რიცხვების განაყოფი უარყოფითია: −4."
+            }
+          ]
+        },
+        {
+          "title": "1.2. ალგებრული გამოსახულება. განტოლება. ამოვხსნათ ამოცანები განტოლების გამოყენებით",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "ამოხსენით განტოლება: {a}x + {b} = {c}",
+              "variables": { "a": { "min": 2, "max": 9 }, "b": { "min": 1, "max": 20 }, "x0": { "min": 2, "max": 15 }, "c": { "formula": "a * x0 + b" } },
+              "formula": "x0",
+              "explanation_template": "{a}x = {c} − {b}; x = {answer}.",
+              "explanation_steps": ["გადავიტანოთ {b} მარჯვნივ: {a}x = {c} − {b}.", "გავყოთ {a}-ზე.", "x = {answer}."]
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "ამოხსენით განტოლება: {a}x − {b} = {c}",
+              "variables": { "a": { "min": 2, "max": 9 }, "b": { "min": 1, "max": 20 }, "x0": { "min": 2, "max": 15 }, "c": { "formula": "a * x0 - b" } },
+              "formula": "x0",
+              "explanation_template": "{a}x = {c} + {b}; x = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ გამოსახულების {a}x + {b}y მნიშვნელობა, როცა x = {p} და y = {q}.",
+              "variables": { "a": { "min": 2, "max": 9 }, "b": { "min": 2, "max": 9 }, "p": { "min": 1, "max": 10 }, "q": { "min": 1, "max": 10 } },
+              "formula": "a * p + b * q",
+              "explanation_template": "{a}·{p} + {b}·{q} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "ამოხსენით: {a}x = {b}x + {c}",
+              "variables": { "b": { "min": 2, "max": 8 }, "d": { "min": 2, "max": 7 }, "a": { "formula": "b + d" }, "x0": { "min": 2, "max": 12 }, "c": { "formula": "d * x0" } },
+              "formula": "x0",
+              "explanation_template": "({a} − {b})x = {c} → x = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "ორი რიცხვის ჯამია 46, სხვაობა 8. რას უდრის უდიდესი რიცხვი?",
+              "answer": "27",
+              "explanation": "(46 + 8) ÷ 2 = 27."
+            },
+            {
+              "type": "text",
+              "text": "ამოხსენით განტოლება: 5(x − 2) = 20",
+              "answer": "6",
+              "explanation": "x − 2 = 4 → x = 6."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "{a}x + {b} = {c} განტოლების ფესვია:",
+              "variables": { "a": { "min": 2, "max": 8 }, "b": { "min": 1, "max": 15 }, "x0": { "min": 2, "max": 12 }, "c": { "formula": "a * x0 + b" } },
+              "formula": "x0",
+              "options": ["x0", "c - b", "(c + b) / a", "c / a"],
+              "explanation_template": "x = ({c} − {b}) ÷ {a} = {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რომელი გამოსახულებაა ალგებრული?",
+              "options": ["3x + 5", "3 + 5", "8", "12 ÷ 4"],
+              "correct": 0,
+              "explanation": "ალგებრული გამოსახულება ცვლადს შეიცავს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "განტოლების ფესვი არის:",
+              "options": ["ცვლადის მნიშვნელობა, რომლის დროსაც ტოლობა სრულდება", "ნებისმიერი რიცხვი", "მუდმივი წევრი", "კოეფიციენტი"],
+              "correct": 0,
+              "explanation": "ფესვი ის მნიშვნელობაა, რომელიც განტოლებას ჭეშმარიტ ტოლობად აქცევს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "2x + 6 = 0 განტოლების ფესვია:",
+              "options": ["−3", "3", "−6", "6"],
+              "correct": 0,
+              "explanation": "2x = −6 → x = −3."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მსგავსი წევრებია:",
+              "options": ["3x და 5x", "3x და 5y", "3x და 5x²", "3 და 5x"],
+              "correct": 0,
+              "explanation": "მსგავს წევრებს ერთი და იგივე ცვლადი აქვთ ერთსა და იმავე ხარისხში."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ განტოლების ორივე მხარეს ერთსა და იმავე რიცხვს მივუმატებთ, ფესვი:",
+              "options": ["არ შეიცვლება", "გაიზრდება", "შემცირდება", "გაქრება"],
+              "correct": 0,
+              "explanation": "ეს განტოლების ეკვივალენტური გარდაქმნაა."
+            }
+          ]
+        },
+        {
+          "title": "1.3. ვავარჯიშებთ პროცენტის განხილვას",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "რას უდრის {n}-ის {p}%?",
+              "variables": { "k": { "min": 1, "max": 9 }, "n": { "formula": "100 * k" }, "p": { "min": 2, "max": 60 } },
+              "formula": "n * p / 100",
+              "explanation_template": "1% = {k}; {p}% = {k} · {p} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "საქონელი {n} ლარი ღირდა და გაძვირდა {p}%-ით. რამდენი ლარი ღირს ახლა?",
+              "variables": { "k": { "min": 1, "max": 8 }, "n": { "formula": "100 * k" }, "p": { "min": 5, "max": 50 } },
+              "formula": "n + n * p / 100",
+              "explanation_template": "მატება = {n} · {p} ÷ 100; ახალი ფასი = {answer} ლარი."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "საქონელი {n} ლარი ღირდა და გაიაფდა {p}%-ით. რამდენი ლარი ღირს ახლა?",
+              "variables": { "k": { "min": 1, "max": 8 }, "n": { "formula": "100 * k" }, "p": { "min": 5, "max": 50 } },
+              "formula": "n - n * p / 100",
+              "explanation_template": "ფასდაკლება = {n} · {p} ÷ 100; ახალი ფასი = {answer} ლარი."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "რიცხვის {p}% არის {v}. რას უდრის თავად რიცხვი?",
+              "variables": { "p": { "min": 10, "max": 50 }, "k": { "min": 1, "max": 9 }, "n": { "formula": "100 * k" }, "v": { "formula": "n * p / 100" } },
+              "formula": "n",
+              "explanation_template": "რიცხვი = {v} · 100 ÷ {p} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "ფასი 200 ლარიდან 250 ლარამდე გაიზარდა. რამდენი პროცენტით? (მხოლოდ რიცხვი)",
+              "answer": "25",
+              "explanation": "მატება 50; 50 ÷ 200 · 100 = 25%."
+            },
+            {
+              "type": "text",
+              "text": "საქონელზე ორჯერ გაკეთდა 10%-იანი ფასდაკლება. საწყისი ფასი 100 ლარი იყო. რამდენი ღირს ახლა?",
+              "answer": "81",
+              "explanation": "100 → 90 → 81 ლარი (მეორე ფასდაკლება უკვე 90-ზე ითვლება)."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "{n} ლარიანი საქონელი გაძვირდა {p}%-ით. ახალი ფასია:",
+              "variables": { "k": { "min": 1, "max": 6 }, "n": { "formula": "100 * k" }, "p": { "min": 10, "max": 40 } },
+              "formula": "n + n * p / 100",
+              "options": ["n + n * p / 100", "n - n * p / 100", "n * p / 100", "n + p"],
+              "explanation_template": "ახალი ფასი = {answer} ლარი.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "150-ის 20% უდრის:",
+              "options": ["30", "20", "15", "45"],
+              "correct": 0,
+              "explanation": "150 · 20 ÷ 100 = 30."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ საქონელი 20%-ით გაძვირდა, ახალი ფასი საწყისის:",
+              "options": ["120%-ია", "20%-ია", "80%-ია", "100%-ია"],
+              "correct": 0,
+              "explanation": "100% + 20% = 120%."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ საქონელი 25%-ით გაიაფდა, ახალი ფასი საწყისის:",
+              "options": ["75%-ია", "25%-ია", "125%-ია", "50%-ია"],
+              "correct": 0,
+              "explanation": "100% − 25% = 75%."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ბანკში 2000 ლარზე წლიური 8% ერიცხება. წელიწადში დაერიცხება:",
+              "options": ["160 ლარი", "80 ლარი", "16 ლარი", "200 ლარი"],
+              "correct": 0,
+              "explanation": "2000 · 8 ÷ 100 = 160 ლარი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რიცხვის 150% ნიშნავს:",
+              "options": ["რიცხვს დამატებული მისი ნახევარი", "რიცხვის ნახევარს", "რიცხვის სამმაგს", "თავად რიცხვს"],
+              "correct": 0,
+              "explanation": "150% = 100% + 50%, ანუ რიცხვი პლუს მისი ნახევარი."
+            }
+          ]
+        },
+        {
+          "title": "1.4. გავიხსენოთ ზოგიერთი გეომეტრიული ფიგურა. წრე და მისი ნაწილები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "წრეწირის რადიუსია {r} სმ. რას უდრის დიამეტრი?",
+              "variables": { "r": { "min": 2, "max": 30 } },
+              "formula": "2 * r",
+              "explanation_template": "d = 2r = {answer} სმ."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "წრეწირის რადიუსია {r} სმ. რას უდრის სიგრძე? (π ≈ 3,14; პასუხი დაამრგვალეთ მეათედამდე)",
+              "variables": { "r": { "min": 2, "max": 20 } },
+              "formula": "2 * 3.14 * r",
+              "explanation_template": "C = 2πr = 2 · 3,14 · {r} ≈ {answer} სმ."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "წრის რადიუსია {r} სმ. რას უდრის ფართობი? (π ≈ 3,14; კვ. სმ)",
+              "variables": { "r": { "min": 2, "max": 15 } },
+              "formula": "3.14 * r * r",
+              "explanation_template": "S = πr² = 3,14 · {r}² ≈ {answer} კვ. სმ."
+            },
+            {
+              "type": "text",
+              "text": "როგორ ჰქვია წრეწირის ორ წერტილს შორის მოქცეულ ნაწილს?",
+              "answer": "რკალი",
+              "acceptable": ["რკალია"],
+              "explanation": "წრეწირის ნაწილს რკალი ეწოდება."
+            },
+            {
+              "type": "text",
+              "text": "როგორ ჰქვია წრის ნაწილს, რომელიც ორი რადიუსითა და რკალითაა შემოსაზღვრული?",
+              "answer": "სექტორი",
+              "acceptable": ["სექტორია", "წრის სექტორი"],
+              "explanation": "ორი რადიუსი და მათ შორის რკალი წრის სექტორს ქმნის."
+            },
+            {
+              "type": "text",
+              "text": "წრეწირის დიამეტრია 16 სმ. რას უდრის რადიუსი?",
+              "answer": "8",
+              "acceptable": ["8 სმ"],
+              "explanation": "16 ÷ 2 = 8 სმ."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "წრის რადიუსია {r} სმ. ფართობის ფორმულაა:",
+              "variables": { "r": { "min": 2, "max": 12 } },
+              "formula": "3.14 * r * r",
+              "options": ["3.14 * r * r", "2 * 3.14 * r", "3.14 * r", "4 * 3.14 * r"],
+              "explanation_template": "S = πr² ≈ {answer} კვ. სმ.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრეწირის სიგრძის ფორმულაა:",
+              "options": ["C = 2πr", "C = πr²", "C = πr", "C = 4πr"],
+              "correct": 0,
+              "explanation": "წრეწირის სიგრძე C = 2πr = πd.",
+              "option_explanations": { "1": "πr² წრის ფართობია, არა სიგრძე." }
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრის ფართობის ფორმულაა:",
+              "options": ["S = πr²", "S = 2πr", "S = πd", "S = r²"],
+              "correct": 0,
+              "explanation": "წრის ფართობი S = πr²."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრეწირზე გავლებული უდიდესი ქორდაა:",
+              "options": ["დიამეტრი", "რადიუსი", "რკალი", "მხები"],
+              "correct": 0,
+              "explanation": "დიამეტრი ცენტრზე გადის და უდიდესი ქორდაა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრეწირისა და წრის სხვაობა:",
+              "options": ["წრეწირი ხაზია, წრე კი მისით შემოსაზღვრული ფიგურა", "ისინი ერთი და იგივეა", "წრე ხაზია", "წრეწირს ფართობი აქვს"],
+              "correct": 0,
+              "explanation": "წრეწირი მრუდი ხაზია; წრე მოიცავს შიგნით მოქცეულ ყველა წერტილს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "π-ს მიახლოებითი მნიშვნელობაა:",
+              "options": ["3,14", "3,41", "2,14", "1,34"],
+              "correct": 0,
+              "explanation": "π ≈ 3,14159… ≈ 3,14."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,546 @@
+{
+  "grade": 8,
+  "subject": "math",
+  "chapters": [
+    {
+      "title": "6. კვადრატული ფესვი. კუბური ფესვი. პითაგორას თეორემა",
+      "topics": [
+        {
+          "title": "6.1. კვადრატული ფესვი. ირაციონალური რიცხვები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ √{n}",
+              "variables": { "a": { "min": 2, "max": 25 }, "n": { "formula": "a * a" } },
+              "formula": "sqrt(n)",
+              "explanation_template": "{answer}² = {n}, ამიტომ √{n} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ {a}²",
+              "variables": { "a": { "min": 2, "max": 25 } },
+              "formula": "a * a",
+              "explanation_template": "{a} · {a} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ √{n} · √{m}",
+              "variables": { "a": { "min": 2, "max": 9 }, "b": { "min": 2, "max": 9 }, "n": { "formula": "a * a" }, "m": { "formula": "b * b" } },
+              "formula": "a * b",
+              "explanation_template": "√{n} · √{m} = {a} · {b} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "გამოთვალეთ √144",
+              "answer": "12",
+              "explanation": "12² = 144."
+            },
+            {
+              "type": "text",
+              "text": "√2 რაციონალურია თუ ირაციონალური? (ჩაწერეთ ერთი სიტყვა)",
+              "answer": "ირაციონალური",
+              "acceptable": ["ირაციონალურია"],
+              "explanation": "√2 ვერ ჩაიწერება ორი მთელი რიცხვის შეფარდებად."
+            },
+            {
+              "type": "text",
+              "text": "რას უდრის √0?",
+              "answer": "0",
+              "acceptable": ["ნული"],
+              "explanation": "0² = 0."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "გამოთვალეთ √{n}",
+              "variables": { "a": { "min": 3, "max": 20 }, "n": { "formula": "a * a" } },
+              "formula": "sqrt(n)",
+              "options": ["sqrt(n)", "n / 2", "n * 2", "sqrt(n) + 1"],
+              "explanation_template": "√{n} = {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რომელი რიცხვია ირაციონალური?",
+              "options": ["√3", "√4", "0,25", "2/3"],
+              "correct": 0,
+              "explanation": "√4 = 2 რაციონალურია, √3 კი — ირაციონალური.",
+              "option_explanations": { "1": "√4 = 2 — ეს მთელი რიცხვია." }
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√25 უდრის:",
+              "options": ["5", "±5", "12,5", "625"],
+              "correct": 0,
+              "explanation": "არითმეტიკული კვადრატული ფესვი არაუარყოფითია: √25 = 5."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უარყოფითი რიცხვის კვადრატული ფესვი ნამდვილ რიცხვთა სიმრავლეში:",
+              "options": ["არ არსებობს", "უარყოფითია", "ნულია", "ყოველთვის არსებობს"],
+              "correct": 0,
+              "explanation": "ნებისმიერი რიცხვის კვადრატი არაუარყოფითია, ამიტომ √(−4) ნამდვილ რიცხვებში არ არსებობს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ირაციონალური რიცხვის ათწილადი ჩანაწერი:",
+              "options": ["უსასრულო და არაპერიოდულია", "სასრულია", "პერიოდულია", "ყოველთვის მთელია"],
+              "correct": 0,
+              "explanation": "ეს ირაციონალურობის მთავარი ნიშანია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√49 + √16 უდრის:",
+              "options": ["11", "65", "√65", "13"],
+              "correct": 0,
+              "explanation": "7 + 4 = 11.",
+              "option_explanations": { "1": "√a + √b ≠ √(a+b) — ფესვები ცალ-ცალკე გამოითვლება." }
+            }
+          ]
+        },
+        {
+          "title": "6.2. პითაგორას თეორემა",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "მართკუთხა სამკუთხედის კათეტებია {a} და {b}. რას უდრის ჰიპოტენუზა?",
+              "variables": { "k": { "min": 1, "max": 6 }, "a": { "formula": "3 * k" }, "b": { "formula": "4 * k" } },
+              "formula": "5 * k",
+              "explanation_template": "c² = {a}² + {b}² → c = {answer}.",
+              "explanation_steps": ["პითაგორას თეორემით c² = a² + b².", "c² = {a}² + {b}².", "c = {answer}."]
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "მართკუთხა სამკუთხედის ჰიპოტენუზაა {c}, ერთი კათეტი {a}. რას უდრის მეორე კათეტი?",
+              "variables": { "k": { "min": 1, "max": 6 }, "a": { "formula": "3 * k" }, "c": { "formula": "5 * k" } },
+              "formula": "4 * k",
+              "explanation_template": "b² = {c}² − {a}² → b = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "მართკუთხა სამკუთხედის კათეტებია 3 და 4. ჰიპოტენუზაა:",
+              "answer": "5",
+              "explanation": "3² + 4² = 9 + 16 = 25 → c = 5."
+            },
+            {
+              "type": "text",
+              "text": "მართკუთხა სამკუთხედის კათეტებია 6 და 8. ჰიპოტენუზაა:",
+              "answer": "10",
+              "explanation": "36 + 64 = 100 → c = 10."
+            },
+            {
+              "type": "text",
+              "text": "პითაგორას თეორემა მოქმედებს მხოლოდ რომელ სამკუთხედში? (ერთი სიტყვა)",
+              "answer": "მართკუთხა",
+              "acceptable": ["მართკუთხაში", "მართკუთხა სამკუთხედში"],
+              "explanation": "თეორემა მართკუთხა სამკუთხედისთვისაა ძალაში."
+            },
+            {
+              "type": "text",
+              "text": "ჰიპოტენუზაა 13, კათეტი 5. მეორე კათეტია:",
+              "answer": "12",
+              "explanation": "169 − 25 = 144 → b = 12."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "კათეტებია {a} და {b}. ჰიპოტენუზაა:",
+              "variables": { "k": { "min": 1, "max": 5 }, "a": { "formula": "3 * k" }, "b": { "formula": "4 * k" } },
+              "formula": "5 * k",
+              "options": ["5 * k", "a + b", "a * b", "(a + b) / 2"],
+              "explanation_template": "c = √({a}² + {b}²) = {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "პითაგორას თეორემა ამბობს:",
+              "options": ["c² = a² + b²", "c = a + b", "c² = a² − b²", "c = a · b"],
+              "correct": 0,
+              "explanation": "ჰიპოტენუზის კვადრატი კათეტების კვადრატების ჯამის ტოლია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სამკუთხედი გვერდებით 5, 12, 13 არის:",
+              "options": ["მართკუთხა", "მახვილკუთხა", "ბლაგვკუთხა", "ასეთი არ არსებობს"],
+              "correct": 0,
+              "explanation": "25 + 144 = 169 = 13² — პითაგორას შებრუნებული თეორემით მართკუთხაა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "კათეტებია 9 და 12. ჰიპოტენუზაა:",
+              "options": ["15", "21", "18", "20"],
+              "correct": 0,
+              "explanation": "81 + 144 = 225 → c = 15."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "პითაგორას სამეულია:",
+              "options": ["3, 4, 5", "2, 3, 4", "1, 2, 3", "4, 5, 6"],
+              "correct": 0,
+              "explanation": "9 + 16 = 25 ✓."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ c² > a² + b², სამკუთხედი:",
+              "options": ["ბლაგვკუთხაა", "მართკუთხაა", "მახვილკუთხაა", "არ არსებობს"],
+              "correct": 0,
+              "explanation": "უდიდესი გვერდის კვადრატის სიჭარბე ბლაგვ კუთხეზე მიუთითებს."
+            }
+          ]
+        },
+        {
+          "title": "6.3. კვადრატული ფესვის შემცველი გამოსახულებების გარდაქმნა, გამარტივება",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გაამარტივეთ: √{n} · √{n}",
+              "variables": { "n": { "min": 2, "max": 40 } },
+              "formula": "n",
+              "explanation_template": "√{n} · √{n} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: √({n} · {m})",
+              "variables": { "a": { "min": 2, "max": 8 }, "b": { "min": 2, "max": 8 }, "n": { "formula": "a * a" }, "m": { "formula": "b * b" } },
+              "formula": "a * b",
+              "explanation_template": "√{n} · √{m} = {a} · {b} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: √{n} ÷ √{m}",
+              "variables": { "b": { "min": 2, "max": 6 }, "k": { "min": 2, "max": 6 }, "a": { "formula": "b * k" }, "n": { "formula": "a * a" }, "m": { "formula": "b * b" } },
+              "formula": "k",
+              "explanation_template": "√{n} ÷ √{m} = {a} ÷ {b} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "გაამარტივეთ: √8 · √2",
+              "answer": "4",
+              "explanation": "√8 · √2 = √16 = 4."
+            },
+            {
+              "type": "text",
+              "text": "გამოთვალეთ: √100 ÷ √4",
+              "answer": "5",
+              "explanation": "10 ÷ 2 = 5."
+            },
+            {
+              "type": "text",
+              "text": "გაამარტივეთ: 3√5 + 2√5. ჩაწერეთ √5-ის კოეფიციენტი.",
+              "answer": "5",
+              "explanation": "3√5 + 2√5 = 5√5."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "√{n} · √{n} უდრის:",
+              "variables": { "n": { "min": 2, "max": 30 } },
+              "formula": "n",
+              "options": ["n", "2 * n", "sqrt(n)", "n * n"],
+              "explanation_template": "√{n} · √{n} = {answer}."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√a · √b უდრის:",
+              "options": ["√(ab)", "√(a+b)", "ab", "a + b"],
+              "correct": 0,
+              "explanation": "ფესვების ნამრავლი ნამრავლის ფესვის ტოლია (a, b ≥ 0)."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√a + √b უდრის:",
+              "options": ["√a + √b (არ მარტივდება)", "√(a+b)", "√(ab)", "a + b"],
+              "correct": 0,
+              "explanation": "ფესვების ჯამი არ იკრიბება ერთ ფესვში.",
+              "option_explanations": { "1": "√(a+b) ≠ √a + √b — ეს ტიპური შეცდომაა." }
+            },
+            {
+              "type": "multiple_choice",
+              "text": "გაამარტივეთ: √18",
+              "options": ["3√2", "9√2", "2√3", "√9 · 2"],
+              "correct": 0,
+              "explanation": "√18 = √(9·2) = 3√2."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√(a²) უდრის (a ≥ 0):",
+              "options": ["a", "a²", "2a", "√a"],
+              "correct": 0,
+              "explanation": "არაუარყოფითი a-სთვის √(a²) = a."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "2√3 + 5√3 უდრის:",
+              "options": ["7√3", "7√6", "10√3", "√3"],
+              "correct": 0,
+              "explanation": "მსგავსი ფესვები იკრიბება კოეფიციენტებით: (2+5)√3."
+            }
+          ]
+        },
+        {
+          "title": "6.4. პითაგორას თეორემის ზოგიერთი გამოყენება",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "კვადრატის გვერდია {a}. რას უდრის დიაგონალის კვადრატი?",
+              "variables": { "a": { "min": 2, "max": 15 } },
+              "formula": "2 * a * a",
+              "explanation_template": "d² = {a}² + {a}² = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "მართკუთხედის გვერდებია {a} და {b}. რას უდრის დიაგონალი?",
+              "variables": { "k": { "min": 1, "max": 5 }, "a": { "formula": "3 * k" }, "b": { "formula": "4 * k" } },
+              "formula": "5 * k",
+              "explanation_template": "d = √({a}² + {b}²) = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "მართკუთხედის გვერდებია 6 და 8. დიაგონალია:",
+              "answer": "10",
+              "explanation": "√(36 + 64) = √100 = 10."
+            },
+            {
+              "type": "text",
+              "text": "კიბე 5 მ სიგრძისაა, კედლიდან 3 მ-ითაა დაშორებული. რა სიმაღლეზე აღწევს (მ)?",
+              "answer": "4",
+              "acceptable": ["4 მ"],
+              "explanation": "√(25 − 9) = √16 = 4 მ."
+            },
+            {
+              "type": "text",
+              "text": "კვადრატის გვერდია 5. დიაგონალის კვადრატია:",
+              "answer": "50",
+              "explanation": "25 + 25 = 50."
+            },
+            {
+              "type": "text",
+              "text": "წერტილებს (0; 0) და (3; 4) შორის მანძილია:",
+              "answer": "5",
+              "explanation": "√(3² + 4²) = √25 = 5."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "მართკუთხედის გვერდებია {a} და {b}. დიაგონალია:",
+              "variables": { "k": { "min": 1, "max": 4 }, "a": { "formula": "3 * k" }, "b": { "formula": "4 * k" } },
+              "formula": "5 * k",
+              "options": ["5 * k", "a + b", "a * b", "(a + b) / 2"],
+              "explanation_template": "d = √({a}² + {b}²) = {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "პითაგორას თეორემა გამოიყენება:",
+              "options": ["მართკუთხა სამკუთხედის უცნობი გვერდის საპოვნელად", "კუთხის გასაზომად", "ფართობის დასათვლელად მხოლოდ", "პერიმეტრისთვის მხოლოდ"],
+              "correct": 0,
+              "explanation": "ორი გვერდის ცოდნით მესამე გამოითვლება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "კვადრატის დიაგონალი გვერდზე (a):",
+              "options": ["a√2", "2a", "a", "a²"],
+              "correct": 0,
+              "explanation": "d = √(a² + a²) = a√2."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წერტილებს (0; 0) და (6; 8) შორის მანძილია:",
+              "options": ["10", "14", "48", "√14"],
+              "correct": 0,
+              "explanation": "√(36 + 64) = 10."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ტოლგვერდა სამკუთხედის სიმაღლის საპოვნელად გამოიყენება:",
+              "options": ["პითაგორას თეორემა ნახევარ ფუძესთან", "კუთხეთა ჯამის თეორემა", "ფართობის ფორმულა", "სიმეტრია"],
+              "correct": 0,
+              "explanation": "სიმაღლე ფუძეს შუაზე ყოფს და მართკუთხა სამკუთხედს ქმნის."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "12 მ და 5 მ გვერდების მართკუთხედის დიაგონალია:",
+              "options": ["13 მ", "17 მ", "60 მ", "7 მ"],
+              "correct": 0,
+              "explanation": "√(144 + 25) = √169 = 13 მ."
+            }
+          ]
+        },
+        {
+          "title": "6.5. მართკუთხა სამკუთხედის მახვილი კუთხის სინუსი, კოსინუსი, ტანგენსი",
+          "questions": [
+            {
+              "type": "text",
+              "text": "მართკუთხა სამკუთხედში სინუსი უდრის მოპირდაპირე კათეტის შეფარდებას რასთან? (ერთი სიტყვა)",
+              "answer": "ჰიპოტენუზასთან",
+              "acceptable": ["ჰიპოტენუზა", "ჰიპოტენუზასთან"],
+              "explanation": "sin α = მოპირდაპირე კათეტი ÷ ჰიპოტენუზა."
+            },
+            {
+              "type": "text",
+              "text": "მართკუთხა სამკუთხედში კოსინუსი უდრის მიმდებარე კათეტის შეფარდებას რასთან? (ერთი სიტყვა)",
+              "answer": "ჰიპოტენუზასთან",
+              "acceptable": ["ჰიპოტენუზა", "ჰიპოტენუზასთან"],
+              "explanation": "cos α = მიმდებარე კათეტი ÷ ჰიპოტენუზა."
+            },
+            {
+              "type": "text",
+              "text": "მართკუთხა სამკუთხედში კათეტებია 3 და 4, ჰიპოტენუზა 5. რას უდრის 3-ის მოპირდაპირე კუთხის სინუსი? (ათწილადი)",
+              "answer": "0.6",
+              "acceptable": ["0,6", "3/5"],
+              "explanation": "sin = 3 ÷ 5 = 0,6."
+            },
+            {
+              "type": "text",
+              "text": "იმავე სამკუთხედში (3, 4, 5) რას უდრის იმავე კუთხის კოსინუსი? (ათწილადი)",
+              "answer": "0.8",
+              "acceptable": ["0,8", "4/5"],
+              "explanation": "cos = 4 ÷ 5 = 0,8."
+            },
+            {
+              "type": "text",
+              "text": "იმავე სამკუთხედში რას უდრის იმავე კუთხის ტანგენსი? (ათწილადი)",
+              "answer": "0.75",
+              "acceptable": ["0,75", "3/4"],
+              "explanation": "tg = 3 ÷ 4 = 0,75."
+            },
+            {
+              "type": "text",
+              "text": "რას უდრის sin 30°? (ათწილადი)",
+              "answer": "0.5",
+              "acceptable": ["0,5", "1/2"],
+              "explanation": "30°-ის მოპირდაპირე კათეტი ჰიპოტენუზის ნახევარია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "sin α უდრის:",
+              "options": ["მოპირდაპირე კათეტი ÷ ჰიპოტენუზა", "მიმდებარე ÷ ჰიპოტენუზა", "მოპირდაპირე ÷ მიმდებარე", "ჰიპოტენუზა ÷ მოპირდაპირე"],
+              "correct": 0,
+              "explanation": "ეს სინუსის განსაზღვრებაა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "tg α უდრის:",
+              "options": ["მოპირდაპირე ÷ მიმდებარე", "მიმდებარე ÷ მოპირდაპირე", "მოპირდაპირე ÷ ჰიპოტენუზა", "ჰიპოტენუზა ÷ მიმდებარე"],
+              "correct": 0,
+              "explanation": "ტანგენსი კათეტების შეფარდებაა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "sin 30° უდრის:",
+              "options": ["0,5", "1", "0,866", "0"],
+              "correct": 0,
+              "explanation": "sin 30° = 1/2."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "cos 60° უდრის:",
+              "options": ["0,5", "1", "0,866", "2"],
+              "correct": 0,
+              "explanation": "cos 60° = 1/2."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მახვილი კუთხის სინუსის მნიშვნელობა ყოველთვის:",
+              "options": ["0-სა და 1-ს შორისაა", "1-ზე მეტია", "უარყოფითია", "მთელი რიცხვია"],
+              "correct": 0,
+              "explanation": "კათეტი ჰიპოტენუზაზე ნაკლებია, ამიტომ შეფარდება 1-ზე ნაკლებია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "tg 45° უდრის:",
+              "options": ["1", "0,5", "0", "√2"],
+              "correct": 0,
+              "explanation": "45°-ის დროს კათეტები ტოლია, ამიტომ შეფარდება 1-ია."
+            }
+          ]
+        },
+        {
+          "title": "6.6. კუბური ფესვი",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ კუბური ფესვი {n}-დან.",
+              "variables": { "a": { "min": 2, "max": 10 }, "n": { "formula": "a * a * a" } },
+              "formula": "a",
+              "explanation_template": "{a}³ = {n}, ამიტომ ³√{n} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ {a}³",
+              "variables": { "a": { "min": 2, "max": 12 } },
+              "formula": "a * a * a",
+              "explanation_template": "{a} · {a} · {a} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "რას უდრის კუბური ფესვი 27-დან?",
+              "answer": "3",
+              "explanation": "3³ = 27."
+            },
+            {
+              "type": "text",
+              "text": "რას უდრის კუბური ფესვი 64-დან?",
+              "answer": "4",
+              "explanation": "4³ = 64."
+            },
+            {
+              "type": "text",
+              "text": "რას უდრის კუბური ფესვი −8-დან?",
+              "answer": "-2",
+              "acceptable": ["−2"],
+              "explanation": "(−2)³ = −8 — კუბური ფესვი უარყოფითი რიცხვიდანაც არსებობს."
+            },
+            {
+              "type": "text",
+              "text": "კუბის წიბო 3 სმ-ია. რას უდრის მოცულობა (კუბ. სმ)?",
+              "answer": "27",
+              "explanation": "V = a³ = 3³ = 27 კუბ. სმ."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "კუბური ფესვი {n}-დან უდრის:",
+              "variables": { "a": { "min": 2, "max": 9 }, "n": { "formula": "a * a * a" } },
+              "formula": "a",
+              "options": ["a", "n / 3", "a * a", "n / a"],
+              "explanation_template": "{a}³ = {n} → პასუხი {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "კუბური ფესვი 125-დან უდრის:",
+              "options": ["5", "25", "15", "√125"],
+              "correct": 0,
+              "explanation": "5³ = 125."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უარყოფითი რიცხვის კუბური ფესვი:",
+              "options": ["არსებობს და უარყოფითია", "არ არსებობს", "დადებითია", "ნულია"],
+              "correct": 0,
+              "explanation": "კენტი ხარისხის ფესვი უარყოფითი რიცხვიდანაც არსებობს.",
+              "option_explanations": { "1": "ეს კვადრატულ ფესვზეა სწორი, კუბურზე — არა." }
+            },
+            {
+              "type": "multiple_choice",
+              "text": "კუბის მოცულობის ფორმულაა:",
+              "options": ["V = a³", "V = 6a²", "V = 3a", "V = a²"],
+              "correct": 0,
+              "explanation": "კუბის მოცულობა წიბოს კუბია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ კუბის მოცულობაა 8 კუბ. სმ, წიბოა:",
+              "options": ["2 სმ", "4 სმ", "3 სმ", "8 სმ"],
+              "correct": 0,
+              "explanation": "³√8 = 2 სმ."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "კუბური ფესვი 1000-დან უდრის:",
+              "options": ["10", "100", "30", "3"],
+              "correct": 0,
+              "explanation": "10³ = 1000."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
