@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+// NOTE: this seeds the ORIGINAL all-multiple-choice, unnumbered content.
+// The live bank has since been numbered and rebalanced to 50/50. After
+// re-running the seeds, restore that state with:
+//   node scripts/rebalance-and-number.js
+//   node scripts/import-questions.js content/grade7-math-ch1-3-open.json
 // Seed: Grade 7 Math — Chapter 2 (10 topics, 20 questions each)
 // Run: node scripts/seed-grade7-ch2.js
 const db = require('../db');

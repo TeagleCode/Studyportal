@@ -3,36 +3,95 @@
   "subject": "math",
   "chapters": [
     {
-      "title": "სიდიდეებს შორის დამოკიდებულებები. სამკუთხედების ტოლობის ნიშნები",
+      "title": "5. სიდიდეებს შორის დამოკიდებულებები. სამკუთხედების ტოლობის ნიშნები",
       "topics": [
         {
-          "title": "შეფარდება",
+          "title": "5.1. შეფარდება",
           "questions": [
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "რას უდრის {a}-ისა და {b}-ის შეფარდება? (ჩაწერეთ ათწილადი ან წილადი)",
-              "variables": { "k": { "min": 2, "max": 9 }, "b": { "min": 2, "max": 12 }, "a": { "formula": "k * b" } },
+              "variables": {
+                "k": {
+                  "min": 2,
+                  "max": 9
+                },
+                "b": {
+                  "min": 2,
+                  "max": 12
+                },
+                "a": {
+                  "formula": "k * b"
+                }
+              },
               "formula": "a / b",
               "explanation_template": "შეფარდება = {a} ÷ {b} = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "კლასში {b} გოგონა და {a} ბიჭია. რას უდრის ბიჭების შეფარდება გოგონებთან? (ჩაწერეთ ათწილადი)",
-              "variables": { "k": { "min": 2, "max": 5 }, "b": { "min": 3, "max": 10 }, "a": { "formula": "k * b" } },
+              "variables": {
+                "k": {
+                  "min": 2,
+                  "max": 5
+                },
+                "b": {
+                  "min": 3,
+                  "max": 10
+                },
+                "a": {
+                  "formula": "k * b"
+                }
+              },
               "formula": "a / b",
               "explanation_template": "{a} : {b} = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "მონაკვეთების სიგრძეებია {a} სმ და {b} სმ. რამდენჯერ დიდია პირველი მეორეზე?",
-              "variables": { "k": { "min": 2, "max": 8 }, "b": { "min": 2, "max": 15 }, "a": { "formula": "k * b" } },
+              "variables": {
+                "k": {
+                  "min": 2,
+                  "max": 8
+                },
+                "b": {
+                  "min": 2,
+                  "max": 15
+                },
+                "a": {
+                  "formula": "k * b"
+                }
+              },
               "formula": "k",
               "explanation_template": "{a} ÷ {b} = {answer} — პირველი {answer}-ჯერ დიდია."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "შეფარდება {a} : {b} შეკვეცეთ. ჩაწერეთ პირველი რიცხვი შეკვეცის შემდეგ.",
-              "variables": { "d": { "min": 2, "max": 9 }, "p": { "min": 2, "max": 7 }, "q": { "min": 8, "max": 13 }, "a": { "formula": "d * p" }, "b": { "formula": "d * q" } },
+              "variables": {
+                "d": {
+                  "min": 2,
+                  "max": 9
+                },
+                "p": {
+                  "min": 2,
+                  "max": 7
+                },
+                "q": {
+                  "min": 8,
+                  "max": 13
+                },
+                "a": {
+                  "formula": "d * p"
+                },
+                "b": {
+                  "formula": "d * q"
+                }
+              },
               "formula": "p",
               "explanation_template": "ორივე რიცხვი გავყოთ {d}-ზე: {a} : {b} = {answer} : {q}."
             },
@@ -52,7 +111,10 @@
               "type": "text",
               "text": "თუ ორი სიდიდის შეფარდება 1-ია, რას ნიშნავს ეს? (დაწერეთ: ტოლია / განსხვავდება)",
               "answer": "ტოლია",
-              "acceptable": ["ისინი ტოლია", "ტოლები არიან"],
+              "acceptable": [
+                "ისინი ტოლია",
+                "ტოლები არიან"
+              ],
               "explanation": "შეფარდება 1 ნიშნავს, რომ სიდიდეები ტოლია."
             },
             {
@@ -74,111 +136,255 @@
               "explanation": "ორივე გავყოთ 5-ზე: 15 : 25 = 3 : 5."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "რას უდრის {a} : {b} შეფარდება?",
-              "variables": { "k": { "min": 2, "max": 9 }, "b": { "min": 2, "max": 10 }, "a": { "formula": "k * b" } },
+              "variables": {
+                "k": {
+                  "min": 2,
+                  "max": 9
+                },
+                "b": {
+                  "min": 2,
+                  "max": 10
+                },
+                "a": {
+                  "formula": "k * b"
+                }
+              },
               "formula": "a / b",
-              "options": ["a / b", "b / a", "a - b", "a + b"],
+              "options": [
+                "a / b",
+                "b / a",
+                "a - b",
+                "a + b"
+              ],
               "explanation_template": "{a} ÷ {b} = {answer}."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "მონაკვეთები {a} სმ და {b} სმ. რამდენჯერ დიდია პირველი?",
-              "variables": { "k": { "min": 2, "max": 7 }, "b": { "min": 3, "max": 12 }, "a": { "formula": "k * b" } },
+              "variables": {
+                "k": {
+                  "min": 2,
+                  "max": 7
+                },
+                "b": {
+                  "min": 3,
+                  "max": 12
+                },
+                "a": {
+                  "formula": "k * b"
+                }
+              },
               "formula": "k",
-              "options": ["k", "a - b", "a + b", "b / a"],
+              "options": [
+                "k",
+                "a - b",
+                "a + b",
+                "b / a"
+              ],
               "explanation_template": "{a} ÷ {b} = {answer}.",
               "difficulty": 2
             },
             {
               "type": "multiple_choice",
               "text": "შეფარდება 10 : 15 შეკვეცილი სახით არის:",
-              "options": ["2 : 3", "3 : 2", "5 : 10", "1 : 2"],
+              "options": [
+                "2 : 3",
+                "3 : 2",
+                "5 : 10",
+                "1 : 2"
+              ],
               "correct": 0,
               "explanation": "ორივე რიცხვი გავყოთ 5-ზე: 10 : 15 = 2 : 3.",
-              "option_explanations": { "1": "თანმიმდევრობა შებრუნებულია — ჯერ 10-ია, მერე 15." }
+              "option_explanations": {
+                "1": "თანმიმდევრობა შებრუნებულია — ჯერ 10-ია, მერე 15."
+              }
             },
             {
               "type": "multiple_choice",
               "text": "რას ნიშნავს „a-ს შეფარდება b-სთან“?",
-              "options": ["a ÷ b", "a × b", "a + b", "a − b"],
+              "options": [
+                "a ÷ b",
+                "a × b",
+                "a + b",
+                "a − b"
+              ],
               "correct": 0,
               "explanation": "შეფარდება ორი რიცხვის განაყოფია: a : b = a ÷ b."
             },
             {
               "type": "multiple_choice",
               "text": "1 მ და 25 სმ შეფარდებაა:",
-              "options": ["4 : 1", "1 : 4", "1 : 25", "25 : 1"],
+              "options": [
+                "4 : 1",
+                "1 : 4",
+                "1 : 25",
+                "25 : 1"
+              ],
               "correct": 0,
               "explanation": "1 მ = 100 სმ; 100 : 25 = 4 : 1.",
-              "option_explanations": { "2": "ერთეულები უნდა გავათანაბროთ — მეტრი სანტიმეტრებში გადავიყვანოთ." }
+              "option_explanations": {
+                "2": "ერთეულები უნდა გავათანაბროთ — მეტრი სანტიმეტრებში გადავიყვანოთ."
+              }
             },
             {
               "type": "multiple_choice",
               "text": "შეფარდება არ იცვლება, თუ ორივე წევრს:",
-              "options": ["გავამრავლებთ ერთსა და იმავე რიცხვზე", "მივუმატებთ ერთსა და იმავე რიცხვს", "გამოვაკლებთ ერთსა და იმავე რიცხვს", "ავიყვანთ კვადრატში"],
+              "options": [
+                "გავამრავლებთ ერთსა და იმავე რიცხვზე",
+                "მივუმატებთ ერთსა და იმავე რიცხვს",
+                "გამოვაკლებთ ერთსა და იმავე რიცხვს",
+                "ავიყვანთ კვადრატში"
+              ],
               "correct": 0,
               "explanation": "შეფარდების ძირითადი თვისებაა: ორივე წევრის ერთსა და იმავე რიცხვზე გამრავლება ან გაყოფა შედეგს არ ცვლის."
             },
             {
               "type": "multiple_choice",
               "text": "რომელი შეფარდებაა ტოლი 3 : 4-ისა?",
-              "options": ["9 : 12", "4 : 3", "3 : 8", "6 : 7"],
+              "options": [
+                "9 : 12",
+                "4 : 3",
+                "3 : 8",
+                "6 : 7"
+              ],
               "correct": 0,
               "explanation": "9 : 12 = (3×3) : (4×3) = 3 : 4."
             },
             {
               "type": "multiple_choice",
               "text": "კლასში 12 ბიჭი და 18 გოგონაა. ბიჭების შეფარდება გოგონებთან:",
-              "options": ["2 : 3", "3 : 2", "12 : 18 ვერ იკვეცება", "1 : 2"],
+              "options": [
+                "2 : 3",
+                "3 : 2",
+                "12 : 18 ვერ იკვეცება",
+                "1 : 2"
+              ],
               "correct": 0,
               "explanation": "12 : 18 = 2 : 3 (ორივე გავყავით 6-ზე)."
             },
             {
               "type": "multiple_choice",
               "text": "თუ a : b = 2 და b = 5, მაშინ a უდრის:",
-              "options": ["10", "2.5", "7", "3"],
+              "options": [
+                "10",
+                "2.5",
+                "7",
+                "3"
+              ],
               "correct": 0,
               "explanation": "a = 2 × b = 2 × 5 = 10."
             },
             {
               "type": "multiple_choice",
               "text": "ორი სიდიდის შეფარდების საპოვნელად აუცილებელია, რომ ისინი იყოს:",
-              "options": ["ერთი და იმავე ერთეულით გამოსახული", "სხვადასხვა ერთეულით", "მთელი რიცხვები", "დადებითი და უარყოფითი"],
+              "options": [
+                "ერთი და იმავე ერთეულით გამოსახული",
+                "სხვადასხვა ერთეულით",
+                "მთელი რიცხვები",
+                "დადებითი და უარყოფითი"
+              ],
               "correct": 0,
               "explanation": "შეფარდებამდე სიდიდეები ერთსა და იმავე ერთეულში უნდა გადავიყვანოთ."
             }
           ]
         },
         {
-          "title": "რიცხვის დაყოფა პროპორციულ ნაწილებად",
+          "title": "5.2. რიცხვის დაყოფა პროპორციულ ნაწილებად",
           "questions": [
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "რიცხვი {s} დავყოთ {m} : {n} შეფარდებით. რას უდრის პირველი ნაწილი?",
-              "variables": { "m": { "min": 1, "max": 5 }, "n": { "min": 1, "max": 5 }, "u": { "min": 2, "max": 12 }, "s": { "formula": "(m + n) * u" } },
+              "variables": {
+                "m": {
+                  "min": 1,
+                  "max": 5
+                },
+                "n": {
+                  "min": 1,
+                  "max": 5
+                },
+                "u": {
+                  "min": 2,
+                  "max": 12
+                },
+                "s": {
+                  "formula": "(m + n) * u"
+                }
+              },
               "formula": "m * u",
               "explanation_template": "ერთი ნაწილი = {s} ÷ ({m}+{n}) = {u}; პირველი = {m} × {u} = {answer}.",
-              "explanation_steps": ["ნაწილების ჯამია {m} + {n}.", "ერთი ნაწილი = {s} ÷ ({m}+{n}) = {u}.", "პირველი ნაწილი = {m} × {u} = {answer}."]
+              "explanation_steps": [
+                "ნაწილების ჯამია {m} + {n}.",
+                "ერთი ნაწილი = {s} ÷ ({m}+{n}) = {u}.",
+                "პირველი ნაწილი = {m} × {u} = {answer}."
+              ]
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "რიცხვი {s} დავყოთ {m} : {n} შეფარდებით. რას უდრის მეორე ნაწილი?",
-              "variables": { "m": { "min": 1, "max": 5 }, "n": { "min": 1, "max": 5 }, "u": { "min": 2, "max": 12 }, "s": { "formula": "(m + n) * u" } },
+              "variables": {
+                "m": {
+                  "min": 1,
+                  "max": 5
+                },
+                "n": {
+                  "min": 1,
+                  "max": 5
+                },
+                "u": {
+                  "min": 2,
+                  "max": 12
+                },
+                "s": {
+                  "formula": "(m + n) * u"
+                }
+              },
               "formula": "n * u",
               "explanation_template": "ერთი ნაწილი = {u}; მეორე = {n} × {u} = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "{s} ლარი გავყოთ ორ ადამიანს შორის 1 : {n} შეფარდებით. რამდენი ლარი ერგება პირველს?",
-              "variables": { "n": { "min": 2, "max": 6 }, "u": { "min": 3, "max": 15 }, "s": { "formula": "(1 + n) * u" } },
+              "variables": {
+                "n": {
+                  "min": 2,
+                  "max": 6
+                },
+                "u": {
+                  "min": 3,
+                  "max": 15
+                },
+                "s": {
+                  "formula": "(1 + n) * u"
+                }
+              },
               "formula": "u",
               "explanation_template": "ერთი ნაწილი = {s} ÷ (1+{n}) = {answer} ლარი."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "მართკუთხედის პერიმეტრია {p} სმ, გვერდების შეფარდება 1 : {n}. რას უდრის მცირე გვერდი (სმ)?",
-              "variables": { "n": { "min": 2, "max": 5 }, "u": { "min": 2, "max": 10 }, "p": { "formula": "2 * (1 + n) * u" } },
+              "variables": {
+                "n": {
+                  "min": 2,
+                  "max": 5
+                },
+                "u": {
+                  "min": 2,
+                  "max": 10
+                },
+                "p": {
+                  "formula": "2 * (1 + n) * u"
+                }
+              },
               "formula": "u",
               "explanation_template": "ნახევარპერიმეტრი = {p} ÷ 2; ის იყოფა (1+{n}) ნაწილად → მცირე გვერდი = {answer} სმ."
             },
@@ -210,7 +416,11 @@
               "type": "text",
               "text": "თუ რიცხვი დავყავით 1 : 1 შეფარდებით, როგორია ნაწილები? (დაწერეთ: ტოლი / განსხვავებული)",
               "answer": "ტოლი",
-              "acceptable": ["ტოლია", "თანაბარი", "ტოლები"],
+              "acceptable": [
+                "ტოლია",
+                "თანაბარი",
+                "ტოლები"
+              ],
               "explanation": "1 : 1 ნიშნავს თანაბარ ნაწილებად დაყოფას."
             },
             {
@@ -220,109 +430,259 @@
               "explanation": "ჯამი 6 ნაწილი; ერთი ნაწილი 6 სმ; უდიდესი = 3 × 6 = 18 სმ."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "რიცხვი {s} დავყოთ {m} : {n} შეფარდებით. პირველი ნაწილია:",
-              "variables": { "m": { "min": 1, "max": 4 }, "n": { "min": 2, "max": 6 }, "u": { "min": 2, "max": 10 }, "s": { "formula": "(m + n) * u" } },
+              "variables": {
+                "m": {
+                  "min": 1,
+                  "max": 4
+                },
+                "n": {
+                  "min": 2,
+                  "max": 6
+                },
+                "u": {
+                  "min": 2,
+                  "max": 10
+                },
+                "s": {
+                  "formula": "(m + n) * u"
+                }
+              },
               "formula": "m * u",
-              "options": ["m * u", "n * u", "s / 2", "s - m"],
+              "options": [
+                "m * u",
+                "n * u",
+                "s / 2",
+                "s - m"
+              ],
               "explanation_template": "ერთი ნაწილი = {u}; პირველი = {m} × {u} = {answer}.",
               "difficulty": 2
             },
             {
               "type": "multiple_choice",
               "text": "რიცხვი 50 დავყავით 2 : 3 შეფარდებით. ნაწილებია:",
-              "options": ["20 და 30", "25 და 25", "10 და 40", "15 და 35"],
+              "options": [
+                "20 და 30",
+                "25 და 25",
+                "10 და 40",
+                "15 და 35"
+              ],
               "correct": 0,
               "explanation": "ჯამი 5 ნაწილი; ერთი ნაწილი 10; 2×10 = 20 და 3×10 = 30.",
-              "option_explanations": { "1": "ეს 1 : 1 შეფარდებით დაყოფაა." }
+              "option_explanations": {
+                "1": "ეს 1 : 1 შეფარდებით დაყოფაა."
+              }
             },
             {
               "type": "multiple_choice",
               "text": "პროპორციულ ნაწილებად დაყოფის პირველი ნაბიჯია:",
-              "options": ["ნაწილების ჯამის პოვნა", "რიცხვის გაორმაგება", "შეფარდების შებრუნება", "პროცენტში გადაყვანა"],
+              "options": [
+                "ნაწილების ჯამის პოვნა",
+                "რიცხვის გაორმაგება",
+                "შეფარდების შებრუნება",
+                "პროცენტში გადაყვანა"
+              ],
               "correct": 0,
               "explanation": "ჯერ ვპოულობთ, სულ რამდენ ნაწილად იყოფა სიდიდე, შემდეგ ერთი ნაწილის სიდიდეს."
             },
             {
               "type": "multiple_choice",
               "text": "120 დავყავით 1 : 3 შეფარდებით. მცირე ნაწილია:",
-              "options": ["30", "40", "60", "90"],
+              "options": [
+                "30",
+                "40",
+                "60",
+                "90"
+              ],
               "correct": 0,
               "explanation": "ჯამი 4 ნაწილი; ერთი ნაწილი 30; მცირე = 30."
             },
             {
               "type": "multiple_choice",
               "text": "72 დავყავით 1 : 2 : 3 შეფარდებით. უდიდესი ნაწილია:",
-              "options": ["36", "24", "12", "18"],
+              "options": [
+                "36",
+                "24",
+                "12",
+                "18"
+              ],
               "correct": 0,
               "explanation": "ჯამი 6 ნაწილი; ერთი ნაწილი 12; უდიდესი = 3 × 12 = 36."
             },
             {
               "type": "multiple_choice",
               "text": "თუ 90 გავყავით 4 : 5 შეფარდებით, ერთი ნაწილი უდრის:",
-              "options": ["10", "9", "18", "45"],
+              "options": [
+                "10",
+                "9",
+                "18",
+                "45"
+              ],
               "correct": 0,
               "explanation": "ნაწილების ჯამი 4 + 5 = 9; 90 ÷ 9 = 10."
             },
             {
               "type": "multiple_choice",
               "text": "ორ მუშას 800 ლარი გავუნაწილეთ 3 : 5 შეფარდებით. მეორემ მიიღო:",
-              "options": ["500", "300", "400", "450"],
+              "options": [
+                "500",
+                "300",
+                "400",
+                "450"
+              ],
               "correct": 0,
               "explanation": "ჯამი 8 ნაწილი; ერთი ნაწილი 100; მეორე = 5 × 100 = 500 ლარი."
             },
             {
               "type": "multiple_choice",
               "text": "მართკუთხედის პერიმეტრია 40 სმ, გვერდების შეფარდება 2 : 3. მცირე გვერდია:",
-              "options": ["8", "12", "16", "10"],
+              "options": [
+                "8",
+                "12",
+                "16",
+                "10"
+              ],
               "correct": 0,
               "explanation": "ნახევარპერიმეტრი 20; ჯამი 5 ნაწილი; ერთი ნაწილი 4; მცირე = 2 × 4 = 8 სმ."
             },
             {
               "type": "multiple_choice",
               "text": "რიცხვის პროპორციულ ნაწილებად დაყოფისას ნაწილების ჯამი უდრის:",
-              "options": ["თავად რიცხვს", "ერთ ნაწილს", "შეფარდების პირველ წევრს", "ნულს"],
+              "options": [
+                "თავად რიცხვს",
+                "ერთ ნაწილს",
+                "შეფარდების პირველ წევრს",
+                "ნულს"
+              ],
               "correct": 0,
               "explanation": "ყველა ნაწილის ჯამი ყოველთვის საწყისი რიცხვის ტოლია — ეს კარგი შემოწმებაა."
             },
             {
               "type": "multiple_choice",
               "text": "25 დავყავით 2 : 3 შეფარდებით. ნაწილებია:",
-              "options": ["10 და 15", "5 და 20", "12 და 13", "8 და 17"],
+              "options": [
+                "10 და 15",
+                "5 და 20",
+                "12 და 13",
+                "8 და 17"
+              ],
               "correct": 0,
               "explanation": "ჯამი 5 ნაწილი; ერთი ნაწილი 5; 2×5 = 10 და 3×5 = 15."
             }
           ]
         },
         {
-          "title": "პროპორცია",
+          "title": "5.3. პროპორცია",
           "questions": [
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "პროპორციაში {a} : {b} = x : {d} იპოვეთ x.",
-              "variables": { "b": { "min": 2, "max": 9 }, "k": { "min": 2, "max": 8 }, "t": { "min": 2, "max": 9 }, "a": { "formula": "k * b" }, "d": { "formula": "t * b" }, "x0": { "formula": "k * t * b" } },
+              "variables": {
+                "b": {
+                  "min": 2,
+                  "max": 9
+                },
+                "k": {
+                  "min": 2,
+                  "max": 8
+                },
+                "t": {
+                  "min": 2,
+                  "max": 9
+                },
+                "a": {
+                  "formula": "k * b"
+                },
+                "d": {
+                  "formula": "t * b"
+                },
+                "x0": {
+                  "formula": "k * t * b"
+                }
+              },
               "formula": "a * d / b",
               "explanation_template": "x = ({a} × {d}) ÷ {b} = {answer}.",
-              "explanation_steps": ["პროპორციაში ჯვარედინი ნამრავლები ტოლია.", "x × {b} = {a} × {d}.", "x = ({a} × {d}) ÷ {b} = {answer}."]
+              "explanation_steps": [
+                "პროპორციაში ჯვარედინი ნამრავლები ტოლია.",
+                "x × {b} = {a} × {d}.",
+                "x = ({a} × {d}) ÷ {b} = {answer}."
+              ]
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "პროპორციაში x : {b} = {c} : {d} იპოვეთ x.",
-              "variables": { "b": { "min": 2, "max": 10 }, "d": { "min": 2, "max": 10 }, "k": { "min": 2, "max": 8 }, "c": { "formula": "k * d" } },
+              "variables": {
+                "b": {
+                  "min": 2,
+                  "max": 10
+                },
+                "d": {
+                  "min": 2,
+                  "max": 10
+                },
+                "k": {
+                  "min": 2,
+                  "max": 8
+                },
+                "c": {
+                  "formula": "k * d"
+                }
+              },
               "formula": "b * c / d",
               "explanation_template": "x = ({b} × {c}) ÷ {d} = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "{n} რვეული {c} ლარი ღირს. რამდენი ლარი ღირს {m} ასეთი რვეული?",
-              "variables": { "p": { "min": 2, "max": 9 }, "n": { "min": 2, "max": 6 }, "m": { "min": 3, "max": 12 }, "c": { "formula": "n * p" } },
+              "variables": {
+                "p": {
+                  "min": 2,
+                  "max": 9
+                },
+                "n": {
+                  "min": 2,
+                  "max": 6
+                },
+                "m": {
+                  "min": 3,
+                  "max": 12
+                },
+                "c": {
+                  "formula": "n * p"
+                }
+              },
               "formula": "m * p",
               "explanation_template": "ერთის ფასი = {c} ÷ {n} = {p}; {m} ცალი = {m} × {p} = {answer} ლარი."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "პროპორციის ჯვარედინი ნამრავლებია ტოლი. თუ {a} : {b} = {c} : x, რას უდრის x?",
-              "variables": { "b": { "min": 2, "max": 8 }, "k": { "min": 2, "max": 7 }, "t": { "min": 2, "max": 6 }, "a": { "formula": "k * b" }, "c": { "formula": "k * t" } },
+              "variables": {
+                "b": {
+                  "min": 2,
+                  "max": 8
+                },
+                "k": {
+                  "min": 2,
+                  "max": 7
+                },
+                "t": {
+                  "min": 2,
+                  "max": 6
+                },
+                "a": {
+                  "formula": "k * b"
+                },
+                "c": {
+                  "formula": "k * t"
+                }
+              },
               "formula": "b * c / a",
               "explanation_template": "x = ({b} × {c}) ÷ {a} = {answer}."
             },
@@ -363,107 +723,227 @@
               "explanation": "სულ სამუშაო = 5 × 6 = 30 მუშა-დღე; 30 ÷ 3 = 10 დღე."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "პროპორციაში {a} : {b} = x : {d} x უდრის:",
-              "variables": { "b": { "min": 2, "max": 8 }, "k": { "min": 2, "max": 7 }, "t": { "min": 2, "max": 7 }, "a": { "formula": "k * b" }, "d": { "formula": "t * b" } },
+              "variables": {
+                "b": {
+                  "min": 2,
+                  "max": 8
+                },
+                "k": {
+                  "min": 2,
+                  "max": 7
+                },
+                "t": {
+                  "min": 2,
+                  "max": 7
+                },
+                "a": {
+                  "formula": "k * b"
+                },
+                "d": {
+                  "formula": "t * b"
+                }
+              },
               "formula": "a * d / b",
-              "options": ["a * d / b", "a * b / d", "b * d / a", "a + d - b"],
+              "options": [
+                "a * d / b",
+                "a * b / d",
+                "b * d / a",
+                "a + d - b"
+              ],
               "explanation_template": "x = ({a} × {d}) ÷ {b} = {answer}.",
               "difficulty": 2
             },
             {
               "type": "multiple_choice",
               "text": "პროპორციის ძირითადი თვისებაა:",
-              "options": ["უკიდურეს წევრთა ნამრავლი უდრის შუა წევრთა ნამრავლს", "ყველა წევრი ტოლია", "ჯამები ტოლია", "სხვაობები ტოლია"],
+              "options": [
+                "უკიდურეს წევრთა ნამრავლი უდრის შუა წევრთა ნამრავლს",
+                "ყველა წევრი ტოლია",
+                "ჯამები ტოლია",
+                "სხვაობები ტოლია"
+              ],
               "correct": 0,
               "explanation": "a : b = c : d ⟺ a × d = b × c."
             },
             {
               "type": "multiple_choice",
               "text": "პროპორციაში 2 : 3 = 8 : x, x უდრის:",
-              "options": ["12", "6", "9", "16"],
+              "options": [
+                "12",
+                "6",
+                "9",
+                "16"
+              ],
               "correct": 0,
               "explanation": "2x = 3 × 8 = 24 → x = 12."
             },
             {
               "type": "multiple_choice",
               "text": "რომელი ჩანაწერია პროპორცია?",
-              "options": ["1 : 2 = 3 : 6", "1 : 2 = 3 : 5", "2 : 3 = 3 : 2", "1 : 3 = 2 : 5"],
+              "options": [
+                "1 : 2 = 3 : 6",
+                "1 : 2 = 3 : 5",
+                "2 : 3 = 3 : 2",
+                "1 : 3 = 2 : 5"
+              ],
               "correct": 0,
               "explanation": "1 × 6 = 2 × 3 = 6 — ჯვარედინი ნამრავლები ტოლია."
             },
             {
               "type": "multiple_choice",
               "text": "თუ 3 კგ ვაშლი 6 ლარი ღირს, 5 კგ ღირს:",
-              "options": ["10", "9", "12", "15"],
+              "options": [
+                "10",
+                "9",
+                "12",
+                "15"
+              ],
               "correct": 0,
               "explanation": "1 კგ = 2 ლარი; 5 × 2 = 10 ლარი."
             },
             {
               "type": "multiple_choice",
               "text": "პროპორციაში a : b = c : d რიცხვებს a და d ეწოდება:",
-              "options": ["უკიდურესი წევრები", "შუა წევრები", "კოეფიციენტები", "ფესვები"],
+              "options": [
+                "უკიდურესი წევრები",
+                "შუა წევრები",
+                "კოეფიციენტები",
+                "ფესვები"
+              ],
               "correct": 0,
               "explanation": "პირველი და ბოლო წევრები უკიდურესია, შუაში მდგომნი — შუა წევრები."
             },
             {
               "type": "multiple_choice",
               "text": "მანქანა 2 საათში 120 კმ-ს გადის. რამდენ კმ-ს გაივლის 5 საათში იმავე სიჩქარით?",
-              "options": ["300", "240", "250", "600"],
+              "options": [
+                "300",
+                "240",
+                "250",
+                "600"
+              ],
               "correct": 0,
               "explanation": "სიჩქარე 60 კმ/სთ; 5 × 60 = 300 კმ."
             },
             {
               "type": "multiple_choice",
               "text": "პროპორციაში x : 4 = 6 : 8, x უდრის:",
-              "options": ["3", "4", "12", "2"],
+              "options": [
+                "3",
+                "4",
+                "12",
+                "2"
+              ],
               "correct": 0,
               "explanation": "8x = 4 × 6 = 24 → x = 3."
             },
             {
               "type": "multiple_choice",
               "text": "თუ პროპორციაში ერთი წევრი გავზარდეთ 2-ჯერ, ტოლობის შესანარჩუნებლად:",
-              "options": ["შესაბამისი წევრიც უნდა გაიზარდოს 2-ჯერ", "არაფერი უნდა შეიცვალოს", "ყველა წევრი უნდა გაიზარდოს", "პროპორცია ირღვევა ყოველთვის"],
+              "options": [
+                "შესაბამისი წევრიც უნდა გაიზარდოს 2-ჯერ",
+                "არაფერი უნდა შეიცვალოს",
+                "ყველა წევრი უნდა გაიზარდოს",
+                "პროპორცია ირღვევა ყოველთვის"
+              ],
               "correct": 0,
               "explanation": "პროპორცია რჩება ძალაში, თუ შეფარდების ორივე წევრს ერთსა და იმავე რიცხვზე გავამრავლებთ."
             },
             {
               "type": "multiple_choice",
               "text": "4 მუშა სამუშაოს ასრულებს 12 დღეში. 6 მუშა შეასრულებს:",
-              "options": ["8 დღეში", "18 დღეში", "12 დღეში", "6 დღეში"],
+              "options": [
+                "8 დღეში",
+                "18 დღეში",
+                "12 დღეში",
+                "6 დღეში"
+              ],
               "correct": 0,
               "explanation": "სულ 48 მუშა-დღე; 48 ÷ 6 = 8 დღე. ეს უკუპროპორციული დამოკიდებულებაა."
             }
           ]
         },
         {
-          "title": "პირდაპირპროპორციული სიდიდეები",
+          "title": "5.4. პირდაპირპროპორციული სიდიდეები",
           "questions": [
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "y პირდაპირპროპორციულია x-ის და y = {k}x. რას უდრის y, როცა x = {x}?",
-              "variables": { "k": { "min": 2, "max": 12 }, "x": { "min": 2, "max": 15 } },
+              "variables": {
+                "k": {
+                  "min": 2,
+                  "max": 12
+                },
+                "x": {
+                  "min": 2,
+                  "max": 15
+                }
+              },
               "formula": "k * x",
               "explanation_template": "y = {k} × {x} = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "y პირდაპირპროპორციულია x-ის. როცა x = {x}, y = {y}. რას უდრის პროპორციულობის კოეფიციენტი?",
-              "variables": { "k": { "min": 2, "max": 12 }, "x": { "min": 2, "max": 10 }, "y": { "formula": "k * x" } },
+              "variables": {
+                "k": {
+                  "min": 2,
+                  "max": 12
+                },
+                "x": {
+                  "min": 2,
+                  "max": 10
+                },
+                "y": {
+                  "formula": "k * x"
+                }
+              },
               "formula": "k",
               "explanation_template": "k = y ÷ x = {y} ÷ {x} = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "{n} კგ ვაშლი {c} ლარი ღირს. რამდენი ლარი ღირს {m} კგ?",
-              "variables": { "p": { "min": 2, "max": 8 }, "n": { "min": 2, "max": 5 }, "m": { "min": 3, "max": 12 }, "c": { "formula": "n * p" } },
+              "variables": {
+                "p": {
+                  "min": 2,
+                  "max": 8
+                },
+                "n": {
+                  "min": 2,
+                  "max": 5
+                },
+                "m": {
+                  "min": 3,
+                  "max": 12
+                },
+                "c": {
+                  "formula": "n * p"
+                }
+              },
               "formula": "m * p",
               "explanation_template": "1 კგ = {p} ლარი; {m} კგ = {answer} ლარი."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "მანქანა მოძრაობს {v} კმ/სთ სიჩქარით. რამდენ კმ-ს გაივლის {t} საათში?",
-              "variables": { "v": { "min": 40, "max": 90 }, "t": { "min": 2, "max": 8 } },
+              "variables": {
+                "v": {
+                  "min": 40,
+                  "max": 90
+                },
+                "t": {
+                  "min": 2,
+                  "max": 8
+                }
+              },
               "formula": "v * t",
               "explanation_template": "მანძილი პირდაპირპროპორციულია დროის: {v} × {t} = {answer} კმ."
             },
@@ -477,7 +957,10 @@
               "type": "text",
               "text": "პირდაპირპროპორციულ სიდიდეებში x გავზარდეთ 3-ჯერ. რამდენჯერ გაიზრდება y?",
               "answer": "3",
-              "acceptable": ["სამჯერ", "3-ჯერ"],
+              "acceptable": [
+                "სამჯერ",
+                "3-ჯერ"
+              ],
               "explanation": "პირდაპირპროპორციულობისას სიდიდეები ერთნაირად იცვლება."
             },
             {
@@ -496,7 +979,11 @@
               "type": "text",
               "text": "პირდაპირპროპორციული სიდიდეების შეფარდება y/x არის: (დაწერეთ: მუდმივი / ცვლადი)",
               "answer": "მუდმივი",
-              "acceptable": ["მუდმივია", "არ იცვლება", "მუდმივი რიცხვი"],
+              "acceptable": [
+                "მუდმივია",
+                "არ იცვლება",
+                "მუდმივი რიცხვი"
+              ],
               "explanation": "y/x = k — პროპორციულობის კოეფიციენტი, რომელიც არ იცვლება."
             },
             {
@@ -506,103 +993,203 @@
               "explanation": "4,5 × 8 = 36 ლარი."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "y = {k}x. რას უდრის y, როცა x = {x}?",
-              "variables": { "k": { "min": 2, "max": 10 }, "x": { "min": 2, "max": 12 } },
+              "variables": {
+                "k": {
+                  "min": 2,
+                  "max": 10
+                },
+                "x": {
+                  "min": 2,
+                  "max": 12
+                }
+              },
               "formula": "k * x",
-              "options": ["k * x", "k + x", "x / k", "k - x"],
+              "options": [
+                "k * x",
+                "k + x",
+                "x / k",
+                "k - x"
+              ],
               "explanation_template": "y = {k} × {x} = {answer}."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "y პირდაპირპროპორციულია x-ის: x = {x} როცა y = {y}. კოეფიციენტი k უდრის:",
-              "variables": { "k": { "min": 2, "max": 9 }, "x": { "min": 2, "max": 9 }, "y": { "formula": "k * x" } },
+              "variables": {
+                "k": {
+                  "min": 2,
+                  "max": 9
+                },
+                "x": {
+                  "min": 2,
+                  "max": 9
+                },
+                "y": {
+                  "formula": "k * x"
+                }
+              },
               "formula": "k",
-              "options": ["k", "x * y", "x + y", "y + x"],
+              "options": [
+                "k",
+                "x * y",
+                "x + y",
+                "y + x"
+              ],
               "explanation_template": "k = {y} ÷ {x} = {answer}.",
               "difficulty": 2
             },
             {
               "type": "multiple_choice",
               "text": "რომელი დამოკიდებულებაა პირდაპირპროპორციული?",
-              "options": ["y = 3x", "y = 3/x", "y = x + 3", "y = x²"],
+              "options": [
+                "y = 3x",
+                "y = 3/x",
+                "y = x + 3",
+                "y = x²"
+              ],
               "correct": 0,
               "explanation": "პირდაპირპროპორციულობა იწერება როგორც y = kx.",
-              "option_explanations": { "1": "y = 3/x უკუპროპორციული დამოკიდებულებაა." }
+              "option_explanations": {
+                "1": "y = 3/x უკუპროპორციული დამოკიდებულებაა."
+              }
             },
             {
               "type": "multiple_choice",
               "text": "პირდაპირპროპორციული სიდიდეების გრაფიკია:",
-              "options": ["სათავეზე გამავალი წრფე", "პარაბოლა", "ჰიპერბოლა", "წრეწირი"],
+              "options": [
+                "სათავეზე გამავალი წრფე",
+                "პარაბოლა",
+                "ჰიპერბოლა",
+                "წრეწირი"
+              ],
               "correct": 0,
               "explanation": "y = kx გრაფიკი არის წრფე, რომელიც კოორდინატთა სათავეზე გადის."
             },
             {
               "type": "multiple_choice",
               "text": "თუ x გავზარდეთ 2-ჯერ, პირდაპირპროპორციული y:",
-              "options": ["გაიზრდება 2-ჯერ", "შემცირდება 2-ჯერ", "არ შეიცვლება", "გაიზრდება 4-ჯერ"],
+              "options": [
+                "გაიზრდება 2-ჯერ",
+                "შემცირდება 2-ჯერ",
+                "არ შეიცვლება",
+                "გაიზრდება 4-ჯერ"
+              ],
               "correct": 0,
               "explanation": "პირდაპირპროპორციულობისას ორივე სიდიდე ერთნაირად იცვლება."
             },
             {
               "type": "multiple_choice",
               "text": "3 კგ კარტოფილი 6 ლარი ღირს. 8 კგ ღირს:",
-              "options": ["16", "14", "18", "12"],
+              "options": [
+                "16",
+                "14",
+                "18",
+                "12"
+              ],
               "correct": 0,
               "explanation": "1 კგ = 2 ლარი; 8 × 2 = 16 ლარი."
             },
             {
               "type": "multiple_choice",
               "text": "y = kx-ში k ეწოდება:",
-              "options": ["პროპორციულობის კოეფიციენტი", "თავისუფალი წევრი", "ფესვი", "მაჩვენებელი"],
+              "options": [
+                "პროპორციულობის კოეფიციენტი",
+                "თავისუფალი წევრი",
+                "ფესვი",
+                "მაჩვენებელი"
+              ],
               "correct": 0,
               "explanation": "k არის პროპორციულობის კოეფიციენტი და უდრის y/x-ს."
             },
             {
               "type": "multiple_choice",
               "text": "რომელი წყვილი აკმაყოფილებს y = 4x-ს?",
-              "options": ["(2; 8)", "(8; 2)", "(4; 4)", "(1; 5)"],
+              "options": [
+                "(2; 8)",
+                "(8; 2)",
+                "(4; 4)",
+                "(1; 5)"
+              ],
               "correct": 0,
               "explanation": "x = 2 → y = 4 × 2 = 8."
             },
             {
               "type": "multiple_choice",
               "text": "მუშაობის დროსა და შესრულებულ სამუშაოს შორის (მუდმივი ტემპით) დამოკიდებულებაა:",
-              "options": ["პირდაპირპროპორციული", "უკუპროპორციული", "არ არსებობს", "კვადრატული"],
+              "options": [
+                "პირდაპირპროპორციული",
+                "უკუპროპორციული",
+                "არ არსებობს",
+                "კვადრატული"
+              ],
               "correct": 0,
               "explanation": "რაც მეტ ხანს ვმუშაობთ, მით მეტს ვასრულებთ — პირდაპირპროპორციულად."
             },
             {
               "type": "multiple_choice",
               "text": "მუშების რაოდენობასა და სამუშაოს შესრულების დროს შორის დამოკიდებულებაა:",
-              "options": ["უკუპროპორციული", "პირდაპირპროპორციული", "არ არსებობს", "მუდმივი"],
+              "options": [
+                "უკუპროპორციული",
+                "პირდაპირპროპორციული",
+                "არ არსებობს",
+                "მუდმივი"
+              ],
               "correct": 0,
               "explanation": "რაც მეტი მუშაა, მით ნაკლები დრო სჭირდება — უკუპროპორციული დამოკიდებულება."
             }
           ]
         },
         {
-          "title": "სამკუთხედი. სამკუთხედის სახეები კუთხეების მიხედვით",
+          "title": "5.5. სამკუთხედი. სამკუთხედის სახეები კუთხეების მიხედვით",
           "questions": [
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "სამკუთხედის ორი კუთხეა {a}° და {b}°. რას უდრის მესამე კუთხე (გრადუსებში)?",
-              "variables": { "a": { "min": 20, "max": 80 }, "b": { "min": 20, "max": 80 } },
+              "variables": {
+                "a": {
+                  "min": 20,
+                  "max": 80
+                },
+                "b": {
+                  "min": 20,
+                  "max": 80
+                }
+              },
               "formula": "180 - a - b",
               "explanation_template": "კუთხეთა ჯამი 180°: 180 − {a} − {b} = {answer}°.",
-              "explanation_steps": ["სამკუთხედის კუთხეთა ჯამი ყოველთვის 180°-ია.", "180 − {a} − {b} = {answer}°."]
+              "explanation_steps": [
+                "სამკუთხედის კუთხეთა ჯამი ყოველთვის 180°-ია.",
+                "180 − {a} − {b} = {answer}°."
+              ]
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "მართკუთხა სამკუთხედის ერთი მახვილი კუთხეა {a}°. რას უდრის მეორე მახვილი კუთხე?",
-              "variables": { "a": { "min": 15, "max": 75 } },
+              "variables": {
+                "a": {
+                  "min": 15,
+                  "max": 75
+                }
+              },
               "formula": "90 - a",
               "explanation_template": "მართკუთხა სამკუთხედში მახვილ კუთხეთა ჯამი 90°: 90 − {a} = {answer}°."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "ტოლფერდა სამკუთხედის ფუძესთან მდებარე კუთხეა {a}°. რას უდრის წვეროსთან მდებარე კუთხე?",
-              "variables": { "a": { "min": 20, "max": 80 } },
+              "variables": {
+                "a": {
+                  "min": 20,
+                  "max": 80
+                }
+              },
               "formula": "180 - 2 * a",
               "explanation_template": "ფუძესთან ორივე კუთხე ტოლია: 180 − 2 × {a} = {answer}°."
             },
@@ -610,183 +1197,313 @@
               "type": "text",
               "text": "რას უდრის სამკუთხედის კუთხეთა ჯამი (გრადუსებში)?",
               "answer": "180",
-              "acceptable": ["180°", "180 გრადუსი"],
+              "acceptable": [
+                "180°",
+                "180 გრადუსი"
+              ],
               "explanation": "ნებისმიერი სამკუთხედის შიდა კუთხეთა ჯამი 180°-ია."
             },
             {
               "type": "text",
               "text": "სამკუთხედს, რომლის ყველა კუთხე მახვილია, ეწოდება:",
               "answer": "მახვილკუთხა",
-              "acceptable": ["მახვილკუთხა სამკუთხედი"],
+              "acceptable": [
+                "მახვილკუთხა სამკუთხედი"
+              ],
               "explanation": "თუ სამივე კუთხე 90°-ზე ნაკლებია, სამკუთხედი მახვილკუთხაა."
             },
             {
               "type": "text",
               "text": "სამკუთხედს, რომელსაც აქვს ერთი 90°-იანი კუთხე, ეწოდება:",
               "answer": "მართკუთხა",
-              "acceptable": ["მართკუთხა სამკუთხედი"],
+              "acceptable": [
+                "მართკუთხა სამკუთხედი"
+              ],
               "explanation": "ერთი მართი კუთხის არსებობა სამკუთხედს მართკუთხად აქცევს."
             },
             {
               "type": "text",
               "text": "სამკუთხედს, რომელსაც აქვს 90°-ზე მეტი კუთხე, ეწოდება:",
               "answer": "ბლაგვკუთხა",
-              "acceptable": ["ბლაგვკუთხა სამკუთხედი"],
+              "acceptable": [
+                "ბლაგვკუთხა სამკუთხედი"
+              ],
               "explanation": "ერთი ბლაგვი კუთხე სამკუთხედს ბლაგვკუთხად აქცევს."
             },
             {
               "type": "text",
               "text": "სამკუთხედის ორი კუთხეა 50° და 60°. რას უდრის მესამე?",
               "answer": "70",
-              "acceptable": ["70°"],
+              "acceptable": [
+                "70°"
+              ],
               "explanation": "180 − 50 − 60 = 70°."
             },
             {
               "type": "text",
               "text": "რამდენი მართი კუთხე შეიძლება ჰქონდეს ერთ სამკუთხედს?",
               "answer": "1",
-              "acceptable": ["ერთი"],
+              "acceptable": [
+                "ერთი"
+              ],
               "explanation": "ორი მართი კუთხე უკვე 180°-ს იძლევა, მესამე კუთხისთვის ადგილი აღარ რჩება."
             },
             {
               "type": "text",
               "text": "ტოლგვერდა სამკუთხედის თითოეული კუთხეა (გრადუსებში):",
               "answer": "60",
-              "acceptable": ["60°"],
+              "acceptable": [
+                "60°"
+              ],
               "explanation": "180 ÷ 3 = 60°."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "სამკუთხედის ორი კუთხეა {a}° და {b}°. მესამე კუთხეა:",
-              "variables": { "a": { "min": 25, "max": 75 }, "b": { "min": 25, "max": 75 } },
+              "variables": {
+                "a": {
+                  "min": 25,
+                  "max": 75
+                },
+                "b": {
+                  "min": 25,
+                  "max": 75
+                }
+              },
               "formula": "180 - a - b",
-              "options": ["180 - a - b", "a + b", "90 - a", "180 - a"],
+              "options": [
+                "180 - a - b",
+                "a + b",
+                "90 - a",
+                "180 - a"
+              ],
               "explanation_template": "180 − {a} − {b} = {answer}°.",
               "difficulty": 1
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "მართკუთხა სამკუთხედის ერთი მახვილი კუთხეა {a}°. მეორეა:",
-              "variables": { "a": { "min": 20, "max": 70 } },
+              "variables": {
+                "a": {
+                  "min": 20,
+                  "max": 70
+                }
+              },
               "formula": "90 - a",
-              "options": ["90 - a", "180 - a", "a", "90 + a"],
+              "options": [
+                "90 - a",
+                "180 - a",
+                "a",
+                "90 + a"
+              ],
               "explanation_template": "90 − {a} = {answer}°.",
               "difficulty": 2
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედი კუთხეებით 40°, 60°, 80° არის:",
-              "options": ["მახვილკუთხა", "მართკუთხა", "ბლაგვკუთხა", "ასეთი არ არსებობს"],
+              "options": [
+                "მახვილკუთხა",
+                "მართკუთხა",
+                "ბლაგვკუთხა",
+                "ასეთი არ არსებობს"
+              ],
               "correct": 0,
               "explanation": "სამივე კუთხე 90°-ზე ნაკლებია → მახვილკუთხა."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედი კუთხეებით 30°, 60°, 90° არის:",
-              "options": ["მართკუთხა", "მახვილკუთხა", "ბლაგვკუთხა", "ტოლგვერდა"],
+              "options": [
+                "მართკუთხა",
+                "მახვილკუთხა",
+                "ბლაგვკუთხა",
+                "ტოლგვერდა"
+              ],
               "correct": 0,
               "explanation": "ერთი კუთხე ზუსტად 90°-ია → მართკუთხა."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედი კუთხეებით 20°, 40°, 120° არის:",
-              "options": ["ბლაგვკუთხა", "მართკუთხა", "მახვილკუთხა", "ასეთი არ არსებობს"],
+              "options": [
+                "ბლაგვკუთხა",
+                "მართკუთხა",
+                "მახვილკუთხა",
+                "ასეთი არ არსებობს"
+              ],
               "correct": 0,
               "explanation": "120° > 90° → ბლაგვკუთხა სამკუთხედი."
             },
             {
               "type": "multiple_choice",
               "text": "შეიძლება თუ არა სამკუთხედს ჰქონდეს ორი ბლაგვი კუთხე?",
-              "options": ["არა", "დიახ", "მხოლოდ ტოლფერდაში", "მხოლოდ დიდ სამკუთხედში"],
+              "options": [
+                "არა",
+                "დიახ",
+                "მხოლოდ ტოლფერდაში",
+                "მხოლოდ დიდ სამკუთხედში"
+              ],
               "correct": 0,
               "explanation": "ორი ბლაგვი კუთხის ჯამი უკვე 180°-ს აღემატება, რაც შეუძლებელია."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედის კუთხეებია 45°, 45° და:",
-              "options": ["90°", "45°", "80°", "100°"],
+              "options": [
+                "90°",
+                "45°",
+                "80°",
+                "100°"
+              ],
               "correct": 0,
               "explanation": "180 − 45 − 45 = 90°."
             },
             {
               "type": "multiple_choice",
               "text": "ტოლგვერდა სამკუთხედი ყოველთვის არის:",
-              "options": ["მახვილკუთხა", "მართკუთხა", "ბლაგვკუთხა", "სხვადასხვაგვარი"],
+              "options": [
+                "მახვილკუთხა",
+                "მართკუთხა",
+                "ბლაგვკუთხა",
+                "სხვადასხვაგვარი"
+              ],
               "correct": 0,
               "explanation": "ტოლგვერდა სამკუთხედის ყველა კუთხე 60°-ია, ანუ მახვილი."
             },
             {
               "type": "multiple_choice",
               "text": "შესაძლებელია თუ არა სამკუთხედი კუთხეებით 90°, 90°, 0°?",
-              "options": ["არა, ეს არ არის სამკუთხედი", "დიახ", "მხოლოდ ნახაზზე", "დიახ, თუ დიდია"],
+              "options": [
+                "არა, ეს არ არის სამკუთხედი",
+                "დიახ",
+                "მხოლოდ ნახაზზე",
+                "დიახ, თუ დიდია"
+              ],
               "correct": 0,
               "explanation": "სამკუთხედის ყველა კუთხე ნულზე მეტი უნდა იყოს."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედის ერთი კუთხე 100°-ია. დანარჩენი ორი კუთხე:",
-              "options": ["ორივე მახვილია", "ერთი მართია", "ორივე ბლაგვია", "ერთი ბლაგვია"],
+              "options": [
+                "ორივე მახვილია",
+                "ერთი მართია",
+                "ორივე ბლაგვია",
+                "ერთი ბლაგვია"
+              ],
               "correct": 0,
               "explanation": "დარჩენილი 80° ორ კუთხედ იყოფა, ამიტომ ორივე 90°-ზე ნაკლებია."
             }
           ]
         },
         {
-          "title": "სამკუთხედის ელემენტები",
+          "title": "5.6. სამკუთხედის ელემენტები",
           "questions": [
             {
               "type": "text",
               "text": "რამდენი გვერდი აქვს სამკუთხედს?",
               "answer": "3",
-              "acceptable": ["სამი"],
+              "acceptable": [
+                "სამი"
+              ],
               "explanation": "სამკუთხედს აქვს 3 გვერდი, 3 წვერო და 3 კუთხე."
             },
             {
               "type": "text",
               "text": "რამდენი წვერო აქვს სამკუთხედს?",
               "answer": "3",
-              "acceptable": ["სამი"],
+              "acceptable": [
+                "სამი"
+              ],
               "explanation": "სამკუთხედს აქვს სამი წვერო."
             },
             {
               "type": "text",
               "text": "როგორ ჰქვია მონაკვეთს, რომელიც წვეროს აერთებს მოპირდაპირე გვერდის შუაწერტილთან?",
               "answer": "მედიანა",
-              "acceptable": ["მედიანაა"],
+              "acceptable": [
+                "მედიანაა"
+              ],
               "explanation": "მედიანა წვეროდან მოპირდაპირე გვერდის შუაწერტილამდე გავლებული მონაკვეთია."
             },
             {
               "type": "text",
               "text": "როგორ ჰქვია მონაკვეთს, რომელიც კუთხეს შუაზე ყოფს?",
               "answer": "ბისექტრისა",
-              "acceptable": ["ბისექტრისაა", "ბისექტრისა"],
+              "acceptable": [
+                "ბისექტრისაა",
+                "ბისექტრისა"
+              ],
               "explanation": "ბისექტრისა კუთხის შუამკვეთი სხივია."
             },
             {
               "type": "text",
               "text": "როგორ ჰქვია წვეროდან მოპირდაპირე გვერდისადმი დაშვებულ მართობს?",
               "answer": "სიმაღლე",
-              "acceptable": ["სიმაღლეა", "სიმაღლე"],
+              "acceptable": [
+                "სიმაღლეა",
+                "სიმაღლე"
+              ],
               "explanation": "სიმაღლე წვეროდან მოპირდაპირე გვერდზე (ან მის გაგრძელებაზე) დაშვებული მართობია."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "სამკუთხედის გვერდებია {a} სმ, {b} სმ და {c} სმ. რას უდრის პერიმეტრი?",
-              "variables": { "a": { "min": 4, "max": 15 }, "b": { "min": 4, "max": 15 }, "c": { "min": 5, "max": 18 } },
+              "variables": {
+                "a": {
+                  "min": 4,
+                  "max": 15
+                },
+                "b": {
+                  "min": 4,
+                  "max": 15
+                },
+                "c": {
+                  "min": 5,
+                  "max": 18
+                }
+              },
               "formula": "a + b + c",
               "explanation_template": "P = {a} + {b} + {c} = {answer} სმ."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "ტოლგვერდა სამკუთხედის გვერდია {a} სმ. რას უდრის პერიმეტრი?",
-              "variables": { "a": { "min": 3, "max": 20 } },
+              "variables": {
+                "a": {
+                  "min": 3,
+                  "max": 20
+                }
+              },
               "formula": "3 * a",
               "explanation_template": "P = 3 × {a} = {answer} სმ."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "სამკუთხედის პერიმეტრია {p} სმ, ორი გვერდი {a} სმ და {b} სმ. რას უდრის მესამე გვერდი?",
-              "variables": { "a": { "min": 4, "max": 12 }, "b": { "min": 4, "max": 12 }, "c": { "min": 5, "max": 15 }, "p": { "formula": "a + b + c" } },
+              "variables": {
+                "a": {
+                  "min": 4,
+                  "max": 12
+                },
+                "b": {
+                  "min": 4,
+                  "max": 12
+                },
+                "c": {
+                  "min": 5,
+                  "max": 15
+                },
+                "p": {
+                  "formula": "a + b + c"
+                }
+              },
               "formula": "c",
               "explanation_template": "მესამე გვერდი = {p} − {a} − {b} = {answer} სმ."
             },
@@ -794,119 +1511,239 @@
               "type": "text",
               "text": "რამდენი მედიანა აქვს სამკუთხედს?",
               "answer": "3",
-              "acceptable": ["სამი"],
+              "acceptable": [
+                "სამი"
+              ],
               "explanation": "თითოეული წვეროდან გამოდის ერთი მედიანა — სულ სამი."
             },
             {
               "type": "text",
               "text": "სამკუთხედის გვერდებია 5 სმ, 7 სმ და 9 სმ. რას უდრის პერიმეტრი?",
               "answer": "21",
-              "acceptable": ["21 სმ"],
+              "acceptable": [
+                "21 სმ"
+              ],
               "explanation": "5 + 7 + 9 = 21 სმ."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "სამკუთხედის გვერდებია {a}, {b} და {c} სმ. პერიმეტრია:",
-              "variables": { "a": { "min": 3, "max": 14 }, "b": { "min": 3, "max": 14 }, "c": { "min": 4, "max": 16 } },
+              "variables": {
+                "a": {
+                  "min": 3,
+                  "max": 14
+                },
+                "b": {
+                  "min": 3,
+                  "max": 14
+                },
+                "c": {
+                  "min": 4,
+                  "max": 16
+                }
+              },
               "formula": "a + b + c",
-              "options": ["a + b + c", "a * b * c", "(a + b + c) / 2", "a + b"],
+              "options": [
+                "a + b + c",
+                "a * b * c",
+                "(a + b + c) / 2",
+                "a + b"
+              ],
               "explanation_template": "P = {a} + {b} + {c} = {answer} სმ."
             },
             {
               "type": "multiple_choice",
               "text": "მედიანა აერთებს წვეროს:",
-              "options": ["მოპირდაპირე გვერდის შუაწერტილთან", "მოპირდაპირე წვეროსთან", "გვერდის ბოლოსთან", "სამკუთხედის ცენტრთან"],
+              "options": [
+                "მოპირდაპირე გვერდის შუაწერტილთან",
+                "მოპირდაპირე წვეროსთან",
+                "გვერდის ბოლოსთან",
+                "სამკუთხედის ცენტრთან"
+              ],
               "correct": 0,
               "explanation": "მედიანის განსაზღვრებაა — წვეროდან მოპირდაპირე გვერდის შუაწერტილამდე."
             },
             {
               "type": "multiple_choice",
               "text": "ბისექტრისა ყოფს:",
-              "options": ["კუთხეს ორ ტოლ ნაწილად", "გვერდს ორ ტოლ ნაწილად", "სამკუთხედს კვადრატებად", "პერიმეტრს შუაზე"],
+              "options": [
+                "კუთხეს ორ ტოლ ნაწილად",
+                "გვერდს ორ ტოლ ნაწილად",
+                "სამკუთხედს კვადრატებად",
+                "პერიმეტრს შუაზე"
+              ],
               "correct": 0,
               "explanation": "ბისექტრისა კუთხის ტოლ ნაწილებად გამყოფი სხივია.",
-              "option_explanations": { "1": "გვერდს შუაზე მედიანა ყოფს, არა ბისექტრისა." }
+              "option_explanations": {
+                "1": "გვერდს შუაზე მედიანა ყოფს, არა ბისექტრისა."
+              }
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედის სიმაღლე არის:",
-              "options": ["წვეროდან მოპირდაპირე გვერდისადმი მართობი", "ნებისმიერი გვერდი", "ორი წვეროს შემაერთებელი", "პერიმეტრის ნახევარი"],
+              "options": [
+                "წვეროდან მოპირდაპირე გვერდისადმი მართობი",
+                "ნებისმიერი გვერდი",
+                "ორი წვეროს შემაერთებელი",
+                "პერიმეტრის ნახევარი"
+              ],
               "correct": 0,
               "explanation": "სიმაღლე ყოველთვის მართობულია იმ გვერდისა, რომელზეც დაშვებულია."
             },
             {
               "type": "multiple_choice",
               "text": "რამდენი სიმაღლე აქვს სამკუთხედს?",
-              "options": ["3", "1", "2", "6"],
+              "options": [
+                "3",
+                "1",
+                "2",
+                "6"
+              ],
               "correct": 0,
               "explanation": "თითოეული წვეროდან შეიძლება დაეშვას ერთი სიმაღლე — სულ სამი."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედის პერიმეტრი არის:",
-              "options": ["გვერდების ჯამი", "გვერდების ნამრავლი", "კუთხეების ჯამი", "სიმაღლეების ჯამი"],
+              "options": [
+                "გვერდების ჯამი",
+                "გვერდების ნამრავლი",
+                "კუთხეების ჯამი",
+                "სიმაღლეების ჯამი"
+              ],
               "correct": 0,
               "explanation": "პერიმეტრი ფიგურის ყველა გვერდის სიგრძის ჯამია."
             },
             {
               "type": "multiple_choice",
               "text": "ტოლგვერდა სამკუთხედის პერიმეტრია 18 სმ. თითოეული გვერდია:",
-              "options": ["6 სმ", "9 სმ", "3 სმ", "54 სმ"],
+              "options": [
+                "6 სმ",
+                "9 სმ",
+                "3 სმ",
+                "54 სმ"
+              ],
               "correct": 0,
               "explanation": "18 ÷ 3 = 6 სმ."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედის მოპირდაპირე გვერდი კუთხისა A აღინიშნება ჩვეულებრივ:",
-              "options": ["a", "b", "c", "h"],
+              "options": [
+                "a",
+                "b",
+                "c",
+                "h"
+              ],
               "correct": 0,
               "explanation": "მიღებულია, რომ A კუთხის მოპირდაპირე გვერდს a ჰქვია."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედის სამივე მედიანა:",
-              "options": ["ერთ წერტილში იკვეთება", "პარალელურია", "არ იკვეთება", "სამ სხვადასხვა წერტილში იკვეთება"],
+              "options": [
+                "ერთ წერტილში იკვეთება",
+                "პარალელურია",
+                "არ იკვეთება",
+                "სამ სხვადასხვა წერტილში იკვეთება"
+              ],
               "correct": 0,
               "explanation": "მედიანები იკვეთება ერთ წერტილში, რომელსაც სიმძიმის ცენტრი ჰქვია."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედის პერიმეტრია 24 სმ, ორი გვერდი 7 სმ და 9 სმ. მესამე გვერდია:",
-              "options": ["8 სმ", "10 სმ", "6 სმ", "16 სმ"],
+              "options": [
+                "8 სმ",
+                "10 სმ",
+                "6 სმ",
+                "16 სმ"
+              ],
               "correct": 0,
               "explanation": "24 − 7 − 9 = 8 სმ."
             }
           ]
         },
         {
-          "title": "მიმდევრობები",
+          "title": "5.7. მიმდევრობები",
           "questions": [
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "მიმდევრობის პირველი წევრია {a1}, ყოველი მომდევნო {d}-ით მეტია. რას უდრის მე-{n} წევრი?",
-              "variables": { "a1": { "min": 1, "max": 15 }, "d": { "min": 2, "max": 9 }, "n": { "min": 3, "max": 12 } },
+              "variables": {
+                "a1": {
+                  "min": 1,
+                  "max": 15
+                },
+                "d": {
+                  "min": 2,
+                  "max": 9
+                },
+                "n": {
+                  "min": 3,
+                  "max": 12
+                }
+              },
               "formula": "a1 + (n - 1) * d",
               "explanation_template": "aₙ = {a1} + ({n} − 1) × {d} = {answer}.",
-              "explanation_steps": ["არითმეტიკული პროგრესიის ფორმულაა aₙ = a₁ + (n − 1)d.", "aₙ = {a1} + ({n} − 1) × {d} = {answer}."]
+              "explanation_steps": [
+                "არითმეტიკული პროგრესიის ფორმულაა aₙ = a₁ + (n − 1)d.",
+                "aₙ = {a1} + ({n} − 1) × {d} = {answer}."
+              ]
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "მიმდევრობაში ყოველი წევრი {d}-ით მეტია წინაზე. პირველი წევრია {a1}. რას უდრის მე-2 წევრი?",
-              "variables": { "a1": { "min": 1, "max": 20 }, "d": { "min": 2, "max": 12 } },
+              "variables": {
+                "a1": {
+                  "min": 1,
+                  "max": 20
+                },
+                "d": {
+                  "min": 2,
+                  "max": 12
+                }
+              },
               "formula": "a1 + d",
               "explanation_template": "a₂ = {a1} + {d} = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "მიმდევრობის პირველი წევრია {a1}, ყოველი მომდევნო {k}-ჯერ მეტია. რას უდრის მე-3 წევრი?",
-              "variables": { "a1": { "min": 1, "max": 8 }, "k": { "min": 2, "max": 4 } },
+              "variables": {
+                "a1": {
+                  "min": 1,
+                  "max": 8
+                },
+                "k": {
+                  "min": 2,
+                  "max": 4
+                }
+              },
               "formula": "a1 * k * k",
               "explanation_template": "a₃ = {a1} × {k} × {k} = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "მიმდევრობაში a₁ = {a1} და a₂ = {a2}. რას უდრის სხვაობა d?",
-              "variables": { "a1": { "min": 1, "max": 15 }, "d": { "min": 2, "max": 10 }, "a2": { "formula": "a1 + d" } },
+              "variables": {
+                "a1": {
+                  "min": 1,
+                  "max": 15
+                },
+                "d": {
+                  "min": 2,
+                  "max": 10
+                },
+                "a2": {
+                  "formula": "a1 + d"
+                }
+              },
               "formula": "d",
               "explanation_template": "d = {a2} − {a1} = {answer}."
             },
@@ -947,122 +1784,211 @@
               "explanation": "ფიბონაჩის მიმდევრობაა: ყოველი წევრი წინა ორის ჯამია — 5 + 8 = 13."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "მიმდევრობის პირველი წევრია {a1}, სხვაობა {d}. მე-{n} წევრია:",
-              "variables": { "a1": { "min": 2, "max": 12 }, "d": { "min": 2, "max": 8 }, "n": { "min": 3, "max": 10 } },
+              "variables": {
+                "a1": {
+                  "min": 2,
+                  "max": 12
+                },
+                "d": {
+                  "min": 2,
+                  "max": 8
+                },
+                "n": {
+                  "min": 3,
+                  "max": 10
+                }
+              },
               "formula": "a1 + (n - 1) * d",
-              "options": ["a1 + (n - 1) * d", "a1 + n * d", "a1 * n", "a1 + d"],
+              "options": [
+                "a1 + (n - 1) * d",
+                "a1 + n * d",
+                "a1 * n",
+                "a1 + d"
+              ],
               "explanation_template": "aₙ = {a1} + ({n} − 1) × {d} = {answer}.",
               "difficulty": 2
             },
             {
               "type": "multiple_choice",
               "text": "მიმდევრობა 3, 6, 9, 12, ... — მომდევნო წევრია:",
-              "options": ["15", "16", "14", "18"],
+              "options": [
+                "15",
+                "16",
+                "14",
+                "18"
+              ],
               "correct": 0,
               "explanation": "ყოველი წევრი 3-ით იზრდება: 12 + 3 = 15."
             },
             {
               "type": "multiple_choice",
               "text": "მიმდევრობა 2, 4, 8, 16, ... — მომდევნო წევრია:",
-              "options": ["32", "20", "24", "18"],
+              "options": [
+                "32",
+                "20",
+                "24",
+                "18"
+              ],
               "correct": 0,
               "explanation": "ყოველი წევრი ორმაგდება: 16 × 2 = 32.",
-              "option_explanations": { "1": "20 მიიღება 4-ის მიმატებით, მაგრამ აქ გამრავლების წესია." }
+              "option_explanations": {
+                "1": "20 მიიღება 4-ის მიმატებით, მაგრამ აქ გამრავლების წესია."
+              }
             },
             {
               "type": "multiple_choice",
               "text": "მიმდევრობა 50, 45, 40, ... — მომდევნო წევრია:",
-              "options": ["35", "30", "38", "36"],
+              "options": [
+                "35",
+                "30",
+                "38",
+                "36"
+              ],
               "correct": 0,
               "explanation": "ყოველი წევრი 5-ით მცირდება: 40 − 5 = 35."
             },
             {
               "type": "multiple_choice",
               "text": "მიმდევრობას, რომელშიც ყოველი წევრი წინას ერთსა და იმავე რიცხვს უმატებს, ეწოდება:",
-              "options": ["არითმეტიკული პროგრესია", "გეომეტრიული პროგრესია", "ფიბონაჩის მიმდევრობა", "შემთხვევითი მიმდევრობა"],
+              "options": [
+                "არითმეტიკული პროგრესია",
+                "გეომეტრიული პროგრესია",
+                "ფიბონაჩის მიმდევრობა",
+                "შემთხვევითი მიმდევრობა"
+              ],
               "correct": 0,
               "explanation": "მუდმივი სხვაობა არითმეტიკული პროგრესიის ნიშანია."
             },
             {
               "type": "multiple_choice",
               "text": "მიმდევრობას, რომელშიც ყოველი წევრი წინაზე ერთსა და იმავე რიცხვჯერ მეტია, ეწოდება:",
-              "options": ["გეომეტრიული პროგრესია", "არითმეტიკული პროგრესია", "წრფივი მიმდევრობა", "მუდმივი მიმდევრობა"],
+              "options": [
+                "გეომეტრიული პროგრესია",
+                "არითმეტიკული პროგრესია",
+                "წრფივი მიმდევრობა",
+                "მუდმივი მიმდევრობა"
+              ],
               "correct": 0,
               "explanation": "მუდმივი შეფარდება გეომეტრიული პროგრესიის ნიშანია."
             },
             {
               "type": "multiple_choice",
               "text": "მიმდევრობა 1, 3, 5, 7, ... აღწერს:",
-              "options": ["კენტ რიცხვებს", "ლუწ რიცხვებს", "მარტივ რიცხვებს", "კვადრატებს"],
+              "options": [
+                "კენტ რიცხვებს",
+                "ლუწ რიცხვებს",
+                "მარტივ რიცხვებს",
+                "კვადრატებს"
+              ],
               "correct": 0,
               "explanation": "1, 3, 5, 7 — ეს კენტი ნატურალური რიცხვებია."
             },
             {
               "type": "multiple_choice",
               "text": "მიმდევრობაში a₁ = 4, d = 3. a₅ უდრის:",
-              "options": ["16", "15", "19", "12"],
+              "options": [
+                "16",
+                "15",
+                "19",
+                "12"
+              ],
               "correct": 0,
               "explanation": "a₅ = 4 + (5 − 1) × 3 = 4 + 12 = 16."
             },
             {
               "type": "multiple_choice",
               "text": "მიმდევრობა 10, 20, 40, 80 — რომელი წესით შედგება?",
-              "options": ["ყოველი წევრი ორმაგდება", "ყოველ წევრს ემატება 10", "ყოველ წევრს ემატება 20", "ყოველი წევრი კვადრატდება"],
+              "options": [
+                "ყოველი წევრი ორმაგდება",
+                "ყოველ წევრს ემატება 10",
+                "ყოველ წევრს ემატება 20",
+                "ყოველი წევრი კვადრატდება"
+              ],
               "correct": 0,
               "explanation": "10 × 2 = 20, 20 × 2 = 40, 40 × 2 = 80."
             },
             {
               "type": "multiple_choice",
               "text": "მიმდევრობის წევრის ნომერს ეწოდება:",
-              "options": ["ინდექსი", "სხვაობა", "ჯამი", "ნამრავლი"],
+              "options": [
+                "ინდექსი",
+                "სხვაობა",
+                "ჯამი",
+                "ნამრავლი"
+              ],
               "correct": 0,
               "explanation": "aₙ ჩანაწერში n წევრის ნომერია — ინდექსი."
             }
           ]
         },
         {
-          "title": "სამკუთხედების ტოლობის ნიშნები",
+          "title": "5.8. სამკუთხედების ტოლობის ნიშნები",
           "questions": [
             {
               "type": "text",
               "text": "რამდენი ნიშანი არსებობს სამკუთხედების ტოლობისა (ძირითადი)?",
               "answer": "3",
-              "acceptable": ["სამი"],
+              "acceptable": [
+                "სამი"
+              ],
               "explanation": "ძირითადი ნიშნებია სამი: გგგ, გკგ და კგკ."
             },
             {
               "type": "text",
               "text": "თუ ორი სამკუთხედის სამივე გვერდი შესაბამისად ტოლია, ისინი ტოლია? (დიახ/არა)",
               "answer": "დიახ",
-              "acceptable": ["კი", "ტოლია"],
+              "acceptable": [
+                "კი",
+                "ტოლია"
+              ],
               "explanation": "ეს არის მესამე ნიშანი — სამი გვერდით (გგგ)."
             },
             {
               "type": "text",
               "text": "ტოლ სამკუთხედებში შესაბამისი კუთხეები როგორია? (დაწერეთ: ტოლი / განსხვავებული)",
               "answer": "ტოლი",
-              "acceptable": ["ტოლია", "ტოლები"],
+              "acceptable": [
+                "ტოლია",
+                "ტოლები"
+              ],
               "explanation": "ტოლ ფიგურებში ყველა შესაბამისი ელემენტი ტოლია."
             },
             {
               "type": "text",
               "text": "საკმარისია თუ არა მხოლოდ სამი კუთხის ტოლობა სამკუთხედების ტოლობისთვის? (დიახ/არა)",
               "answer": "არა",
-              "acceptable": ["არ არის", "არასაკმარისია"],
+              "acceptable": [
+                "არ არის",
+                "არასაკმარისია"
+              ],
               "explanation": "სამი ტოლი კუთხე მსგავს სამკუთხედებს იძლევა, მაგრამ ისინი ზომით შეიძლება განსხვავდებოდნენ."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "ორი სამკუთხედი ტოლია. პირველის ერთი გვერდია {a} სმ. რას უდრის მეორის შესაბამისი გვერდი?",
-              "variables": { "a": { "min": 3, "max": 20 } },
+              "variables": {
+                "a": {
+                  "min": 3,
+                  "max": 20
+                }
+              },
               "formula": "a",
               "explanation_template": "ტოლ სამკუთხედებში შესაბამისი გვერდები ტოლია: {answer} სმ."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "ორი სამკუთხედი ტოლია. პირველის პერიმეტრია {p} სმ. რას უდრის მეორის პერიმეტრი?",
-              "variables": { "p": { "min": 12, "max": 60 } },
+              "variables": {
+                "p": {
+                  "min": 12,
+                  "max": 60
+                }
+              },
               "formula": "p",
               "explanation_template": "ტოლ სამკუთხედებს ტოლი პერიმეტრი აქვთ: {answer} სმ."
             },
@@ -1070,133 +1996,237 @@
               "type": "text",
               "text": "როგორ აღინიშნება სამკუთხედების ტოლობა სიმბოლურად? (დაწერეთ სიმბოლო)",
               "answer": "=",
-              "acceptable": ["≅", "ტოლობის ნიშანი"],
+              "acceptable": [
+                "≅",
+                "ტოლობის ნიშანი"
+              ],
               "explanation": "ტოლობა აღინიშნება ნიშნით = (ზოგჯერ ≅)."
             },
             {
               "type": "text",
               "text": "ტოლ სამკუთხედებს ტოლი ფართობი აქვთ? (დიახ/არა)",
               "answer": "დიახ",
-              "acceptable": ["კი", "ტოლი"],
+              "acceptable": [
+                "კი",
+                "ტოლი"
+              ],
               "explanation": "ტოლი ფიგურები სრულად ემთხვევა ერთმანეთს, ამიტომ ფართობებიც ტოლია."
             },
             {
               "type": "text",
               "text": "პირველი ნიშნით ტოლობისთვის საჭიროა ორი გვერდი და მათ შორის მდებარე რა? (ერთი სიტყვა)",
               "answer": "კუთხე",
-              "acceptable": ["კუთხეა"],
+              "acceptable": [
+                "კუთხეა"
+              ],
               "explanation": "პირველი ნიშანი — ორი გვერდი და მათ შორის მდებარე კუთხე (გკგ)."
             },
             {
               "type": "text",
               "text": "თუ ორი სამკუთხედის ფართობი ტოლია, აუცილებლად ტოლია თუ არა თავად სამკუთხედები? (დიახ/არა)",
               "answer": "არა",
-              "acceptable": ["არ არის", "არა აუცილებლად"],
+              "acceptable": [
+                "არ არის",
+                "არა აუცილებლად"
+              ],
               "explanation": "სხვადასხვა ფორმის სამკუთხედებს შეიძლება ჰქონდეთ ტოლი ფართობი."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედების ტოლობის პირველი ნიშანია:",
-              "options": ["ორი გვერდი და მათ შორის კუთხე", "სამი კუთხე", "ერთი გვერდი", "ორი კუთხე მხოლოდ"],
+              "options": [
+                "ორი გვერდი და მათ შორის კუთხე",
+                "სამი კუთხე",
+                "ერთი გვერდი",
+                "ორი კუთხე მხოლოდ"
+              ],
               "correct": 0,
               "explanation": "პირველი ნიშანი (გკგ): ორი გვერდი და მათ შორის მდებარე კუთხე."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედების ტოლობის მეორე ნიშანია:",
-              "options": ["გვერდი და მისი მიმდებარე ორი კუთხე", "სამი გვერდი", "სამი კუთხე", "ორი გვერდი"],
+              "options": [
+                "გვერდი და მისი მიმდებარე ორი კუთხე",
+                "სამი გვერდი",
+                "სამი კუთხე",
+                "ორი გვერდი"
+              ],
               "correct": 0,
               "explanation": "მეორე ნიშანი (კგკ): გვერდი და მასზე მიმდებარე ორი კუთხე."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედების ტოლობის მესამე ნიშანია:",
-              "options": ["სამი გვერდი", "სამი კუთხე", "ორი კუთხე", "პერიმეტრი"],
+              "options": [
+                "სამი გვერდი",
+                "სამი კუთხე",
+                "ორი კუთხე",
+                "პერიმეტრი"
+              ],
               "correct": 0,
               "explanation": "მესამე ნიშანი (გგგ): სამივე გვერდის შესაბამისი ტოლობა."
             },
             {
               "type": "multiple_choice",
               "text": "სამი ტოლი კუთხე ნიშნავს, რომ სამკუთხედები:",
-              "options": ["მსგავსია, მაგრამ არა აუცილებლად ტოლი", "ყოველთვის ტოლია", "არასდროს ტოლია", "მართკუთხაა"],
+              "options": [
+                "მსგავსია, მაგრამ არა აუცილებლად ტოლი",
+                "ყოველთვის ტოლია",
+                "არასდროს ტოლია",
+                "მართკუთხაა"
+              ],
               "correct": 0,
               "explanation": "კუთხეები ფორმას განსაზღვრავს, მაგრამ არა ზომას."
             },
             {
               "type": "multiple_choice",
               "text": "ტოლ სამკუთხედებში ტოლი გვერდების მოპირდაპირე კუთხეები:",
-              "options": ["ტოლია", "განსხვავებულია", "ჯამში 180°-ია", "მართია"],
+              "options": [
+                "ტოლია",
+                "განსხვავებულია",
+                "ჯამში 180°-ია",
+                "მართია"
+              ],
               "correct": 0,
               "explanation": "ტოლ ფიგურებში ყველა შესაბამისი ელემენტი ტოლია."
             },
             {
               "type": "multiple_choice",
               "text": "რომელი მონაცემია საკმარისი სამკუთხედების ტოლობის დასამტკიცებლად?",
-              "options": ["ორი გვერდი და მათ შორის კუთხე", "ორი კუთხე მხოლოდ", "ერთი გვერდი მხოლოდ", "პერიმეტრი მხოლოდ"],
+              "options": [
+                "ორი გვერდი და მათ შორის კუთხე",
+                "ორი კუთხე მხოლოდ",
+                "ერთი გვერდი მხოლოდ",
+                "პერიმეტრი მხოლოდ"
+              ],
               "correct": 0,
               "explanation": "ეს პირველი ნიშანია — გკგ."
             },
             {
               "type": "multiple_choice",
               "text": "ორ სამკუთხედს აქვს ტოლი პერიმეტრი. ეს ნიშნავს, რომ ისინი:",
-              "options": ["შეიძლება არ იყოს ტოლი", "აუცილებლად ტოლია", "მართკუთხაა", "ტოლგვერდაა"],
+              "options": [
+                "შეიძლება არ იყოს ტოლი",
+                "აუცილებლად ტოლია",
+                "მართკუთხაა",
+                "ტოლგვერდაა"
+              ],
               "correct": 0,
               "explanation": "ტოლი პერიმეტრი არ არის ტოლობის ნიშანი — გვერდები სხვადასხვაგვარად შეიძლება ნაწილდებოდეს."
             },
             {
               "type": "multiple_choice",
               "text": "ტოლ სამკუთხედებს რა აქვთ ტოლი?",
-              "options": ["ყველა შესაბამისი გვერდი და კუთხე", "მხოლოდ გვერდები", "მხოლოდ კუთხეები", "მხოლოდ პერიმეტრი"],
+              "options": [
+                "ყველა შესაბამისი გვერდი და კუთხე",
+                "მხოლოდ გვერდები",
+                "მხოლოდ კუთხეები",
+                "მხოლოდ პერიმეტრი"
+              ],
               "correct": 0,
               "explanation": "ტოლობა ნიშნავს სრულ დამთხვევას — ყველა ელემენტი ტოლია."
             },
             {
               "type": "multiple_choice",
               "text": "სამკუთხედების ტოლობის ნიშნები საჭიროა, რომ:",
-              "options": ["ტოლობა დავამტკიცოთ ყველა ელემენტის შემოწმების გარეშე", "ფართობი გამოვთვალოთ", "პერიმეტრი ვიპოვოთ", "კუთხეები გავზომოთ"],
+              "options": [
+                "ტოლობა დავამტკიცოთ ყველა ელემენტის შემოწმების გარეშე",
+                "ფართობი გამოვთვალოთ",
+                "პერიმეტრი ვიპოვოთ",
+                "კუთხეები გავზომოთ"
+              ],
               "correct": 0,
               "explanation": "ნიშნები საშუალებას გვაძლევს სამი ელემენტით დავასკვნათ სრული ტოლობა."
             },
             {
               "type": "multiple_choice",
               "text": "თუ ორი მართკუთხა სამკუთხედის კათეტები შესაბამისად ტოლია, სამკუთხედები:",
-              "options": ["ტოლია", "მსგავსია მხოლოდ", "არ არის ტოლი", "შეუდარებელია"],
+              "options": [
+                "ტოლია",
+                "მსგავსია მხოლოდ",
+                "არ არის ტოლი",
+                "შეუდარებელია"
+              ],
               "correct": 0,
               "explanation": "ორი კათეტი და მათ შორის მართი კუთხე — ეს პირველი ნიშანია (გკგ)."
             }
           ]
         },
         {
-          "title": "პროცენტი",
+          "title": "5.9. პროცენტი",
           "questions": [
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "რას უდრის {n}-ის 10%?",
-              "variables": { "m": { "min": 2, "max": 60 }, "n": { "formula": "10 * m" } },
+              "variables": {
+                "m": {
+                  "min": 2,
+                  "max": 60
+                },
+                "n": {
+                  "formula": "10 * m"
+                }
+              },
               "formula": "n / 10",
               "explanation_template": "10% = ÷10: {n} ÷ 10 = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "რას უდრის {n}-ის 25%?",
-              "variables": { "m": { "min": 2, "max": 40 }, "n": { "formula": "4 * m" } },
+              "variables": {
+                "m": {
+                  "min": 2,
+                  "max": 40
+                },
+                "n": {
+                  "formula": "4 * m"
+                }
+              },
               "formula": "n / 4",
               "explanation_template": "25% = ¼: {n} ÷ 4 = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "რას უდრის {n}-ის 50%?",
-              "variables": { "m": { "min": 3, "max": 80 }, "n": { "formula": "2 * m" } },
+              "variables": {
+                "m": {
+                  "min": 3,
+                  "max": 80
+                },
+                "n": {
+                  "formula": "2 * m"
+                }
+              },
               "formula": "n / 2",
               "explanation_template": "50% ნახევარია: {n} ÷ 2 = {answer}."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "რას უდრის {n}-ის {p}%?",
-              "variables": { "k": { "min": 1, "max": 9 }, "n": { "formula": "100 * k" }, "p": { "min": 2, "max": 40 } },
+              "variables": {
+                "k": {
+                  "min": 1,
+                  "max": 9
+                },
+                "n": {
+                  "formula": "100 * k"
+                },
+                "p": {
+                  "min": 2,
+                  "max": 40
+                }
+              },
               "formula": "n * p / 100",
               "explanation_template": "{n} × {p} ÷ 100 = {answer}.",
-              "explanation_steps": ["1% = {n} ÷ 100 = {k}.", "{p}% = {k} × {p} = {answer}."]
+              "explanation_steps": [
+                "1% = {n} ÷ 100 = {k}.",
+                "{p}% = {k} × {p} = {answer}."
+              ]
             },
             {
               "type": "text",
@@ -1232,113 +2262,223 @@
               "type": "text",
               "text": "100%-ის რამდენი ნაწილია მთელი სიდიდე? (დაწერეთ: მთელი / ნახევარი)",
               "answer": "მთელი",
-              "acceptable": ["მთელია", "სრული", "ყველა"],
+              "acceptable": [
+                "მთელია",
+                "სრული",
+                "ყველა"
+              ],
               "explanation": "100% ნიშნავს მთელ სიდიდეს."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "რას უდრის {n}-ის 50%?",
-              "variables": { "m": { "min": 3, "max": 60 }, "n": { "formula": "2 * m" } },
+              "variables": {
+                "m": {
+                  "min": 3,
+                  "max": 60
+                },
+                "n": {
+                  "formula": "2 * m"
+                }
+              },
               "formula": "n / 2",
-              "options": ["n / 2", "n / 4", "n * 2", "n / 10"],
+              "options": [
+                "n / 2",
+                "n / 4",
+                "n * 2",
+                "n / 10"
+              ],
               "explanation_template": "{n} ÷ 2 = {answer}."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "რას უდრის {n}-ის 10%?",
-              "variables": { "m": { "min": 3, "max": 50 }, "n": { "formula": "10 * m" } },
+              "variables": {
+                "m": {
+                  "min": 3,
+                  "max": 50
+                },
+                "n": {
+                  "formula": "10 * m"
+                }
+              },
               "formula": "n / 10",
-              "options": ["n / 10", "n / 100", "n * 10", "n / 2"],
+              "options": [
+                "n / 10",
+                "n / 100",
+                "n * 10",
+                "n / 2"
+              ],
               "explanation_template": "{n} ÷ 10 = {answer}.",
               "difficulty": 2
             },
             {
               "type": "multiple_choice",
               "text": "50%-ს უდრის წილადი:",
-              "options": ["1/2", "1/4", "1/5", "1/10"],
+              "options": [
+                "1/2",
+                "1/4",
+                "1/5",
+                "1/10"
+              ],
               "correct": 0,
               "explanation": "50% = 50/100 = 1/2."
             },
             {
               "type": "multiple_choice",
               "text": "რას უდრის 300-ის 20%?",
-              "options": ["60", "30", "6", "600"],
+              "options": [
+                "60",
+                "30",
+                "6",
+                "600"
+              ],
               "correct": 0,
               "explanation": "300 × 20 ÷ 100 = 60.",
-              "option_explanations": { "1": "30 იქნებოდა 10%." }
+              "option_explanations": {
+                "1": "30 იქნებოდა 10%."
+              }
             },
             {
               "type": "multiple_choice",
               "text": "1% არის:",
-              "options": ["მთელის მეასედი", "მთელის მეათედი", "მთელის ნახევარი", "მთელის მეხუთედი"],
+              "options": [
+                "მთელის მეასედი",
+                "მთელის მეათედი",
+                "მთელის ნახევარი",
+                "მთელის მეხუთედი"
+              ],
               "correct": 0,
               "explanation": "პროცენტი ნიშნავს „მეასედს“: 1% = 1/100."
             },
             {
               "type": "multiple_choice",
               "text": "0,75 პროცენტებში არის:",
-              "options": ["75%", "7,5%", "0,75%", "750%"],
+              "options": [
+                "75%",
+                "7,5%",
+                "0,75%",
+                "750%"
+              ],
               "correct": 0,
               "explanation": "0,75 × 100 = 75%."
             },
             {
               "type": "multiple_choice",
               "text": "40-ის 25% უდრის:",
-              "options": ["10", "15", "4", "20"],
+              "options": [
+                "10",
+                "15",
+                "4",
+                "20"
+              ],
               "correct": 0,
               "explanation": "40 ÷ 4 = 10."
             },
             {
               "type": "multiple_choice",
               "text": "რიცხვის 100% უდრის:",
-              "options": ["თავად რიცხვს", "ნახევარს", "ორმაგს", "ნულს"],
+              "options": [
+                "თავად რიცხვს",
+                "ნახევარს",
+                "ორმაგს",
+                "ნულს"
+              ],
               "correct": 0,
               "explanation": "100% სრული სიდიდეა — თავად რიცხვი."
             },
             {
               "type": "multiple_choice",
               "text": "პროცენტის საპოვნელად რიცხვი უნდა:",
-              "options": ["გავამრავლოთ პროცენტზე და გავყოთ 100-ზე", "გავყოთ პროცენტზე", "მივუმატოთ პროცენტი", "გამოვაკლოთ 100"],
+              "options": [
+                "გავამრავლოთ პროცენტზე და გავყოთ 100-ზე",
+                "გავყოთ პროცენტზე",
+                "მივუმატოთ პროცენტი",
+                "გამოვაკლოთ 100"
+              ],
               "correct": 0,
               "explanation": "p% of n = n × p ÷ 100."
             },
             {
               "type": "multiple_choice",
               "text": "60-ის 50% და 30-ის 100% — რომელი მეტია?",
-              "options": ["ტოლია", "პირველი", "მეორე", "შეუდარებელია"],
+              "options": [
+                "ტოლია",
+                "პირველი",
+                "მეორე",
+                "შეუდარებელია"
+              ],
               "correct": 0,
               "explanation": "60 × 0,5 = 30 და 30 × 1 = 30 — ორივე 30-ია."
             }
           ]
         },
         {
-          "title": "ვავარჯიშებთ პროცენტზე ამოცანების განხილვას",
+          "title": "5.10. ვავარჯიშებთ პროცენტზე ამოცანების განხილვას",
           "questions": [
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "საქონელი {n} ლარი ღირდა და გაძვირდა 10%-ით. რამდენი ლარი ღირს ახლა?",
-              "variables": { "m": { "min": 2, "max": 60 }, "n": { "formula": "10 * m" } },
+              "variables": {
+                "m": {
+                  "min": 2,
+                  "max": 60
+                },
+                "n": {
+                  "formula": "10 * m"
+                }
+              },
               "formula": "n * 1.1",
               "explanation_template": "მატება = {n} ÷ 10; ახალი ფასი = {n} + მატება = {answer} ლარი."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "საქონელი {n} ლარი ღირდა და გაიაფდა 50%-ით. რამდენი ლარი ღირს ახლა?",
-              "variables": { "m": { "min": 3, "max": 70 }, "n": { "formula": "2 * m" } },
+              "variables": {
+                "m": {
+                  "min": 3,
+                  "max": 70
+                },
+                "n": {
+                  "formula": "2 * m"
+                }
+              },
               "formula": "n / 2",
               "explanation_template": "50%-იანი ფასდაკლება ნიშნავს ნახევარს: {answer} ლარი."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "საქონელი {n} ლარი ღირდა და გაიაფდა 25%-ით. რამდენი ლარი ღირს ახლა?",
-              "variables": { "m": { "min": 3, "max": 40 }, "n": { "formula": "4 * m" } },
+              "variables": {
+                "m": {
+                  "min": 3,
+                  "max": 40
+                },
+                "n": {
+                  "formula": "4 * m"
+                }
+              },
               "formula": "n * 3 / 4",
               "explanation_template": "დარჩა 75%: {n} × 3 ÷ 4 = {answer} ლარი."
             },
             {
-              "type": "text", "parametric": true,
+              "type": "text",
+              "parametric": true,
               "text": "კლასში {n} მოსწავლეა, აქედან 20% ოლიმპიადაზე მონაწილეობს. რამდენი მოსწავლეა ეს?",
-              "variables": { "m": { "min": 2, "max": 8 }, "n": { "formula": "5 * m" } },
+              "variables": {
+                "m": {
+                  "min": 2,
+                  "max": 8
+                },
+                "n": {
+                  "formula": "5 * m"
+                }
+              },
               "formula": "n / 5",
               "explanation_template": "20% = ⅕: {n} ÷ 5 = {answer} მოსწავლე."
             },
@@ -1379,76 +2519,139 @@
               "explanation": "მატება 50 კგ; 50 ÷ 200 × 100 = 25%."
             },
             {
-              "type": "multiple_choice", "parametric": true,
+              "type": "multiple_choice",
+              "parametric": true,
               "text": "{n} ლარიანი საქონელი გაიაფდა 50%-ით. ახალი ფასია:",
-              "variables": { "m": { "min": 3, "max": 50 }, "n": { "formula": "2 * m" } },
+              "variables": {
+                "m": {
+                  "min": 3,
+                  "max": 50
+                },
+                "n": {
+                  "formula": "2 * m"
+                }
+              },
               "formula": "n / 2",
-              "options": ["n / 2", "n / 4", "n * 2", "n - 50"],
+              "options": [
+                "n / 2",
+                "n / 4",
+                "n * 2",
+                "n - 50"
+              ],
               "explanation_template": "{n} ÷ 2 = {answer} ლარი.",
               "difficulty": 2
             },
             {
               "type": "multiple_choice",
               "text": "100 ლარიან საქონელზე 20% ფასდაკლებაა. ახალი ფასია:",
-              "options": ["80 ლარი", "20 ლარი", "120 ლარი", "60 ლარი"],
+              "options": [
+                "80 ლარი",
+                "20 ლარი",
+                "120 ლარი",
+                "60 ლარი"
+              ],
               "correct": 0,
               "explanation": "100 − 20 = 80 ლარი.",
-              "option_explanations": { "1": "20 ლარი თავად ფასდაკლების ოდენობაა, არა ახალი ფასი." }
+              "option_explanations": {
+                "1": "20 ლარი თავად ფასდაკლების ოდენობაა, არა ახალი ფასი."
+              }
             },
             {
               "type": "multiple_choice",
               "text": "50 ლარიანი საქონელი გაძვირდა 10%-ით. ახალი ფასია:",
-              "options": ["55 ლარი", "60 ლარი", "45 ლარი", "51 ლარი"],
+              "options": [
+                "55 ლარი",
+                "60 ლარი",
+                "45 ლარი",
+                "51 ლარი"
+              ],
               "correct": 0,
               "explanation": "მატება = 5 ლარი; 50 + 5 = 55 ლარი."
             },
             {
               "type": "multiple_choice",
               "text": "20 კითხვიდან 15 სწორია. ეს არის:",
-              "options": ["75%", "70%", "80%", "60%"],
+              "options": [
+                "75%",
+                "70%",
+                "80%",
+                "60%"
+              ],
               "correct": 0,
               "explanation": "15 ÷ 20 × 100 = 75%."
             },
             {
               "type": "multiple_choice",
               "text": "რიცხვის 50% არის 30. თავად რიცხვია:",
-              "options": ["60", "15", "45", "80"],
+              "options": [
+                "60",
+                "15",
+                "45",
+                "80"
+              ],
               "correct": 0,
               "explanation": "თუ ნახევარი 30-ია, მთელი 60-ია."
             },
             {
               "type": "multiple_choice",
               "text": "საქონელი ჯერ გაძვირდა 10%-ით, შემდეგ გაიაფდა 10%-ით. საბოლოო ფასი საწყისთან შედარებით:",
-              "options": ["ოდნავ ნაკლებია", "ზუსტად იგივეა", "ოდნავ მეტია", "ორჯერ ნაკლებია"],
+              "options": [
+                "ოდნავ ნაკლებია",
+                "ზუსტად იგივეა",
+                "ოდნავ მეტია",
+                "ორჯერ ნაკლებია"
+              ],
               "correct": 0,
               "explanation": "ფასდაკლება უკვე გაზრდილ ფასს ეხება, ამიტომ საბოლოო ფასი ოდნავ დაბალია (მაგ. 100 → 110 → 99)."
             },
             {
               "type": "multiple_choice",
               "text": "300 ლარის 10% არის:",
-              "options": ["30 ლარი", "3 ლარი", "300 ლარი", "33 ლარი"],
+              "options": [
+                "30 ლარი",
+                "3 ლარი",
+                "300 ლარი",
+                "33 ლარი"
+              ],
               "correct": 0,
               "explanation": "10% = ÷10 → 30 ლარი."
             },
             {
               "type": "multiple_choice",
               "text": "ფასი 80-დან 100 ლარამდე გაიზარდა. მატება პროცენტებში:",
-              "options": ["25%", "20%", "80%", "30%"],
+              "options": [
+                "25%",
+                "20%",
+                "80%",
+                "30%"
+              ],
               "correct": 0,
               "explanation": "მატება 20; 20 ÷ 80 × 100 = 25%.",
-              "option_explanations": { "1": "20% მიიღება, თუ მატებას ახალ ფასზე გავყოფთ — უნდა გავყოთ საწყისზე." }
+              "option_explanations": {
+                "1": "20% მიიღება, თუ მატებას ახალ ფასზე გავყოფთ — უნდა გავყოთ საწყისზე."
+              }
             },
             {
               "type": "multiple_choice",
               "text": "თუ საქონელი 100%-ით გაძვირდა, ეს ნიშნავს, რომ ფასი:",
-              "options": ["გაორმაგდა", "არ შეიცვალა", "გასამმაგდა", "განახევრდა"],
+              "options": [
+                "გაორმაგდა",
+                "არ შეიცვალა",
+                "გასამმაგდა",
+                "განახევრდა"
+              ],
               "correct": 0,
               "explanation": "100%-იანი მატება ნიშნავს, რომ ფასს დაემატა თავისივე ტოლი სიდიდე."
             },
             {
               "type": "multiple_choice",
               "text": "მოსწავლეთა 60% გოგონაა, სულ 30 მოსწავლეა. რამდენი გოგონაა?",
-              "options": ["18", "12", "20", "15"],
+              "options": [
+                "18",
+                "12",
+                "20",
+                "15"
+              ],
               "correct": 0,
               "explanation": "30 × 60 ÷ 100 = 18 გოგონა."
             }

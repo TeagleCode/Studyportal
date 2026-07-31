@@ -291,8 +291,12 @@ function parseNumeric(raw) {
   } else if (hasComma) {
     // Single comma = decimal comma; multiple = thousands separators
     s = (s.match(/,/g).length === 1) ? s.replace(',', '.') : s.replace(/,/g, '');
-  } else if (hasDot && s.match(/\./g).length > 1) {
-    s = s.replace(/\./g, '');  // "1.234.567" → 1234567
+  } else if (hasDot) {
+    // Georgian thousands grouping: every dot followed by exactly 3 digits
+    // ("1.000", "2.030.405"). A dot group of any other length is a decimal
+    // point ("1.5", "0.25").
+    if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, '');
+    else if (s.match(/\./g).length > 1) s = s.replace(/\./g, '');
   }
 
   return s && /^-?\d*\.?\d+(e-?\d+)?$/i.test(s) ? Number(s) : NaN;

@@ -22,6 +22,63 @@ async function get(p, headers = {}) {
   return { status: r.status, data: await r.json().catch(() => null) };
 }
 
+// Creates a temporary chapter/topic holding one question of each of the four
+// types (matching content/example-questions.json), returns ids for cleanup.
+async function makeFixture() {
+  const db = require('../db');
+  const J = JSON.stringify;
+  const [[g]] = await db.execute('SELECT id FROM grades WHERE grade_num = 7');
+  const [[s]] = await db.execute("SELECT id FROM subjects WHERE slug = 'math'");
+  const [ch] = await db.execute(
+    'INSERT INTO chapters (grade_id, subject_id, title, order_num) VALUES (?,?,?,?)',
+    [g.id, s.id, 'E2E ფიქსტურა', 900]);
+  const [tp] = await db.execute(
+    'INSERT INTO topics (chapter_id, title, order_num) VALUES (?,?,1)', [ch.insertId, 'E2E ფიქსტურა — ოთხივე ტიპი']);
+  const topicId = tp.insertId;
+
+  // 1. static MC with per-distractor explanations
+  const [q1] = await db.execute(
+    `INSERT INTO questions (topic_id, question_text, question_type, is_parametric, explanation, option_explanations)
+     VALUES (?,?, 'multiple_choice', 0, ?, ?)`,
+    [topicId, 'რომელი რიცხვია ლუწი?', 'ლუწია რიცხვი, რომელიც 2-ზე უნაშთოდ იყოფა.',
+     J({ 1: '7 კენტია — 2-ზე გაყოფისას ნაშთი 1 რჩება.' })]);
+  for (const [text, correct] of [['14', 1], ['7', 0], ['9', 0], ['21', 0]])
+    await db.execute('INSERT INTO answers (question_id, answer_text, is_correct) VALUES (?,?,?)', [q1.insertId, text, correct]);
+
+  // 2. static text with an accepted synonym
+  await db.execute(
+    `INSERT INTO questions (topic_id, question_text, question_type, is_parametric, correct_answer, acceptable_answers, explanation)
+     VALUES (?,?, 'text', 0, ?, ?, ?)`,
+    [topicId, 'დაასახელეთ უმცირესი მარტივი რიცხვი.', '2', J(['ორი']), '2 ერთადერთი ლუწი მარტივი რიცხვია.']);
+
+  // 3. parametric text
+  await db.execute(
+    `INSERT INTO questions (topic_id, question_text, question_type, is_parametric, variables, answer_formula, explanation_template)
+     VALUES (?,?, 'text', 1, ?, ?, ?)`,
+    [topicId, 'რას უდრის {a} + {b}?', J({ a: { min: 12, max: 89 }, b: { min: 12, max: 89 } }), 'a + b', 'შეკრიბეთ: {a} + {b} = {answer}.']);
+
+  // 4. parametric MC
+  await db.execute(
+    `INSERT INTO questions (topic_id, question_text, question_type, is_parametric, variables, answer_formula, option_formulas, explanation_template)
+     VALUES (?,?, 'multiple_choice', 1, ?, ?, ?, ?)`,
+    [topicId, 'რას უდრის {a} × {b}?', J({ a: { min: 3, max: 12 }, b: { min: 3, max: 12 } }), 'a * b',
+     J([{ formula: 'a * b', is_correct: true }, { formula: 'a * b + a', is_correct: false },
+        { formula: 'a * b - b', is_correct: false }, { formula: 'a + b', is_correct: false }]),
+     '{a} × {b} = {answer}.']);
+
+  return { chapterId: ch.insertId, topicId };
+}
+
+async function dropFixture(f) {
+  const db = require('../db');
+  await db.execute('DELETE aq FROM attempt_questions aq JOIN questions q ON aq.question_id=q.id WHERE q.topic_id=?', [f.topicId]);
+  await db.execute('DELETE FROM quiz_attempts WHERE topic_id=?', [f.topicId]);
+  await db.execute('DELETE FROM answers WHERE question_id IN (SELECT id FROM questions WHERE topic_id=?)', [f.topicId]);
+  await db.execute('DELETE FROM questions WHERE topic_id=?', [f.topicId]);
+  await db.execute('DELETE FROM topics WHERE id=?', [f.topicId]);
+  await db.execute('DELETE FROM chapters WHERE id=?', [f.chapterId]);
+}
+
 (async () => {
   // ── auth ──
   const login = await post('/api/login', { username: 'david', password: 'password123' });
@@ -72,9 +129,17 @@ async function get(p, headers = {}) {
   // ── content ──
   const chapters = (await get('/api/chapters/7/math')).data;
   check('chapters listed (public)', Array.isArray(chapters) && chapters.length >= 3);
-  const exampleCh = chapters.find(c => c.title.includes('სამაგალითო'));
-  check('example chapter present', !!exampleCh);
-  const topicId = exampleCh.topics[0].id;
+  check('chapters are numbered in book order',
+    chapters.every((c, i) => c.title.startsWith(`${i + 1}. `)),
+    chapters.map(c => c.title.slice(0, 6)).join(' | '));
+  check('topics are numbered N.M',
+    chapters.every(c => c.topics.every((t, j) =>
+      t.title.startsWith(`${c.title.split('.')[0]}.${j + 1}.`))));
+
+  // Test fixture: its own chapter with one of each question type, so the
+  // suite never depends on demo content shipped to students.
+  const fixture = await makeFixture();
+  const topicId = fixture.topicId;
 
   const guestStart = await post('/api/test/start', { topicId });
   check('guest quiz start (no auth header) still works', guestStart.status === 200 && !!guestStart.data.sessionId);
@@ -104,7 +169,7 @@ async function get(p, headers = {}) {
     const s = (await post('/api/test/start', { topicId })).data;
     const mc = s.questions.filter(q => q.question_type === 'multiple_choice').length;
     const tx = s.questions.filter(q => q.question_type === 'text').length;
-    check(`draw ${round + 1}: balanced mix (2 MC + 2 text)`, mc === 2 && tx === 2, `got ${mc} MC / ${tx} text`);
+    check(`draw ${round + 1}: fixture draw is balanced (2 MC + 2 text)`, mc === 2 && tx === 2, `got ${mc} MC / ${tx} text`);
   }
 
   // ── duplicate-option elimination (rigged question whose distractors
@@ -257,6 +322,8 @@ async function get(p, headers = {}) {
   check('login rate limit kicks in (429, SP-102)', got429 && code429 === 'SP-102');
   check('rate limit is per-IP: other visitors unaffected',
     (await post('/api/login', { username: 'david', password: 'password123' })).status === 200);
+
+  await dropFixture(fixture);
 
   console.log(failures ? `\n${failures} FAILURE(S)` : '\nALL PASSED');
   process.exit(failures ? 1 : 0);
