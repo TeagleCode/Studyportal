@@ -394,6 +394,7 @@ body::after {
   position: relative;
   width: var(--size);
   height: var(--size);
+  background: radial-gradient(circle calc(var(--center) * 1.1) at 50% 50%, rgba(233, 69, 96, 0.4) 0%, rgba(233, 69, 96, 0.12) 55%, transparent 100%);
 }
 .pentagon__center {
   position: absolute;
@@ -403,7 +404,6 @@ body::after {
   width: var(--center);
   height: var(--center);
   object-fit: contain;
-  filter: drop-shadow(0 0 22px rgba(233, 69, 96, 0.7)) drop-shadow(0 0 70px rgba(233, 69, 96, 0.35));
   animation: t-portal-spin 22s linear infinite;
   pointer-events: none;
 }
@@ -526,6 +526,7 @@ body::after {
     grid-template-columns: 1fr 1fr;
     gap: 20px;
     justify-items: center;
+    background: none;
   }
   .pentagon__center {
     display: none;
