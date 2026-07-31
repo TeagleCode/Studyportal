@@ -243,9 +243,8 @@ body {
     width: var(--center);
     height: var(--center);
     object-fit: contain;
-    animation:
-      t-portal-spin 22s linear infinite,
-      t-portal-breathe 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 22px rgba($accent, 0.7)) drop-shadow(0 0 70px rgba($accent, 0.35));
+    animation: t-portal-spin 22s linear infinite;
     pointer-events: none;
   }
 
@@ -269,13 +268,13 @@ body {
   }
 
   &::after {
+    // arc ring built from plain borders (no mask — animated masked
+    // gradients can flash unmasked on some compositors)
     width: calc(var(--center) * 2.3);
     height: calc(var(--center) * 2.3);
-    background: conic-gradient(from 0deg,
-      transparent 0deg, rgba($accent, 0.45) 40deg, transparent 90deg,
-      transparent 180deg, rgba(63, 169, 255, 0.35) 230deg, transparent 290deg);
-    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
-            mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    border: 2px solid transparent;
+    border-top-color: rgba($accent, 0.55);
+    border-bottom-color: rgba(63, 169, 255, 0.4);
     animation: t-rotate-rev 14s linear infinite;
   }
 }

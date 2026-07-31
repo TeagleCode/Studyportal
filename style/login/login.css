@@ -195,13 +195,11 @@ body::before {
   top: -22vmax;
   left: -16vmax;
   background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, rgba(233, 69, 96, 0.06) 38%, transparent 68%);
-  animation: t-aurora-a 26s ease-in-out infinite alternate;
 }
 body::after {
   bottom: -26vmax;
   right: -18vmax;
   background: radial-gradient(circle, rgba(63, 169, 255, 0.12) 0%, rgba(63, 169, 255, 0.05) 38%, transparent 68%);
-  animation: t-aurora-b 34s ease-in-out infinite alternate;
 }
 body .logo {
   display: flex;
@@ -214,9 +212,10 @@ body .logo {
 body .logo a {
   text-decoration: none;
   font-family: "Saira Stencil", sans-serif;
-  font-size: clamp(32px, 6vw, 64px);
+  font-size: clamp(28px, 4.2vw, 52px);
   display: flex;
   align-items: center;
+  max-width: 100%;
 }
 body .logo a h1 {
   background: linear-gradient(100deg, #ffffff 8%, #ffd9e0 45%, #e94560 92%);
@@ -229,8 +228,8 @@ body .logo a h1 {
   gap: 2px;
 }
 body .logo a img {
-  width: clamp(56px, 10vw, 110px);
-  height: clamp(56px, 10vw, 110px);
+  width: clamp(48px, 7vw, 90px);
+  height: clamp(48px, 7vw, 90px);
   filter: drop-shadow(0 0 26px rgba(233, 69, 96, 0.55));
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -345,17 +344,19 @@ body .login-container button {
   position: relative;
   overflow: hidden;
 }
-body .login-container button::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.34) 50%, transparent 68%);
-  translate: -130% 0;
-  transition: translate 0.65s ease;
-  pointer-events: none;
-}
-body .login-container button:hover::after {
-  translate: 130% 0;
+@supports (translate: 0) {
+  body .login-container button::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.34) 50%, transparent 68%);
+    translate: -130% 0;
+    transition: translate 0.65s ease;
+    pointer-events: none;
+  }
+  body .login-container button:hover::after {
+    translate: 130% 0;
+  }
 }
 body .login-container p {
   font-size: 0.92rem;

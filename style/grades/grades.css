@@ -191,13 +191,11 @@ body::before {
   top: -22vmax;
   left: -16vmax;
   background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, rgba(233, 69, 96, 0.06) 38%, transparent 68%);
-  animation: t-aurora-a 26s ease-in-out infinite alternate;
 }
 body::after {
   bottom: -26vmax;
   right: -18vmax;
   background: radial-gradient(circle, rgba(63, 169, 255, 0.12) 0%, rgba(63, 169, 255, 0.05) 38%, transparent 68%);
-  animation: t-aurora-b 34s ease-in-out infinite alternate;
 }
 
 .bg-symbols {

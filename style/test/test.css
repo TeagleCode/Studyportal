@@ -191,13 +191,11 @@ body::before {
   top: -22vmax;
   left: -16vmax;
   background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, rgba(233, 69, 96, 0.06) 38%, transparent 68%);
-  animation: t-aurora-a 26s ease-in-out infinite alternate;
 }
 body::after {
   bottom: -26vmax;
   right: -18vmax;
   background: radial-gradient(circle, rgba(63, 169, 255, 0.12) 0%, rgba(63, 169, 255, 0.05) 38%, transparent 68%);
-  animation: t-aurora-b 34s ease-in-out infinite alternate;
 }
 
 .bg-symbols {
@@ -495,17 +493,19 @@ body::after {
   position: relative;
   overflow: hidden;
 }
-.next-btn::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.34) 50%, transparent 68%);
-  translate: -130% 0;
-  transition: translate 0.65s ease;
-  pointer-events: none;
-}
-.next-btn:hover::after {
-  translate: 130% 0;
+@supports (translate: 0) {
+  .next-btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.34) 50%, transparent 68%);
+    translate: -130% 0;
+    transition: translate 0.65s ease;
+    pointer-events: none;
+  }
+  .next-btn:hover::after {
+    translate: 130% 0;
+  }
 }
 
 .results {

@@ -28,14 +28,16 @@ body{
         a{
             text-decoration: none;
             font-family: "Saira Stencil", sans-serif;
-            font-size: clamp(32px, 6vw, 64px);
+            // sized so the full wordmark always fits the half-width panel
+            font-size: clamp(28px, 4.2vw, 52px);
             display: flex;
             align-items: center;
+            max-width: 100%;
             h1{ @include t.gradient-text; display: flex; align-items: center; gap: 2px; }
 
             img{
-                width: clamp(56px, 10vw, 110px);
-                height: clamp(56px, 10vw, 110px);
+                width: clamp(48px, 7vw, 90px);
+                height: clamp(48px, 7vw, 90px);
                 filter: drop-shadow(0 0 26px rgba(233, 69, 96, 0.55));
                 transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
             }

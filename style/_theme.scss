@@ -123,9 +123,10 @@ $light:   #eaeaea;
 // Uses the independent translate/scale properties so it never fights
 // other transforms.
 @mixin aurora {
-  // No filter: blur() here — animating viewport-sized blurred layers
-  // causes white-tile GPU artifacts; the radial gradients are already
-  // soft-edged on their own.
+  // STATIC color blooms. These layers are viewport-sized; animating
+  // them (even unblurred) makes compositors constantly re-tile the
+  // whole screen, which flashes white tiles on some GPU/driver combos.
+  // Depth without per-frame cost.
   &::before, &::after {
     content: '';
     position: fixed;
@@ -138,29 +139,31 @@ $light:   #eaeaea;
   &::before {
     top: -22vmax; left: -16vmax;
     background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, rgba(233, 69, 96, 0.06) 38%, transparent 68%);
-    animation: t-aurora-a 26s ease-in-out infinite alternate;
   }
   &::after {
     bottom: -26vmax; right: -18vmax;
     background: radial-gradient(circle, rgba(63, 169, 255, 0.12) 0%, rgba(63, 169, 255, 0.05) 38%, transparent 68%);
-    animation: t-aurora-b 34s ease-in-out infinite alternate;
   }
 }
 
-// Light sweep across a button on hover.
+// Light sweep across a button on hover. Guarded: on engines without the
+// individual `translate` property the overlay would sit over the button
+// as a permanent white gradient — only enable it where supported.
 @mixin sheen {
   position: relative;
   overflow: hidden;
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.34) 50%, transparent 68%);
-    translate: -130% 0;
-    transition: translate 0.65s ease;
-    pointer-events: none;
+  @supports (translate: 0) {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.34) 50%, transparent 68%);
+      translate: -130% 0;
+      transition: translate 0.65s ease;
+      pointer-events: none;
+    }
+    &:hover::after { translate: 130% 0; }
   }
-  &:hover::after { translate: 130% 0; }
 }
 
 // Emit once per page, at top level: keyframes + global niceties.

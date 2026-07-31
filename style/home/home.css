@@ -190,13 +190,11 @@ body::before {
   top: -22vmax;
   left: -16vmax;
   background: radial-gradient(circle, rgba(233, 69, 96, 0.15) 0%, rgba(233, 69, 96, 0.06) 38%, transparent 68%);
-  animation: t-aurora-a 26s ease-in-out infinite alternate;
 }
 body::after {
   bottom: -26vmax;
   right: -18vmax;
   background: radial-gradient(circle, rgba(63, 169, 255, 0.12) 0%, rgba(63, 169, 255, 0.05) 38%, transparent 68%);
-  animation: t-aurora-b 34s ease-in-out infinite alternate;
 }
 
 .nav {
@@ -405,7 +403,8 @@ body::after {
   width: var(--center);
   height: var(--center);
   object-fit: contain;
-  animation: t-portal-spin 22s linear infinite, t-portal-breathe 5s ease-in-out infinite;
+  filter: drop-shadow(0 0 22px rgba(233, 69, 96, 0.7)) drop-shadow(0 0 70px rgba(233, 69, 96, 0.35));
+  animation: t-portal-spin 22s linear infinite;
   pointer-events: none;
 }
 .pentagon::before, .pentagon::after {
@@ -426,9 +425,9 @@ body::after {
 .pentagon::after {
   width: calc(var(--center) * 2.3);
   height: calc(var(--center) * 2.3);
-  background: conic-gradient(from 0deg, transparent 0deg, rgba(233, 69, 96, 0.45) 40deg, transparent 90deg, transparent 180deg, rgba(63, 169, 255, 0.35) 230deg, transparent 290deg);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+  border: 2px solid transparent;
+  border-top-color: rgba(233, 69, 96, 0.55);
+  border-bottom-color: rgba(63, 169, 255, 0.4);
   animation: t-rotate-rev 14s linear infinite;
 }
 
