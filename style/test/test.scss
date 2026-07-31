@@ -43,13 +43,9 @@ body { font-family: "Manrope", system-ui, sans-serif; color: $light; min-height:
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   color: $light;
-  &--warning { color: $red; animation: pulse 1s infinite; }
+  &--warning { color: $red; }
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.5; }
-}
 
 .progress-bar {
   height: 5px;
@@ -108,10 +104,6 @@ body { font-family: "Manrope", system-ui, sans-serif; color: $light; min-height:
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
   @include t.fade-up;
 
-  @for $i from 1 through 6 {
-    &:nth-child(#{$i}) { animation-delay: #{0.05 * $i}s; }
-  }
-
   &:hover:not(:disabled) {
     background: linear-gradient(165deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
     border-color: rgba(233, 69, 96, 0.65);
@@ -123,14 +115,12 @@ body { font-family: "Manrope", system-ui, sans-serif; color: $light; min-height:
     background: rgba($green, 0.2) !important;
     border-color: $green !important;
     color: $green !important;
-    animation: t-correct-pulse 0.7s ease-out;
   }
 
   &--wrong {
     background: rgba($red, 0.2) !important;
     border-color: $red !important;
     color: $red !important;
-    animation: t-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
 
   &:disabled { cursor: default; transform: none; }
@@ -154,7 +144,6 @@ body { font-family: "Manrope", system-ui, sans-serif; color: $light; min-height:
   padding: 20px 22px;
   margin-bottom: 20px;
   box-shadow: 0 10px 30px rgba(4, 9, 28, 0.35);
-  animation: fadeIn 0.3s ease;
 
   &__header {
     font-size: 1rem;
@@ -170,10 +159,6 @@ body { font-family: "Manrope", system-ui, sans-serif; color: $light; min-height:
   }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-6px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
 
 .text-answer {
   display: flex;
@@ -239,7 +224,6 @@ body { font-family: "Manrope", system-ui, sans-serif; color: $light; min-height:
     text-align: center;
     width: min(420px, calc(100vw - 32px));
     @include t.glass(22px);
-    animation: t-spring-pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   &__title {

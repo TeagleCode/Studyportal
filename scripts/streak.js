@@ -54,20 +54,6 @@ async function init() {
   }
   $('streakCount').textContent = data.current;
 
-  // rising embers around a lit flame
-  if (data.current > 0 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    for (let i = 0; i < 12; i++) {
-      const e = document.createElement('span');
-      e.className = 'ember';
-      e.style.left = `${18 + Math.random() * 64}%`;
-      e.style.setProperty('--ember-x', `${(Math.random() - 0.5) * 60}px`);
-      e.style.setProperty('--ember-t', `${2.2 + Math.random() * 2.4}s`);
-      e.style.setProperty('--ember-d', `${Math.random() * 4}s`);
-      e.style.width = e.style.height = `${3 + Math.random() * 5}px`;
-      hero.appendChild(e);
-    }
-  }
-
   // ── Progress to next stage ──
   if (data.next_stage) {
     const prev = data.stage ? data.stage.threshold : 0;
