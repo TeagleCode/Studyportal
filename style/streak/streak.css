@@ -40,12 +40,12 @@ body::after {
     transform: translateY(0);
   }
 }
-@keyframes t-shimmer {
+@keyframes t-sweep {
   from {
-    background-position: 220% 0, 0 0;
+    translate: -110% 0;
   }
   to {
-    background-position: -120% 0, 0 0;
+    translate: 110% 0;
   }
 }
 @keyframes t-glow-drift {
@@ -575,9 +575,19 @@ body::after {
   height: 100%;
   border-radius: 5px;
   transition: width 0.6s ease;
-  background: linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.35) 50%, transparent 80%), linear-gradient(90deg, #ff9d3f, #e94560);
-  background-size: 220% 100%, 100% 100%;
-  animation: t-shimmer 2.6s linear infinite;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #ff9d3f, #e94560);
+}
+@supports (translate: 0) {
+  .bar__fill::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+    animation: t-sweep 2.6s linear infinite;
+    pointer-events: none;
+  }
 }
 
 .panel {

@@ -8,12 +8,12 @@
     transform: translateY(0);
   }
 }
-@keyframes t-shimmer {
+@keyframes t-sweep {
   from {
-    background-position: 220% 0, 0 0;
+    translate: -110% 0;
   }
   to {
-    background-position: -120% 0, 0 0;
+    translate: 110% 0;
   }
 }
 @keyframes t-glow-drift {

@@ -104,13 +104,24 @@ $light:   #eaeaea;
     inset 0 1px 0 rgba(255, 255, 255, 0.10);
 }
 
-// Animated sheen for progress-bar fills (pair with t-shimmer keyframes).
+// Animated sheen for progress-bar fills. The sweep is a pseudo-element
+// animating the composited `translate` property — NEVER an animated
+// background-position, which forces a repaint every frame and causes
+// white-tile artifacting (same failure class as animated filters).
 @mixin shimmer-fill {
-  background:
-    linear-gradient(110deg, transparent 20%, rgba(255, 255, 255, 0.35) 50%, transparent 80%),
-    linear-gradient(90deg, $accent2, $accent);
-  background-size: 220% 100%, 100% 100%;
-  animation: t-shimmer 2.6s linear infinite;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, $accent2, $accent);
+  @supports (translate: 0) {
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.35) 50%, transparent 70%);
+      animation: t-sweep 2.6s linear infinite;
+      pointer-events: none;
+    }
+  }
 }
 
 // Entrance animation; stagger with $delay.
@@ -172,9 +183,9 @@ $light:   #eaeaea;
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
   }
-  @keyframes t-shimmer {
-    from { background-position: 220% 0, 0 0; }
-    to   { background-position: -120% 0, 0 0; }
+  @keyframes t-sweep {
+    from { translate: -110% 0; }
+    to   { translate: 110% 0; }
   }
   @keyframes t-glow-drift {
     0%, 100% { transform: translate(0, 0) scale(1); }
