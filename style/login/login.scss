@@ -7,7 +7,7 @@
 body{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: "Manrope", system-ui, sans-serif;
     width: 100%;
     min-height: 100vh;
     display: flex;
@@ -16,18 +16,7 @@ body{
     color: t.$light;
     @include t.page-bg;
 
-    // drifting accent bloom behind everything
-    &::before{
-        content: '';
-        position: fixed;
-        inset: -20%;
-        z-index: 0;
-        pointer-events: none;
-        background:
-            radial-gradient(circle at 28% 38%, rgba(233, 69, 96, 0.18), transparent 34%),
-            radial-gradient(circle at 74% 66%, rgba(63, 169, 255, 0.12), transparent 30%);
-        animation: t-glow-drift 14s ease-in-out infinite;
-    }
+    @include t.aurora;
 
     .logo{
         display: flex;
@@ -139,6 +128,7 @@ body{
             cursor: pointer;
             margin-top: 6px;
             @include t.glow-btn;
+            @include t.sheen;
         }
 
         p{

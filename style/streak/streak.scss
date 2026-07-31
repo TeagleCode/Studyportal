@@ -11,7 +11,7 @@ $transition: 0.25s ease;
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.page-bg; }
+body { font-family: "Manrope", system-ui, sans-serif; color: $light; min-height: 100vh; @include t.page-bg; @include t.aurora; }
 
 @include t.base;
 
@@ -112,6 +112,19 @@ body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.pag
   }
 
   &--hero { margin-bottom: 8px; }
+
+  .ember {
+    position: absolute;
+    bottom: 12%;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ffb84d;
+    filter: blur(1px);
+    opacity: 0;
+    animation: t-ember var(--ember-t, 3s) linear var(--ember-d, 0s) infinite;
+    pointer-events: none;
+  }
 
   &--mini { --size: 56px !important; }
 }

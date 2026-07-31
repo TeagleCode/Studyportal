@@ -118,6 +118,48 @@ $light:   #eaeaea;
   animation-delay: $delay;
 }
 
+// Slow-moving aurora blobs behind everything (apply to body).
+// Uses the independent translate/scale properties so it never fights
+// other transforms.
+@mixin aurora {
+  &::before, &::after {
+    content: '';
+    position: fixed;
+    z-index: -2;
+    width: 62vmax;
+    height: 62vmax;
+    border-radius: 50%;
+    filter: blur(72px);
+    pointer-events: none;
+  }
+  &::before {
+    top: -22vmax; left: -16vmax;
+    background: radial-gradient(circle, rgba(233, 69, 96, 0.17), transparent 62%);
+    animation: t-aurora-a 26s ease-in-out infinite alternate;
+  }
+  &::after {
+    bottom: -26vmax; right: -18vmax;
+    background: radial-gradient(circle, rgba(63, 169, 255, 0.14), transparent 62%);
+    animation: t-aurora-b 34s ease-in-out infinite alternate;
+  }
+}
+
+// Light sweep across a button on hover.
+@mixin sheen {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 32%, rgba(255, 255, 255, 0.34) 50%, transparent 68%);
+    translate: -130% 0;
+    transition: translate 0.65s ease;
+    pointer-events: none;
+  }
+  &:hover::after { translate: 130% 0; }
+}
+
 // Emit once per page, at top level: keyframes + global niceties.
 @mixin base {
   @keyframes t-fade-up {
@@ -131,6 +173,66 @@ $light:   #eaeaea;
   @keyframes t-glow-drift {
     0%, 100% { transform: translate(0, 0) scale(1); }
     50%      { transform: translate(4%, 6%) scale(1.06); }
+  }
+  @keyframes t-aurora-a {
+    to { translate: 19vmax 13vmax; scale: 1.28; }
+  }
+  @keyframes t-aurora-b {
+    to { translate: -17vmax -11vmax; scale: 1.36; }
+  }
+  // spins an element whose centering uses `translate: -50% -50%`
+  @keyframes t-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  @keyframes t-rotate-rev {
+    from { transform: rotate(360deg); }
+    to   { transform: rotate(0deg); }
+  }
+  // portal spin keeps its own centering inside the keyframes
+  @keyframes t-portal-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+  @keyframes t-portal-breathe {
+    0%, 100% { filter: drop-shadow(0 0 18px rgba(233, 69, 96, 0.6)) drop-shadow(0 0 55px rgba(233, 69, 96, 0.30)); }
+    50%      { filter: drop-shadow(0 0 30px rgba(233, 69, 96, 0.85)) drop-shadow(0 0 90px rgba(233, 69, 96, 0.45)); }
+  }
+  // entrance pop + idle bob for orbital buttons — these animate the
+  // independent scale/translate properties, so the positioning transform
+  // and hover transforms are never overridden
+  @keyframes t-orbit-pop {
+    from { scale: 0.2; opacity: 0; }
+    to   { scale: 1; opacity: 1; }
+  }
+  @keyframes t-bob {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -10px; }
+  }
+  @keyframes t-shake {
+    10%, 90%      { translate: -2px 0; }
+    20%, 80%      { translate: 3px 0; }
+    30%, 50%, 70% { translate: -5px 0; }
+    40%, 60%      { translate: 5px 0; }
+  }
+  @keyframes t-correct-pulse {
+    from { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.55); }
+    to   { box-shadow: 0 0 0 20px rgba(76, 175, 80, 0); }
+  }
+  @keyframes t-spring-pop {
+    0%   { scale: 0.6; opacity: 0; }
+    62%  { scale: 1.04; opacity: 1; }
+    82%  { scale: 0.985; }
+    100% { scale: 1; opacity: 1; }
+  }
+  @keyframes t-grow-y {
+    from { scale: 1 0.02; }
+    to   { scale: 1 1; }
+  }
+  @keyframes t-ember {
+    0%   { translate: 0 0; opacity: 0; scale: 1; }
+    12%  { opacity: 0.9; }
+    100% { translate: var(--ember-x, 8px) -150px; opacity: 0; scale: 0.35; }
   }
 
   :focus-visible {

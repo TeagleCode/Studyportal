@@ -14,7 +14,7 @@ $transition: 0.2s ease;
 
 @include t.base;
 
-body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.page-bg; }
+body { font-family: "Manrope", system-ui, sans-serif; color: $light; min-height: 100vh; @include t.page-bg; @include t.aurora; }
 
 .bg-symbols {
   position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
@@ -106,6 +106,11 @@ body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.pag
   text-align: center;
   line-height: 1.4;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  @include t.fade-up;
+
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) { animation-delay: #{0.05 * $i}s; }
+  }
 
   &:hover:not(:disabled) {
     background: linear-gradient(165deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
@@ -118,12 +123,14 @@ body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.pag
     background: rgba($green, 0.2) !important;
     border-color: $green !important;
     color: $green !important;
+    animation: t-correct-pulse 0.7s ease-out;
   }
 
   &--wrong {
     background: rgba($red, 0.2) !important;
     border-color: $red !important;
     color: $red !important;
+    animation: t-shake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
 
   &:disabled { cursor: default; transform: none; }
@@ -217,6 +224,7 @@ body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.pag
   font-weight: 700;
   cursor: pointer;
   @include t.glow-btn;
+  @include t.sheen;
 }
 
 // Results screen
@@ -231,7 +239,7 @@ body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.pag
     text-align: center;
     width: min(420px, calc(100vw - 32px));
     @include t.glass(22px);
-    @include t.fade-up(0.05s);
+    animation: t-spring-pop 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
   &__title {

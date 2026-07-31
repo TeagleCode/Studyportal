@@ -19,6 +19,21 @@ function pctClass(pct) {
   return 'bad';
 }
 
+// Animated count-up for stat values (respects reduced-motion)
+function countUp(el, target, format = v => v) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !target) {
+    el.textContent = format(target);
+    return;
+  }
+  const dur = 900, t0 = performance.now();
+  (function tick(t) {
+    const p = Math.min(1, (t - t0) / dur);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = format(Math.round(target * eased));
+    if (p < 1) requestAnimationFrame(tick);
+  })(t0);
+}
+
 function quizUrl(t) {
   return `./grades/chapters.html?grade=${t.grade}&subject=${t.subject}`;
 }
@@ -37,7 +52,7 @@ async function init() {
 
   fetch('/api/streak', { headers: AUTH })
     .then(r => r.json())
-    .then(s => { $('statStreak').textContent = `🔥 ${s.current}`; })
+    .then(s => { countUp($('statStreak'), s.current, v => `🔥 ${v}`); })
     .catch(() => {});
 
   buildStartGrid();
@@ -53,10 +68,12 @@ async function init() {
     return;
   }
 
-  // Overall stats
-  $('statAnswered').textContent = data.overall.answered;
-  $('statAccuracy').textContent = data.overall.accuracy === null ? '—' : data.overall.accuracy + '%';
-  $('statQuizzes').textContent  = data.recent_quizzes.length >= 10 ? '10+' : data.recent_quizzes.length;
+  // Overall stats (animated count-up)
+  countUp($('statAnswered'), data.overall.answered);
+  if (data.overall.accuracy === null) $('statAccuracy').textContent = '—';
+  else countUp($('statAccuracy'), data.overall.accuracy, v => v + '%');
+  if (data.recent_quizzes.length >= 10) $('statQuizzes').textContent = '10+';
+  else countUp($('statQuizzes'), data.recent_quizzes.length);
 
   // Subjects
   if (data.subjects.length) {

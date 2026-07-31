@@ -18,9 +18,10 @@ $transition: 0.3s ease;
 @include t.base;
 
 body {
-  font-family: sans-serif;
+  font-family: "Manrope", system-ui, sans-serif;
   color: $text-light;
   @include t.page-bg;
+  @include t.aurora;
 }
 
 .nav {
@@ -244,9 +245,40 @@ body {
     width: var(--center);
     height: var(--center);
     object-fit: contain;
-    filter: drop-shadow(0 0 18px rgba($accent, 0.6)) drop-shadow(0 0 60px rgba($accent, 0.35));
-    animation: t-glow-drift 9s ease-in-out infinite;
+    animation:
+      t-portal-spin 22s linear infinite,
+      t-portal-breathe 5s ease-in-out infinite;
     pointer-events: none;
+  }
+
+  // counter-rotating portal rings around the center
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::before {
+    width: calc(var(--center) * 1.75);
+    height: calc(var(--center) * 1.75);
+    border: 1px dashed rgba($accent, 0.5);
+    animation: t-rotate 28s linear infinite;
+  }
+
+  &::after {
+    width: calc(var(--center) * 2.3);
+    height: calc(var(--center) * 2.3);
+    background: conic-gradient(from 0deg,
+      transparent 0deg, rgba($accent, 0.45) 40deg, transparent 90deg,
+      transparent 180deg, rgba(63, 169, 255, 0.35) 230deg, transparent 290deg);
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+            mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 2px));
+    animation: t-rotate-rev 14s linear infinite;
   }
 }
 
@@ -265,6 +297,15 @@ body {
   gap: 4px;
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
   @include t.circle-ring;
+  animation:
+    t-orbit-pop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    t-bob 5.5s ease-in-out infinite;
+
+  @for $i from 1 through 5 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{0.06 * $i}s, #{0.06 * $i - 1.1}s;
+    }
+  }
 
   &__num {
     font-family: "Saira Stencil", sans-serif;
@@ -316,6 +357,7 @@ body {
     justify-items: center;
 
     &__center { display: none; }
+    &::before, &::after { display: none; }
   }
 
   .grade-btn {

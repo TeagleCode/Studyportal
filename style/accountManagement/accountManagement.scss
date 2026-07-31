@@ -17,9 +17,10 @@ $transition: 0.2s ease;
 @include t.base;
 
 body {
-  font-family: sans-serif;
+  font-family: "Manrope", system-ui, sans-serif;
   color: $text-light;
   @include t.page-bg;
+  @include t.aurora;
   min-height: 100vh;
 }
 
