@@ -1,3 +1,5 @@
+@use '../theme' as t;
+
 $nav-bg:    #1a1a2e;
 $nav-h:     90px;
 $accent:    #e94560;
@@ -10,7 +12,9 @@ $transition: 0.25s ease;
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body { font-family: sans-serif; background: $bg; color: $light; min-height: 100vh; }
+body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.page-bg; }
+
+@include t.base;
 
 .bg-symbols {
   position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
@@ -19,13 +23,18 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
 
 .nav {
   display: flex; align-items: center; justify-content: space-between;
-  background: $nav-bg; height: $nav-h; padding: 0 32px;
+  height: $nav-h; padding: 0 32px;
   position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  @include t.glass-nav;
 
   &-left a {
     text-decoration: none; color: $light;
-    h1 { font-size: 2.2rem; display: flex; align-items: center; gap: 4px; img { height: 42px; } }
+    h1 {
+      font-family: "Saira Stencil", sans-serif;
+      font-size: 2.2rem; display: flex; align-items: center; gap: 4px;
+      @include t.gradient-text;
+      img { height: 42px; filter: drop-shadow(0 0 12px rgba(233, 69, 96, 0.5)); }
+    }
   }
 
   &-right { display: flex; align-items: center; gap: 20px; }
@@ -48,7 +57,11 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
   margin: 40px auto;
   padding: 0 24px;
 
-  &__greeting { font-size: 1.6rem; margin-bottom: 24px; }
+  &__greeting {
+    font-family: "Saira Stencil", sans-serif;
+    font-size: 1.8rem; margin-bottom: 24px;
+    @include t.gradient-text;
+  }
 
   &__grid {
     display: grid;
@@ -63,30 +76,31 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 20px;
   margin-bottom: 20px;
+
+  .stat-card:nth-child(1) { @include t.fade-up(0.02s); }
+  .stat-card:nth-child(2) { @include t.fade-up(0.08s); }
+  .stat-card:nth-child(3) { @include t.fade-up(0.14s); }
+  .stat-card:nth-child(4) { @include t.fade-up(0.20s); }
 }
 
 .stat-card {
-  background: $card-bg;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px;
   padding: 20px 24px;
   display: flex; flex-direction: column; gap: 4px;
+  @include t.glass(14px);
+  @include t.glass-hover;
 
   &__value { font-size: 2rem; font-weight: 700; color: $accent; }
   &__label { font-size: 0.85rem; opacity: 0.7; }
 
   &--link {
     text-decoration: none; color: $light;
-    transition: border-color $transition, background $transition;
-    &:hover { border-color: $accent; background: rgba(233,69,96,0.08); }
+    &:hover { border-color: rgba(233, 69, 96, 0.55); }
   }
 }
 
 .panel {
-  background: $card-bg;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px;
   padding: 20px 24px;
+  @include t.glass(16px);
 
   &--wide { margin-bottom: 40px; }
 

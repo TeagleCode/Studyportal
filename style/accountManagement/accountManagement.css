@@ -4,10 +4,55 @@
   box-sizing: border-box;
 }
 
+@keyframes t-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes t-shimmer {
+  from {
+    background-position: 220% 0, 0 0;
+  }
+  to {
+    background-position: -120% 0, 0 0;
+  }
+}
+@keyframes t-glow-drift {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(4%, 6%) scale(1.06);
+  }
+}
+:focus-visible {
+  outline: 2px solid rgba(233, 69, 96, 0.75);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(233, 69, 96, 0.55);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
 body {
   font-family: sans-serif;
-  background: #0f3460;
   color: #eaeaea;
+  background: radial-gradient(ellipse 85% 60% at 12% -12%, rgba(233, 69, 96, 0.16), transparent 60%), radial-gradient(ellipse 70% 55% at 108% 12%, rgba(63, 169, 255, 0.12), transparent 60%), radial-gradient(ellipse 100% 75% at 50% 118%, rgba(10, 14, 34, 0.9), transparent 72%), linear-gradient(158deg, #111f47 0%, #0f3460 52%, #12294f 100%);
+  background-attachment: fixed;
   min-height: 100vh;
 }
 
@@ -28,10 +73,16 @@ body {
 .nav {
   display: flex;
   align-items: center;
-  background: #1a1a2e;
   height: 60px;
   padding: 0 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(26, 26, 46, 0.72);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 10px 34px rgba(4, 9, 28, 0.38);
 }
 .nav-left a {
   text-decoration: none;
@@ -53,14 +104,36 @@ body {
   padding: 0 20px;
 }
 .account__title {
-  font-size: 1.6rem;
+  font-family: "Saira Stencil", sans-serif;
+  font-size: 1.8rem;
   margin-bottom: 32px;
+  background: linear-gradient(100deg, #ffffff 8%, #ffd9e0 45%, #e94560 92%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
 }
 .account__section {
-  background: #16213e;
-  border-radius: 12px;
   padding: 28px 24px;
   margin-bottom: 24px;
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.012) 55%), rgba(22, 33, 62, 0.74);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  box-shadow: 0 18px 44px rgba(4, 9, 28, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+.account__section:nth-of-type(1) {
+  animation: t-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.02s;
+}
+.account__section:nth-of-type(2) {
+  animation: t-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.08s;
+}
+.account__section:nth-of-type(3) {
+  animation: t-fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: 0.14s;
 }
 .account__section h3 {
   font-size: 1.05rem;
@@ -98,17 +171,25 @@ body {
 }
 .account__form button {
   align-self: flex-start;
-  background: #e94560;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 10px 24px;
   font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: opacity 0.2s ease;
+  background: linear-gradient(135deg, #ff5f7a 0%, #e94560 48%, #c81e45 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 6px 20px rgba(233, 69, 96, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, filter 0.25s ease;
 }
 .account__form button:hover {
-  opacity: 0.85;
+  transform: translateY(-2px);
+  filter: brightness(1.07);
+  box-shadow: 0 12px 32px rgba(233, 69, 96, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+.account__form button:active {
+  transform: translateY(0);
+  filter: brightness(0.97);
 }
 .account__msg {
   margin-top: 10px;

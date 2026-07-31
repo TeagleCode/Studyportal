@@ -1,3 +1,5 @@
+@use '../theme' as t;
+
 $nav-bg: #1a1a2e;
 $nav-height: 90px;
 $menu-width: 260px;
@@ -13,38 +15,44 @@ $transition: 0.3s ease;
   box-sizing: border-box;
 }
 
+@include t.base;
+
 body {
   font-family: sans-serif;
-  background: #0f3460;
   color: $text-light;
+  @include t.page-bg;
 }
 
 .nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: $nav-bg;
   height: $nav-height;
   padding: 0 24px;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  @include t.glass-nav;
 
   &-left a {
     text-decoration: none;
     color: $text-light;
 
     h1 {
+      font-family: "Saira Stencil", sans-serif;
       font-size: 2.2rem;
       display: flex;
       align-items: center;
       gap: 4px;
+      @include t.gradient-text;
 
       img {
         height: 42px;
+        filter: drop-shadow(0 0 12px rgba(233, 69, 96, 0.5));
+        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       }
     }
+    &:hover h1 img { transform: rotate(90deg); }
   }
 
   &-right {
@@ -101,7 +109,10 @@ body {
   right: 0;
   width: $menu-width;
   height: 100vh;
-  background: $menu-bg;
+  background: rgba(22, 33, 62, 0.85);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  backdrop-filter: blur(18px) saturate(140%);
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
   z-index: 300;
   transform: translateX(100%);
   transition: transform $transition;
@@ -215,6 +226,7 @@ body {
 }
 
 .pentagon {
+  @include t.fade-up(0.05s);
   --size:   800px;   // container
   --r:      280px;   // vertex radius
   --btn:    230px;   // button diameter
@@ -232,7 +244,8 @@ body {
     width: var(--center);
     height: var(--center);
     object-fit: contain;
-    filter: drop-shadow(0 0 18px rgba($accent, 0.6));
+    filter: drop-shadow(0 0 18px rgba($accent, 0.6)) drop-shadow(0 0 60px rgba($accent, 0.35));
+    animation: t-glow-drift 9s ease-in-out infinite;
     pointer-events: none;
   }
 }
@@ -243,8 +256,6 @@ body {
   width: var(--btn);
   height: var(--btn);
   border-radius: 50%;
-  background: $menu-bg;
-  border: 2px solid $accent;
   color: $text-light;
   text-decoration: none;
   display: flex;
@@ -252,13 +263,15 @@ body {
   align-items: center;
   justify-content: center;
   gap: 4px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-  box-shadow: 0 0 12px rgba($accent, 0.2);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  @include t.circle-ring;
 
   &__num {
+    font-family: "Saira Stencil", sans-serif;
     font-size: 2.6rem;
     font-weight: 700;
     line-height: 1;
+    text-shadow: 0 0 24px rgba(233, 69, 96, 0.45);
   }
 
   &__label {
@@ -269,9 +282,11 @@ body {
   }
 
   &:hover {
-    background: $accent;
     transform: translate(-50%, -50%) scale(1.08);
-    box-shadow: 0 0 40px rgba($accent, 0.7);
+    box-shadow:
+      0 16px 44px rgba(4, 9, 28, 0.6),
+      0 0 48px rgba($accent, 0.55),
+      inset 0 0 30px rgba($accent, 0.25);
   }
 
   // Pentagon vertices: unit circle × --r (sin/cos of 72°/36°)

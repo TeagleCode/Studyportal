@@ -1,3 +1,5 @@
+@use '../theme' as t;
+
 $nav-bg:    #1a1a2e;
 $nav-h:     90px;
 $accent:    #e94560;
@@ -9,7 +11,9 @@ $transition: 0.25s ease;
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body { font-family: sans-serif; background: $bg; color: $light; min-height: 100vh; }
+body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.page-bg; }
+
+@include t.base;
 
 .bg-symbols {
   position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
@@ -18,13 +22,18 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
 
 .nav {
   display: flex; align-items: center; justify-content: space-between;
-  background: $nav-bg; height: $nav-h; padding: 0 32px;
+  height: $nav-h; padding: 0 32px;
   position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  @include t.glass-nav;
 
   &-left a {
     text-decoration: none; color: $light;
-    h1 { font-size: 2.2rem; display: flex; align-items: center; gap: 4px; img { height: 42px; } }
+    h1 {
+      font-family: "Saira Stencil", sans-serif;
+      font-size: 2.2rem; display: flex; align-items: center; gap: 4px;
+      @include t.gradient-text;
+      img { height: 42px; filter: drop-shadow(0 0 12px rgba(233, 69, 96, 0.5)); }
+    }
   }
 
   &-right { display: flex; align-items: center; gap: 20px; }
@@ -173,7 +182,9 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
   padding: 36px 0 28px;
 
   &__count {
-    font-size: 3rem; font-weight: 800; line-height: 1;
+    font-family: "Saira Stencil", sans-serif;
+    font-size: 3.4rem; font-weight: 800; line-height: 1;
+    @include t.gradient-text;
     &-unit { font-size: 1.2rem; font-weight: 400; opacity: 0.7; }
   }
 
@@ -199,17 +210,16 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
 
   &__fill {
     height: 100%; border-radius: 5px;
-    background: linear-gradient(90deg, #ff9d3f, $accent);
     transition: width 0.6s ease;
+    @include t.shimmer-fill;
   }
 }
 
 .panel {
-  background: $card-bg;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px;
   padding: 20px 24px;
   margin-bottom: 20px;
+  @include t.glass(16px);
+  @include t.fade-up(0.1s);
 
   &__title { font-size: 1.05rem; margin-bottom: 16px; opacity: 0.9; }
   &__hint  { font-size: 0.85rem; opacity: 0.6; margin-top: 16px; }
@@ -238,11 +248,10 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
 }
 
 .stat-card {
-  background: $card-bg;
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 12px;
   padding: 20px 24px;
   display: flex; flex-direction: column; gap: 4px;
+  @include t.glass(14px);
+  @include t.glass-hover;
 
   &__value { font-size: 2rem; font-weight: 700; color: $accent; }
   &__label { font-size: 0.85rem; opacity: 0.7; }
@@ -256,9 +265,8 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
 
 .stage-card {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.07);
-  border-radius: 10px;
+  @include t.glass(12px);
+  @include t.glass-hover;
   padding: 16px 10px 14px;
   text-align: center;
 

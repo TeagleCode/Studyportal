@@ -1,3 +1,5 @@
+@use '../theme' as t;
+
 $nav-bg: #1a1a2e;
 $nav-height: 90px;
 $accent: #e94560;
@@ -7,11 +9,13 @@ $transition: 0.25s ease;
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
+@include t.base;
+
 body {
   font-family: sans-serif;
-  background: #0f3460;
   color: $text-light;
   min-height: 100vh;
+  @include t.page-bg;
 }
 
 .bg-symbols {
@@ -33,25 +37,26 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: $nav-bg;
   height: $nav-height;
   padding: 0 32px;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  @include t.glass-nav;
 
   &-left a {
     text-decoration: none;
     color: $text-light;
 
     h1 {
+      font-family: "Saira Stencil", sans-serif;
       font-size: 2.2rem;
       display: flex;
       align-items: center;
       gap: 4px;
+      @include t.gradient-text;
 
-      img { height: 42px; }
+      img { height: 42px; filter: drop-shadow(0 0 12px rgba(233, 69, 96, 0.5)); }
     }
   }
 
@@ -73,6 +78,7 @@ body {
 // Geometry driven by CSS vars so it scales for tablets; collapses to a
 // 2-column grid on phones (≤560px).
 .hexagon {
+  @include t.fade-up(0.05s);
   --size: 700px;   // container
   --r:    240px;   // vertex radius
   --btn:  190px;   // button diameter
@@ -88,8 +94,6 @@ body {
   width: var(--btn);
   height: var(--btn);
   border-radius: 50%;
-  background: $btn-bg;
-  border: 2px solid $accent;
   color: $text-light;
   text-decoration: none;
   display: flex;
@@ -100,13 +104,15 @@ body {
   font-size: 1.05rem;
   font-weight: 600;
   line-height: 1.3;
-  transition: transform $transition, box-shadow $transition, background $transition;
-  box-shadow: 0 0 12px rgba($accent, 0.2);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+  @include t.circle-ring;
 
   &:hover {
-    background: $accent;
     transform: translate(-50%, -50%) scale(1.1);
-    box-shadow: 0 0 36px rgba($accent, 0.7);
+    box-shadow:
+      0 16px 44px rgba(4, 9, 28, 0.6),
+      0 0 48px rgba($accent, 0.55),
+      inset 0 0 30px rgba($accent, 0.25);
   }
 
   // Hexagon vertices: unit circle × --r (sin/cos of 60°)

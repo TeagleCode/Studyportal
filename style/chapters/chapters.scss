@@ -1,3 +1,5 @@
+@use '../theme' as t;
+
 $nav-bg:    #1a1a2e;
 $nav-h:     90px;
 $accent:    #e94560;
@@ -8,7 +10,9 @@ $transition: 0.25s ease;
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body { font-family: sans-serif; background: $bg; color: $light; min-height: 100vh; }
+body { font-family: sans-serif; color: $light; min-height: 100vh; @include t.page-bg; }
+
+@include t.base;
 
 .bg-symbols {
   position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
@@ -17,13 +21,18 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
 
 .nav {
   display: flex; align-items: center; justify-content: space-between;
-  background: $nav-bg; height: $nav-h; padding: 0 32px;
+  height: $nav-h; padding: 0 32px;
   position: sticky; top: 0; z-index: 100;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  @include t.glass-nav;
 
   &-left a {
     text-decoration: none; color: $light;
-    h1 { font-size: 2.2rem; display: flex; align-items: center; gap: 4px; img { height: 42px; } }
+    h1 {
+      font-family: "Saira Stencil", sans-serif;
+      font-size: 2.2rem; display: flex; align-items: center; gap: 4px;
+      @include t.gradient-text;
+      img { height: 42px; filter: drop-shadow(0 0 12px rgba(233, 69, 96, 0.5)); }
+    }
   }
 
   &-right { display: flex; align-items: center; gap: 20px; }
@@ -44,11 +53,18 @@ body { font-family: sans-serif; background: $bg; color: $light; min-height: 100v
 }
 
 .chapter-card {
-  background: $card-bg;
-  border-radius: 12px;
   margin-bottom: 16px;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.07);
+  @include t.glass(14px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    border-color: rgba(233, 69, 96, 0.35);
+    box-shadow: 0 18px 44px rgba(4, 9, 28, 0.5), 0 0 24px rgba(233, 69, 96, 0.08), inset 0 1px 0 rgba(255,255,255,0.09);
+  }
+  &:nth-child(1) { @include t.fade-up(0.02s); }
+  &:nth-child(2) { @include t.fade-up(0.08s); }
+  &:nth-child(3) { @include t.fade-up(0.14s); }
+  &:nth-child(n+4) { @include t.fade-up(0.2s); }
 
   &__header {
     width: 100%;

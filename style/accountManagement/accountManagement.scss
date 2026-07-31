@@ -1,3 +1,5 @@
+@use '../theme' as t;
+
 $nav-bg: #1a1a2e;
 $nav-height: 60px;
 $accent: #e94560;
@@ -12,10 +14,12 @@ $transition: 0.2s ease;
   box-sizing: border-box;
 }
 
+@include t.base;
+
 body {
   font-family: sans-serif;
-  background: $bg;
   color: $text-light;
+  @include t.page-bg;
   min-height: 100vh;
 }
 
@@ -27,10 +31,12 @@ body {
 .nav {
   display: flex;
   align-items: center;
-  background: $nav-bg;
   height: $nav-height;
   padding: 0 24px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  @include t.glass-nav;
 
   &-left a {
     text-decoration: none;
@@ -55,15 +61,19 @@ body {
   padding: 0 20px;
 
   &__title {
-    font-size: 1.6rem;
+    font-family: "Saira Stencil", sans-serif;
+    font-size: 1.8rem;
     margin-bottom: 32px;
+    @include t.gradient-text;
   }
 
   &__section {
-    background: $section-bg;
-    border-radius: 12px;
     padding: 28px 24px;
     margin-bottom: 24px;
+    @include t.glass(14px);
+    &:nth-of-type(1) { @include t.fade-up(0.02s); }
+    &:nth-of-type(2) { @include t.fade-up(0.08s); }
+    &:nth-of-type(3) { @include t.fade-up(0.14s); }
 
     h3 {
       font-size: 1.05rem;
@@ -106,18 +116,12 @@ body {
 
     button {
       align-self: flex-start;
-      background: $accent;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
+      border-radius: 10px;
       padding: 10px 24px;
       font-size: 0.95rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: opacity $transition;
-
-      &:hover {
-        opacity: 0.85;
-      }
+      @include t.glow-btn;
     }
   }
 
