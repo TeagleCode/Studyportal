@@ -512,7 +512,7 @@ app.post('/api/test/start', async (req, res) => {
     // Balanced draw: half multiple-choice, half open (text) questions, so a
     // test is never all of one type. If the topic lacks enough of one type,
     // top up with whatever it has.
-    const limit = 10, half = limit / 2;
+    const limit = 20, half = limit / 2;
     const [mcPick] = await db.execute(
       "SELECT * FROM questions WHERE topic_id = ? AND question_type = 'multiple_choice' ORDER BY RAND() LIMIT ?",
       [topicId, half]

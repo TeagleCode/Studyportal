@@ -9,7 +9,8 @@ let questions  = [];
 let current    = 0;
 let score      = 0;
 let answered   = false;
-let timeLeft   = 600;
+const TEST_SECONDS = 1200;          // 20 questions × 1 min
+let timeLeft   = TEST_SECONDS;
 let timerInterval;
 let sessionId  = null;
 let stepsData  = [];
@@ -199,7 +200,7 @@ function nextQuestion() {
 
 async function finishTest() {
   clearInterval(timerInterval);
-  const elapsed = 600 - timeLeft;
+  const elapsed = TEST_SECONDS - timeLeft;
   const m = Math.floor(elapsed / 60);
   const s = elapsed % 60;
 
