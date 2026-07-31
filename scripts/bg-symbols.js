@@ -2,10 +2,10 @@
   const container = document.getElementById('bgSymbols');
   if (!container) return;
 
+  // Glyphs only — no emoji. Solid-color emoji (books, paper, tools)
+  // render as faint white/colored squares at low opacity on the dark
+  // background, which reads as a rendering glitch.
   const symbols = [
-    '📚','📖','📝','✏️','📐','📏','📓','📔','📒','📕','📗','📘','🎓',
-    '🔬','🧪','⚗️','🔭','🧬','🧲','⚡','💡','🌡️','🏫','🖋️','🧮',
-    '⚛️','🔋','🌍','🗂️',
     'α','β','γ','δ','ε','ζ','η','θ','λ','μ','ν','ξ','π','ρ','σ','τ','φ','ψ','ω','Δ','Σ','Ω','Φ','Ψ',
     '∑','√','∞','∫','∂','∇','÷','×','≠','≤','≥','±','²','³','∈','∉','⊂','∩','∪','∝','∴','∵',
     'E=mc²','F=ma','a²+b²=c²','v=λf','PV=nRT','W=Fd','ρ=m/V',
