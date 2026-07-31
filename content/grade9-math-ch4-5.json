@@ -1,0 +1,813 @@
+{
+  "grade": 9,
+  "subject": "math",
+  "chapters": [
+    {
+      "title": "4. განტოლება. განტოლებათა სისტემები. პროგრესიები",
+      "topics": [
+        {
+          "title": "4.1. მთელი და წილადური განტოლებები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "ამოხსენით: {a}x + {b} = {c}",
+              "variables": { "a": { "min": 2, "max": 9 }, "b": { "min": 1, "max": 20 }, "x0": { "min": 2, "max": 15 }, "c": { "formula": "a * x0 + b" } },
+              "formula": "x0",
+              "explanation_template": "{a}x = {c} − {b} → x = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "ამოხსენით: {a}/x = {b} (ჩაწერეთ ათწილადი საჭიროებისამებრ)",
+              "variables": { "b": { "min": 2, "max": 9 }, "x0": { "min": 2, "max": 12 }, "a": { "formula": "b * x0" } },
+              "formula": "x0",
+              "explanation_template": "x = {a} ÷ {b} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "ამოხსენით: x² = {n} (ჩაწერეთ დადებითი ფესვი)",
+              "variables": { "a": { "min": 2, "max": 15 }, "n": { "formula": "a * a" } },
+              "formula": "a",
+              "explanation_template": "x = ±√{n}; დადებითი ფესვი {answer}."
+            },
+            {
+              "type": "text",
+              "text": "წილადური განტოლების ამოხსნისას აუცილებელია მნიშვნელი არ იყოს რის ტოლი?",
+              "answer": "0",
+              "acceptable": ["ნული"],
+              "explanation": "ნულოვანი მნიშვნელი დაუშვებელია."
+            },
+            {
+              "type": "text",
+              "text": "ამოხსენით: 3(x − 2) = 12",
+              "answer": "6",
+              "explanation": "x − 2 = 4 → x = 6."
+            },
+            {
+              "type": "text",
+              "text": "ამოხსენით: 10/x = 5",
+              "answer": "2",
+              "explanation": "x = 10 ÷ 5 = 2."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "{a}x + {b} = {c} განტოლების ფესვია:",
+              "variables": { "a": { "min": 2, "max": 8 }, "b": { "min": 1, "max": 15 }, "x0": { "min": 2, "max": 12 }, "c": { "formula": "a * x0 + b" } },
+              "formula": "x0",
+              "options": ["(c - b) / a", "(c + b) / a", "c - b", "c / a"],
+              "explanation_template": "x = {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წილადური განტოლების ამოხსნისას ფესვი უნდა:",
+              "options": ["შემოწმდეს განსაზღვრის არეზე", "დამრგვალდეს", "გაორმაგდეს", "უარიყოს"],
+              "correct": 0,
+              "explanation": "ფესვი, რომელიც მნიშვნელს ანულებს, გარეშე ფესვია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "განტოლება x/(x−2) = 1:",
+              "options": ["ამონახსნი არ აქვს", "x = 2", "x = 1", "x = 0"],
+              "correct": 0,
+              "explanation": "x = x − 2 → 0 = −2 — წინააღმდეგობა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "x² = 25 განტოლების ფესვებია:",
+              "options": ["5 და −5", "5 მხოლოდ", "25", "±12,5"],
+              "correct": 0,
+              "explanation": "ორივე რიცხვის კვადრატი 25-ია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მთელი განტოლება არის ის, სადაც ცვლადი:",
+              "options": ["მნიშვნელში არ გვხვდება", "მნიშვნელშია", "ფესვქვეშაა", "მაჩვენებელშია"],
+              "correct": 0,
+              "explanation": "წილადურ განტოლებაში ცვლადი მნიშვნელშია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "განტოლება 2(x + 3) = 2x + 6:",
+              "options": ["სრულდება ყველა x-სთვის", "ერთი ფესვი აქვს", "ფესვი არ აქვს", "ორი ფესვი აქვს"],
+              "correct": 0,
+              "explanation": "ეს იგივურობაა."
+            }
+          ]
+        },
+        {
+          "title": "4.2. ამოცანების ამოხსნა",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "ორი რიცხვის ჯამია {s}, სხვაობა {d}. რას უდრის უდიდესი?",
+              "variables": { "x0": { "min": 5, "max": 30 }, "y0": { "min": 1, "max": 15 }, "s": { "formula": "x0 + y0" }, "d": { "formula": "x0 - y0" } },
+              "formula": "x0",
+              "explanation_template": "({s} + {d}) ÷ 2 = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "მანქანა {v} კმ/სთ სიჩქარით {t} საათი მოძრაობდა. რამდენი კმ გაიარა?",
+              "variables": { "v": { "min": 40, "max": 110 }, "t": { "min": 2, "max": 8 } },
+              "formula": "v * t",
+              "explanation_template": "{v} · {t} = {answer} კმ."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "საქონელი {n} ლარი ღირდა და გაიაფდა {p}%-ით. რამდენი ღირს ახლა?",
+              "variables": { "k": { "min": 1, "max": 8 }, "n": { "formula": "100 * k" }, "p": { "min": 10, "max": 50 } },
+              "formula": "n - n * p / 100",
+              "explanation_template": "ახალი ფასი = {answer} ლარი."
+            },
+            {
+              "type": "text",
+              "text": "ორი რიცხვის ჯამია 40, ერთი მეორეზე 4-ით მეტია. უდიდესია:",
+              "answer": "22",
+              "explanation": "(40 + 4) ÷ 2 = 22."
+            },
+            {
+              "type": "text",
+              "text": "მუშა დღეში 12 დეტალს ამზადებს. რამდენ დღეში დაამზადებს 96-ს?",
+              "answer": "8",
+              "explanation": "96 ÷ 12 = 8 დღე."
+            },
+            {
+              "type": "text",
+              "text": "ამოცანის ამოხსნის პირველი ნაბიჯია უცნობის რა? (ერთი სიტყვა)",
+              "answer": "შემოღება",
+              "acceptable": ["შემოღებაა", "აღნიშვნა", "დანიშვნა"],
+              "explanation": "ჯერ უცნობს ასოთი აღვნიშნავთ."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "ორი რიცხვის ჯამია {s}, სხვაობა {d}. უდიდესია:",
+              "variables": { "x0": { "min": 5, "max": 25 }, "y0": { "min": 1, "max": 12 }, "s": { "formula": "x0 + y0" }, "d": { "formula": "x0 - y0" } },
+              "formula": "x0",
+              "options": ["(s + d) / 2", "(s - d) / 2", "s - d", "s + d"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მოძრაობის ამოცანებში s, v და t დაკავშირებულია ფორმულით:",
+              "options": ["s = v · t", "s = v + t", "s = v / t", "v = s · t"],
+              "correct": 0,
+              "explanation": "მანძილი = სიჩქარე × დრო."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ერთობლივი მუშაობის ამოცანებში მთელი სამუშაო ჩვეულებრივ მიიღება:",
+              "options": ["1-ის ტოლად", "0-ის ტოლად", "100-ის ტოლად", "დროის ტოლად"],
+              "correct": 0,
+              "explanation": "მთელი სამუშაო ერთეულად მიიღება, ტემპი კი 1/t."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ამოცანის პასუხი უნდა:",
+              "options": ["შემოწმდეს პირობასთან", "დამრგვალდეს ყოველთვის", "იყოს მთელი", "იყოს დადებითი ყოველთვის"],
+              "correct": 0,
+              "explanation": "პასუხი აზრობრივად უნდა შეესაბამებოდეს ამოცანას."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "100 ლარიანი საქონელი 30%-ით გაიაფდა. ახალი ფასია:",
+              "options": ["70 ლარი", "30 ლარი", "130 ლარი", "60 ლარი"],
+              "correct": 0,
+              "explanation": "100 − 30 = 70 ლარი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ ამოცანის ამონახსნი უარყოფითი გამოვიდა რაოდენობისთვის:",
+              "options": ["შეცდომაა ან პირობა შეუსაბამოა", "პასუხი სწორია", "უნდა გავამრავლოთ −1-ზე", "არაფერი"],
+              "correct": 0,
+              "explanation": "რაოდენობა უარყოფითი ვერ იქნება."
+            }
+          ]
+        },
+        {
+          "title": "4.3. გეომეტრიულ ფიგურათა წარმოდგენა ალგებრული დამოკიდებულებების საშუალებით",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "მართკუთხედის გვერდებია {a} და {b}. რას უდრის ფართობი?",
+              "variables": { "a": { "min": 2, "max": 18 }, "b": { "min": 2, "max": 18 } },
+              "formula": "a * b",
+              "explanation_template": "S = {a} · {b} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "კვადრატის გვერდია {a}. რას უდრის პერიმეტრი?",
+              "variables": { "a": { "min": 2, "max": 20 } },
+              "formula": "4 * a",
+              "explanation_template": "P = 4 · {a} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "წრფის განტოლება y = kx + b აღწერს რა ფიგურას? (ერთი სიტყვა)",
+              "answer": "წრფეს",
+              "acceptable": ["წრფე", "წრფეა", "სწორ ხაზს"],
+              "explanation": "წრფივი განტოლების გრაფიკი წრფეა."
+            },
+            {
+              "type": "text",
+              "text": "კვადრატის პერიმეტრია 4a. თუ P = 36, რას უდრის a?",
+              "answer": "9",
+              "explanation": "36 ÷ 4 = 9."
+            },
+            {
+              "type": "text",
+              "text": "მართკუთხედის ფართობია 48, ერთი გვერდი 6. მეორეა:",
+              "answer": "8",
+              "explanation": "48 ÷ 6 = 8."
+            },
+            {
+              "type": "text",
+              "text": "წრეწირის განტოლება x² + y² = r²-ში r რას აღნიშნავს? (ერთი სიტყვა)",
+              "answer": "რადიუსს",
+              "acceptable": ["რადიუსი", "რადიუსია"],
+              "explanation": "სათავეზე ცენტრირებული წრეწირის რადიუსი."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "მართკუთხედის გვერდებია {a} და {b}. ფართობია:",
+              "variables": { "a": { "min": 2, "max": 15 }, "b": { "min": 2, "max": 15 } },
+              "formula": "a * b",
+              "options": ["a * b", "2 * (a + b)", "a + b", "(a + b) / 2"],
+              "explanation_template": "S = {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "x² + y² = 25 აღწერს:",
+              "options": ["წრეწირს რადიუსით 5", "წრფეს", "პარაბოლას", "წრეწირს რადიუსით 25"],
+              "correct": 0,
+              "explanation": "r² = 25 → r = 5."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "კვადრატის ფართობი გვერდით a:",
+              "options": ["a²", "4a", "2a", "a"],
+              "correct": 0,
+              "explanation": "S = a · a."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ კვადრატის გვერდი გაორმაგდა, ფართობი:",
+              "options": ["ოთხმაგდება", "ორმაგდება", "არ იცვლება", "სამმაგდება"],
+              "correct": 0,
+              "explanation": "(2a)² = 4a²."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "y = 0 განტოლება აღწერს:",
+              "options": ["x ღერძს", "y ღერძს", "სათავეს", "პარაბოლას"],
+              "correct": 0,
+              "explanation": "ყველა წერტილი ორდინატით 0."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მართკუთხედის პერიმეტრი გვერდებით a და b:",
+              "options": ["2(a + b)", "a · b", "a + b", "4a"],
+              "correct": 0,
+              "explanation": "ორივე გვერდი ორჯერ."
+            }
+          ]
+        },
+        {
+          "title": "4.4. ორუცნობიან განტოლებათა სისტემა. ამოცანების ამოხსნა ორუცნობიან განტოლებათა სისტემის გამოყენებით",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "სისტემა: x + y = {s}, x − y = {d}. რას უდრის x?",
+              "variables": { "x0": { "min": 3, "max": 22 }, "y0": { "min": 1, "max": 12 }, "s": { "formula": "x0 + y0" }, "d": { "formula": "x0 - y0" } },
+              "formula": "x0",
+              "explanation_template": "2x = {s} + {d} → x = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "სისტემა: x + y = {s}, x − y = {d}. რას უდრის y?",
+              "variables": { "x0": { "min": 3, "max": 22 }, "y0": { "min": 1, "max": 12 }, "s": { "formula": "x0 + y0" }, "d": { "formula": "x0 - y0" } },
+              "formula": "y0",
+              "explanation_template": "2y = {s} − {d} → y = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "სისტემა: y = {k}x, x + y = {s}. რას უდრის x?",
+              "variables": { "k": { "min": 1, "max": 5 }, "x0": { "min": 2, "max": 12 }, "s": { "formula": "x0 + k * x0" } },
+              "formula": "x0",
+              "explanation_template": "({k}+1)x = {s} → x = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "სისტემა: x + y = 15, x − y = 3. რას უდრის x?",
+              "answer": "9",
+              "explanation": "2x = 18 → x = 9."
+            },
+            {
+              "type": "text",
+              "text": "სისტემის ამოხსნის ხერხებია გრაფიკული, ჩასმისა და რა? (ერთი სიტყვა)",
+              "answer": "შეკრების",
+              "acceptable": ["შეკრება", "შეკრების ხერხი", "შეკრებისა"],
+              "explanation": "სამი ძირითადი ხერხი."
+            },
+            {
+              "type": "text",
+              "text": "2 კალამი და 3 რვეული 13 ლარია, 1 კალამი და 1 რვეული 5 ლარი. რვეული ღირს:",
+              "answer": "3",
+              "acceptable": ["3 ლარი"],
+              "explanation": "კალამი 2, რვეული 3 ლარი."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "სისტემა: x + y = {s}, x − y = {d}. x უდრის:",
+              "variables": { "x0": { "min": 3, "max": 20 }, "y0": { "min": 1, "max": 10 }, "s": { "formula": "x0 + y0" }, "d": { "formula": "x0 - y0" } },
+              "formula": "x0",
+              "options": ["(s + d) / 2", "(s - d) / 2", "s + d", "s - d"],
+              "explanation_template": "x = {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სისტემის ამონახსნია:",
+              "options": ["წყვილი, რომელიც ორივე განტოლებას აკმაყოფილებს", "ერთი რიცხვი", "რომელიმე განტოლების ამონახსნი", "წრფე"],
+              "correct": 0,
+              "explanation": "ორივე პირობა ერთდროულად უნდა სრულდებოდეს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ სისტემის წრფეები პარალელურია, ამონახსნთა რაოდენობაა:",
+              "options": ["0", "1", "2", "უსასრულო"],
+              "correct": 0,
+              "explanation": "პარალელური წრფეები არ იკვეთება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ სისტემის წრფეები ემთხვევა, ამონახსნთა რაოდენობაა:",
+              "options": ["უსასრულოდ ბევრი", "0", "1", "2"],
+              "correct": 0,
+              "explanation": "ყველა წერტილი საერთოა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სისტემა: x + y = 10, x − y = 2. ამონახსნია:",
+              "options": ["(6; 4)", "(4; 6)", "(5; 5)", "(8; 2)"],
+              "correct": 0,
+              "explanation": "6 + 4 = 10 ✓, 6 − 4 = 2 ✓."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ტექსტური ამოცანისთვის ორი უცნობით საჭიროა:",
+              "options": ["ორი დამოუკიდებელი განტოლება", "ერთი განტოლება", "სამი განტოლება", "გრაფიკი მხოლოდ"],
+              "correct": 0,
+              "explanation": "ორი უცნობი — ორი პირობა."
+            }
+          ]
+        },
+        {
+          "title": "4.5. წრფივი ორუცნობიანი უტოლობა",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "უტოლობაში x + y > {s} შეამოწმეთ წყვილი ({x}; {y}). სრულდება? (1 დიახ, 0 არა)",
+              "variables": { "x": { "min": 5, "max": 20 }, "y": { "min": 5, "max": 20 }, "s": { "min": 1, "max": 8 } },
+              "formula": "1",
+              "explanation_template": "{x} + {y} > {s} — სრულდება, ამიტომ {answer}."
+            },
+            {
+              "type": "text",
+              "text": "წრფივი ორუცნობიანი უტოლობის ამონახსნთა სიმრავლე სიბრტყეზე არის: (ერთი სიტყვა)",
+              "answer": "ნახევარსიბრტყე",
+              "acceptable": ["ნახევარსიბრტყეა", "ნახევარი სიბრტყე"],
+              "explanation": "წრფე სიბრტყეს ორ ნახევარსიბრტყედ ყოფს."
+            },
+            {
+              "type": "text",
+              "text": "უტოლობა x + y > 5. აკმაყოფილებს თუ არა წყვილი (3; 4)? (დიახ/არა)",
+              "answer": "დიახ",
+              "acceptable": ["კი", "აკმაყოფილებს"],
+              "explanation": "3 + 4 = 7 > 5."
+            },
+            {
+              "type": "text",
+              "text": "მკაცრი უტოლობისას სასაზღვრო წრფე იხაზება როგორ? (ერთი სიტყვა)",
+              "answer": "წყვეტილად",
+              "acceptable": ["წყვეტილი", "პუნქტირით", "წყვეტილი ხაზით"],
+              "explanation": "წყვეტილი წრფე ნიშნავს, რომ საზღვარი არ შედის."
+            },
+            {
+              "type": "text",
+              "text": "უტოლობა y > 2x + 1. აკმაყოფილებს (0; 5)? (დიახ/არა)",
+              "answer": "დიახ",
+              "acceptable": ["კი", "აკმაყოფილებს"],
+              "explanation": "5 > 1 ✓."
+            },
+            {
+              "type": "text",
+              "text": "ნახევარსიბრტყის შესამოწმებლად მოსახერხებელია რომელი წერტილის აღება? (ჩაწერეთ სახით x;y)",
+              "answer": "0;0",
+              "acceptable": ["0; 0", "(0;0)", "სათავე"],
+              "explanation": "სათავე მარტივი შესამოწმებელია, თუ წრფე მასზე არ გადის."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრფივი ორუცნობიანი უტოლობის ამონახსნია:",
+              "options": ["ნახევარსიბრტყე", "წრფე", "წერტილი", "წრეწირი"],
+              "correct": 0,
+              "explanation": "სასაზღვრო წრფის ერთი მხარე."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "არამკაცრი უტოლობისას (≥) სასაზღვრო წრფე:",
+              "options": ["შედის ამონახსნებში", "არ შედის", "არ იხაზება", "წყვეტილია"],
+              "correct": 0,
+              "explanation": "≥ საზღვარსაც რთავს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უტოლობა x + y ≤ 4. აკმაყოფილებს:",
+              "options": ["(1; 2)", "(3; 3)", "(5; 0)", "(2; 4)"],
+              "correct": 0,
+              "explanation": "1 + 2 = 3 ≤ 4 ✓."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ნახევარსიბრტყის შესარჩევად:",
+              "options": ["ვსვამთ საკონტროლო წერტილს", "ვზომავთ კუთხეს", "ვხატავთ პარაბოლას", "ვიცნობთ"],
+              "correct": 0,
+              "explanation": "თუ წერტილი უტოლობას აკმაყოფილებს, სწორედ ის მხარეა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უტოლობათა სისტემის ამონახსნი სიბრტყეზეა:",
+              "options": ["ნახევარსიბრტყეთა თანაკვეთა", "მთელი სიბრტყე", "წრფე", "წერტილი"],
+              "correct": 0,
+              "explanation": "საერთო არე ყველა უტოლობისთვის."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უტოლობა y < x გამოსახავს არეს:",
+              "options": ["წრფე y = x-ის ქვემოთ", "ზემოთ", "თავად წრფეს", "მთელ სიბრტყეს"],
+              "correct": 0,
+              "explanation": "y < x ნიშნავს ორდინატი აბსცისაზე ნაკლებია."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "5. პროგრესიები",
+      "topics": [
+        {
+          "title": "5.1. მიმდევრობა. რეკურენტული წესით მოცემული მიმდევრობები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "მიმდევრობის პირველი წევრია {a1}, ყოველი მომდევნო {d}-ით მეტი. რას უდრის მე-2 წევრი?",
+              "variables": { "a1": { "min": 1, "max": 20 }, "d": { "min": 2, "max": 12 } },
+              "formula": "a1 + d",
+              "explanation_template": "{a1} + {d} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "მიმდევრობა: aₙ = {k}n. რას უდრის a{n}?",
+              "variables": { "k": { "min": 2, "max": 9 }, "n": { "min": 2, "max": 12 } },
+              "formula": "k * n",
+              "explanation_template": "{k} · {n} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "მიმდევრობა 2, 4, 8, 16. რას უდრის მომდევნო წევრი?",
+              "answer": "32",
+              "explanation": "ყოველი წევრი ორმაგდება."
+            },
+            {
+              "type": "text",
+              "text": "მიმდევრობა 1, 1, 2, 3, 5, 8. რას უდრის მომდევნო წევრი?",
+              "answer": "13",
+              "explanation": "ფიბონაჩი: 5 + 8 = 13."
+            },
+            {
+              "type": "text",
+              "text": "წესს, სადაც ყოველი წევრი წინებით გამოისახება, ეწოდება: (ერთი სიტყვა)",
+              "answer": "რეკურენტული",
+              "acceptable": ["რეკურენტულია", "რეკურენტული წესი"],
+              "explanation": "მაგ. aₙ = aₙ₋₁ + d."
+            },
+            {
+              "type": "text",
+              "text": "მიმდევრობა 3, 6, 9, 12. რას უდრის მე-6 წევრი?",
+              "answer": "18",
+              "explanation": "3-ის ჯერადები: 6 · 3 = 18."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "aₙ = {k}n მიმდევრობის a{n} წევრია:",
+              "variables": { "k": { "min": 2, "max": 8 }, "n": { "min": 2, "max": 10 } },
+              "formula": "k * n",
+              "options": ["k * n", "k + n", "n / k", "k ^ n"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მიმდევრობის წევრის ნომერს ეწოდება:",
+              "options": ["ინდექსი", "სხვაობა", "ჯამი", "მნიშვნელი"],
+              "correct": 0,
+              "explanation": "aₙ-ში n ინდექსია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რეკურენტული წესით მოცემული მიმდევრობისთვის აუცილებელია:",
+              "options": ["პირველი წევრის ცოდნა", "ბოლო წევრი", "ჯამი", "არაფერი"],
+              "correct": 0,
+              "explanation": "საწყისი წევრის გარეშე მიმდევრობა არ განისაზღვრება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მიმდევრობა aₙ = n² პირველი სამი წევრია:",
+              "options": ["1, 4, 9", "1, 2, 3", "2, 4, 6", "1, 3, 5"],
+              "correct": 0,
+              "explanation": "1², 2², 3²."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მიმდევრობა 5, 10, 15, 20 არის:",
+              "options": ["არითმეტიკული პროგრესია", "გეომეტრიული პროგრესია", "ფიბონაჩი", "შემთხვევითი"],
+              "correct": 0,
+              "explanation": "მუდმივი სხვაობა 5."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მიმდევრობა 3, 9, 27 არის:",
+              "options": ["გეომეტრიული პროგრესია", "არითმეტიკული", "მუდმივი", "კლებადი"],
+              "correct": 0,
+              "explanation": "მუდმივი შეფარდება 3."
+            }
+          ]
+        },
+        {
+          "title": "5.2. n-ური წევრის ფორმულები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "არითმეტიკული პროგრესიაა a₁ = {a1}, d = {d}. რას უდრის a{n}?",
+              "variables": { "a1": { "min": 1, "max": 15 }, "d": { "min": 2, "max": 9 }, "n": { "min": 3, "max": 12 } },
+              "formula": "a1 + (n - 1) * d",
+              "explanation_template": "aₙ = {a1} + ({n}−1)·{d} = {answer}.",
+              "explanation_steps": ["aₙ = a₁ + (n−1)d.", "= {a1} + ({n}−1)·{d} = {answer}."]
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გეომეტრიული პროგრესიაა b₁ = {b1}, q = {q}. რას უდრის b3?",
+              "variables": { "b1": { "min": 1, "max": 8 }, "q": { "min": 2, "max": 4 } },
+              "formula": "b1 * q * q",
+              "explanation_template": "b₃ = {b1} · {q}² = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "არითმეტიკულ პროგრესიაში a₁ = {a1}, a₂ = {a2}. რას უდრის სხვაობა d?",
+              "variables": { "a1": { "min": 1, "max": 15 }, "d": { "min": 2, "max": 10 }, "a2": { "formula": "a1 + d" } },
+              "formula": "d",
+              "explanation_template": "d = {a2} − {a1} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "არითმეტიკული პროგრესიის n-ური წევრის ფორმულაა aₙ = a₁ + (n − ?)d. ჩაწერეთ გამოკლებული რიცხვი.",
+              "answer": "1",
+              "explanation": "aₙ = a₁ + (n−1)d."
+            },
+            {
+              "type": "text",
+              "text": "a₁ = 2, d = 3. რას უდრის a₅?",
+              "answer": "14",
+              "explanation": "2 + 4·3 = 14."
+            },
+            {
+              "type": "text",
+              "text": "b₁ = 3, q = 2. რას უდრის b₄?",
+              "answer": "24",
+              "explanation": "3 · 2³ = 24."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "a₁ = {a1}, d = {d}. a{n} უდრის:",
+              "variables": { "a1": { "min": 1, "max": 12 }, "d": { "min": 2, "max": 8 }, "n": { "min": 3, "max": 10 } },
+              "formula": "a1 + (n - 1) * d",
+              "options": ["a1 + (n - 1) * d", "a1 + n * d", "a1 * n", "a1 + d"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "გეომეტრიული პროგრესიის n-ური წევრია:",
+              "options": ["bₙ = b₁ · qⁿ⁻¹", "bₙ = b₁ + (n−1)q", "bₙ = b₁ · q · n", "bₙ = b₁ / qⁿ"],
+              "correct": 0,
+              "explanation": "ყოველი წევრი q-ჯერ მეტია წინაზე."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "არითმეტიკულ პროგრესიაში d უდრის:",
+              "options": ["aₙ₊₁ − aₙ", "aₙ₊₁ / aₙ", "a₁ · n", "aₙ + a₁"],
+              "correct": 0,
+              "explanation": "სხვაობა მეზობელ წევრებს შორის."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "გეომეტრიულ პროგრესიაში q უდრის:",
+              "options": ["bₙ₊₁ / bₙ", "bₙ₊₁ − bₙ", "b₁ · n", "bₙ + b₁"],
+              "correct": 0,
+              "explanation": "მნიშვნელი მეზობელ წევრთა შეფარდებაა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "a₁ = 5, d = 4. a₁₀ უდრის:",
+              "options": ["41", "45", "40", "36"],
+              "correct": 0,
+              "explanation": "5 + 9·4 = 41."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ d < 0, არითმეტიკული პროგრესია:",
+              "options": ["კლებადია", "ზრდადია", "მუდმივია", "არ არსებობს"],
+              "correct": 0,
+              "explanation": "უარყოფითი სხვაობა კლებას ნიშნავს."
+            }
+          ]
+        },
+        {
+          "title": "5.3. არითმეტიკული პროგრესიის პირველი n წევრის ჯამის ფორმულა",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "არითმეტიკული პროგრესიაა a₁ = {a1}, aₙ = {an}, n = {n}. რას უდრის ჯამი Sₙ?",
+              "variables": { "a1": { "min": 1, "max": 10 }, "d": { "min": 1, "max": 6 }, "k": { "min": 2, "max": 8 }, "n": { "formula": "2 * k" }, "an": { "formula": "a1 + (n - 1) * d" } },
+              "formula": "(a1 + an) * n / 2",
+              "explanation_template": "Sₙ = ({a1} + {an}) · {n} ÷ 2 = {answer}.",
+              "explanation_steps": ["Sₙ = (a₁ + aₙ)·n / 2.", "= ({a1} + {an}) · {n} ÷ 2 = {answer}."]
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "1-დან {n}-მდე ნატურალურ რიცხვთა ჯამია:",
+              "variables": { "k": { "min": 2, "max": 25 }, "n": { "formula": "2 * k" } },
+              "formula": "n * (n + 1) / 2",
+              "explanation_template": "S = {n}·({n}+1) ÷ 2 = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "1 + 2 + 3 + ... + 10 უდრის:",
+              "answer": "55",
+              "explanation": "10 · 11 ÷ 2 = 55."
+            },
+            {
+              "type": "text",
+              "text": "1 + 2 + ... + 100 უდრის:",
+              "answer": "5050",
+              "acceptable": ["5.050", "5 050"],
+              "explanation": "100 · 101 ÷ 2 = 5050."
+            },
+            {
+              "type": "text",
+              "text": "არითმეტიკული პროგრესიის ჯამის ფორმულაში (a₁ + aₙ) მრავლდება n-ზე და იყოფა რაზე?",
+              "answer": "2",
+              "acceptable": ["ორზე"],
+              "explanation": "Sₙ = (a₁ + aₙ)·n / 2."
+            },
+            {
+              "type": "text",
+              "text": "a₁ = 2, a₅ = 10, n = 5. რას უდრის S₅?",
+              "answer": "30",
+              "explanation": "(2 + 10) · 5 ÷ 2 = 30."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "არითმეტიკული პროგრესიის ჯამის ფორმულაა:",
+              "options": ["Sₙ = (a₁ + aₙ)·n / 2", "Sₙ = a₁ · n", "Sₙ = aₙ · n", "Sₙ = (a₁ + aₙ) / 2"],
+              "correct": 0,
+              "explanation": "საშუალო წევრი × წევრთა რაოდენობა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "1 + 2 + ... + 20 უდრის:",
+              "options": ["210", "200", "220", "190"],
+              "correct": 0,
+              "explanation": "20 · 21 ÷ 2 = 210."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ჯამის მეორე ფორმულაა Sₙ = (2a₁ + (n−1)d)·n / 2. ის გამოიყენება, როცა:",
+              "options": ["aₙ უცნობია", "n უცნობია", "a₁ უცნობია", "d უცნობია"],
+              "correct": 0,
+              "explanation": "ის a₁ და d-ით გამოისახება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "პირველი 5 კენტი რიცხვის ჯამია:",
+              "options": ["25", "20", "30", "15"],
+              "correct": 0,
+              "explanation": "1+3+5+7+9 = 25 = 5²."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "გაუსის ხერხი ჯამის გამოთვლისას ეყრდნობა იმას, რომ:",
+              "options": ["ბოლოებიდან წყვილების ჯამი მუდმივია", "ყველა წევრი ტოლია", "ჯამი ნულია", "წევრები მრავლდება"],
+              "correct": 0,
+              "explanation": "a₁ + aₙ = a₂ + aₙ₋₁ = ..."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "a₁ = 1, d = 1, n = 50. S₅₀ უდრის:",
+              "options": ["1275", "1250", "2550", "1225"],
+              "correct": 0,
+              "explanation": "50 · 51 ÷ 2 = 1275."
+            }
+          ]
+        },
+        {
+          "title": "5.4. გეომეტრიული პროგრესიის პირველი n წევრის ჯამის ფორმულა",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გეომეტრიული პროგრესიაა b₁ = {b1}, q = 2, n = {n}. რას უდრის Sₙ?",
+              "variables": { "b1": { "min": 1, "max": 6 }, "n": { "min": 2, "max": 8 } },
+              "formula": "b1 * (2 ^ n - 1)",
+              "explanation_template": "Sₙ = {b1}·(2^{n} − 1) ÷ (2−1) = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გეომეტრიული პროგრესიაა b₁ = {b1}, q = 3. რას უდრის b₃?",
+              "variables": { "b1": { "min": 1, "max": 8 } },
+              "formula": "b1 * 9",
+              "explanation_template": "b₃ = {b1} · 3² = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "1 + 2 + 4 + 8 + 16 უდრის:",
+              "answer": "31",
+              "explanation": "S₅ = 1·(2⁵−1)/(2−1) = 31."
+            },
+            {
+              "type": "text",
+              "text": "გეომეტრიული პროგრესიის ჯამის ფორმულაა Sₙ = b₁(qⁿ − 1)/(q − ?). ჩაწერეთ რიცხვი.",
+              "answer": "1",
+              "explanation": "Sₙ = b₁(qⁿ − 1)/(q − 1), q ≠ 1."
+            },
+            {
+              "type": "text",
+              "text": "b₁ = 2, q = 3, n = 3. რას უდრის S₃?",
+              "answer": "26",
+              "explanation": "2 + 6 + 18 = 26."
+            },
+            {
+              "type": "text",
+              "text": "უსასრულოდ კლებადი გეომეტრიული პროგრესიისთვის |q| როგორია 1-თან შედარებით? (ერთი სიტყვა)",
+              "answer": "ნაკლები",
+              "acceptable": ["ნაკლებია", "მცირე"],
+              "explanation": "|q| < 1 პირობაა ჯამის არსებობისთვის."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "გეომეტრიული პროგრესიის ჯამის ფორმულაა:",
+              "options": ["Sₙ = b₁(qⁿ − 1)/(q − 1)", "Sₙ = (b₁ + bₙ)n/2", "Sₙ = b₁ · qⁿ", "Sₙ = b₁ · n"],
+              "correct": 0,
+              "explanation": "q ≠ 1-ის შემთხვევაში."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "1 + 3 + 9 + 27 უდრის:",
+              "options": ["40", "30", "36", "27"],
+              "correct": 0,
+              "explanation": "1·(3⁴−1)/2 = 80/2 = 40."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ q = 1, გეომეტრიული პროგრესიის ჯამია:",
+              "options": ["b₁ · n", "0", "b₁", "უსასრულო"],
+              "correct": 0,
+              "explanation": "ყველა წევრი ტოლია b₁-ის."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უსასრულოდ კლებადი პროგრესიის ჯამია:",
+              "options": ["S = b₁/(1 − q)", "S = b₁·q", "S = b₁/(q − 1)", "S = ∞"],
+              "correct": 0,
+              "explanation": "|q| < 1-ის შემთხვევაში."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "b₁ = 1, q = 1/2. უსასრულო ჯამია:",
+              "options": ["2", "1", "1/2", "უსასრულო"],
+              "correct": 0,
+              "explanation": "1/(1 − 0,5) = 2."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "b₁ = 5, q = 2, n = 4. S₄ უდრის:",
+              "options": ["75", "80", "40", "60"],
+              "correct": 0,
+              "explanation": "5 + 10 + 20 + 40 = 75."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
