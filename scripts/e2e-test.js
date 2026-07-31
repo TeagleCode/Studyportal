@@ -98,6 +98,54 @@ async function get(p, headers = {}) {
     if (!done) check('found the even-number static MC within 8 sessions', false);
   }
 
+  // ── balanced type mix (example topic has 2 MC + 2 text → every draw
+  //    must contain both types) ──
+  for (let round = 0; round < 3; round++) {
+    const s = (await post('/api/test/start', { topicId })).data;
+    const mc = s.questions.filter(q => q.question_type === 'multiple_choice').length;
+    const tx = s.questions.filter(q => q.question_type === 'text').length;
+    check(`draw ${round + 1}: balanced mix (2 MC + 2 text)`, mc === 2 && tx === 2, `got ${mc} MC / ${tx} text`);
+  }
+
+  // ── duplicate-option elimination (rigged question whose distractors
+  //    ALWAYS collide with the correct value) ──
+  {
+    const db2 = require('../db');
+    const [[g7]]  = await db2.execute('SELECT id FROM grades WHERE grade_num = 7');
+    const [[mth]] = await db2.execute("SELECT id FROM subjects WHERE slug = 'math'");
+    const [ch] = await db2.execute(
+      'INSERT INTO chapters (grade_id, subject_id, title, order_num) VALUES (?,?,?,99)', [g7.id, mth.id, 'E2E-TEMP']);
+    const [tp] = await db2.execute(
+      'INSERT INTO topics (chapter_id, title, order_num) VALUES (?,?,1)', [ch.insertId, 'E2E-TEMP']);
+    await db2.execute(
+      `INSERT INTO questions (topic_id, question_text, question_type, is_parametric, variables, answer_formula, option_formulas)
+       VALUES (?,?,?,?,?,?,?)`,
+      [tp.insertId, 'რას უდრის {a}?', 'multiple_choice', 1,
+       JSON.stringify({ a: { min: 2, max: 9 } }), 'a',
+       JSON.stringify([{ formula: 'a', is_correct: true }, { formula: 'a', is_correct: false }, { formula: 'a+1', is_correct: false }])]);
+
+    let allUnique = true, correctGraded = true;
+    for (let round = 0; round < 6; round++) {
+      const s = (await post('/api/test/start', { topicId: tp.insertId })).data;
+      const q = s.questions[0];
+      const texts = q.options.map(o => o.answer_text);
+      if (new Set(texts).size !== texts.length) allUnique = false;
+      // the smaller value is the correct 'a'; picking it must grade correct
+      const target = Math.min(...texts.map(Number));
+      const pick = q.options.find(o => Number(o.answer_text) === target);
+      const r = (await post('/api/test/answer', { sessionId: s.sessionId, questionIndex: 0, answer: pick.id })).data;
+      if (r.correct !== true) correctGraded = false;
+    }
+    check('colliding distractors are deduped (no identical options served)', allUnique);
+    check('the kept duplicate is always the correct one', correctGraded);
+
+    await db2.execute('DELETE aq FROM attempt_questions aq JOIN questions q ON aq.question_id = q.id WHERE q.topic_id = ?', [tp.insertId]);
+    await db2.execute('DELETE FROM quiz_attempts WHERE topic_id = ?', [tp.insertId]);
+    await db2.execute('DELETE FROM questions WHERE topic_id = ?', [tp.insertId]);
+    await db2.execute('DELETE FROM topics WHERE id = ?', [tp.insertId]);
+    await db2.execute('DELETE FROM chapters WHERE id = ?', [ch.insertId]);
+  }
+
   // ── quiz flow ──
   const start = (await post('/api/test/start', { topicId }, AUTH)).data;
   check('test session started', !!start.sessionId && start.questions.length === 4);

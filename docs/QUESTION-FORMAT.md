@@ -119,7 +119,10 @@ See `content/example-questions.json` for a working file with all 4 types.
   rest are distractors (write them as typical mistakes: forgot a carry,
   added instead of multiplied, off by one factor…).
 - Distractors that collide with the correct value for some variable draws are
-  fine occasionally, but check ranges so it's rare.
+  tolerated: the engine regenerates values until all options are distinct
+  (and as a last resort drops the colliding distractor, never the correct
+  option). Still, pick ranges where collisions are rare — every retry costs
+  a little serve time, and fewer options make the question easier.
 
 ## Checklist before importing a file
 

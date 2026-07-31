@@ -505,11 +505,29 @@ app.post('/api/test/start', async (req, res) => {
     return fail(res, 401, 'unauthorized');
   const username = tokenUser(req);   // null for guests; never trusted from body
   try {
-    const limit = 10;
-    const [questions] = await db.execute(
-      'SELECT * FROM questions WHERE topic_id = ? ORDER BY RAND() LIMIT ?',
-      [topicId, limit]
+    // Balanced draw: half multiple-choice, half open (text) questions, so a
+    // test is never all of one type. If the topic lacks enough of one type,
+    // top up with whatever it has.
+    const limit = 10, half = limit / 2;
+    const [mcPick] = await db.execute(
+      "SELECT * FROM questions WHERE topic_id = ? AND question_type = 'multiple_choice' ORDER BY RAND() LIMIT ?",
+      [topicId, half]
     );
+    const [textPick] = await db.execute(
+      "SELECT * FROM questions WHERE topic_id = ? AND question_type = 'text' ORDER BY RAND() LIMIT ?",
+      [topicId, half]
+    );
+    let questions = [...mcPick, ...textPick];
+    if (questions.length && questions.length < limit) {
+      const ids = questions.map(q => q.id);
+      const [extra] = await db.execute(
+        `SELECT * FROM questions WHERE topic_id = ? AND id NOT IN (${ids.map(() => '?').join(',')})
+         ORDER BY RAND() LIMIT ?`,
+        [topicId, ...ids, limit - questions.length]
+      );
+      questions = questions.concat(extra);
+    }
+    questions = shuffleWithIndex(questions).map(([q]) => q);  // interleave types
     if (!questions.length) return res.json({ sessionId: null, questions: [] });
 
     let userId = null;
@@ -532,28 +550,53 @@ app.post('/api/test/start', async (req, res) => {
       const cq  = { question_type: q.question_type || 'multiple_choice' };
 
       if (q.is_parametric) {
-        const vars   = q.variables ? JSON.parse(q.variables) : {};
-        const values = generateValues(vars);
-        sq.generated_values = values;
-        cq.question_text    = fillTemplate(q.question_text, values);
+        const vars     = q.variables ? JSON.parse(q.variables) : {};
+        const isMC     = (q.question_type || 'multiple_choice') === 'multiple_choice';
+        const formulas = isMC && q.option_formulas ? JSON.parse(q.option_formulas) : null;
 
-        if (q.answer_formula) {
-          try { sq.computed_answer = +evaluate(q.answer_formula, values).toFixed(4); }
-          catch (e) { console.error('Formula error:', e); sq.computed_answer = null; }
-        }
-
-        if ((q.question_type || 'multiple_choice') === 'multiple_choice' && q.option_formulas) {
-          const shuffled = shuffleWithIndex(JSON.parse(q.option_formulas));
-          const opts = shuffled.map(([f]) => {
+        // Distractor formulas can evaluate to the same value for some draws,
+        // showing the student two identical answers where only one grades
+        // correct. Regenerate values until every option is distinct.
+        let values, computed, shuffled = null, opts = null;
+        for (let attempt = 0; attempt < 15; attempt++) {
+          values   = generateValues(vars);
+          computed = null;
+          if (q.answer_formula) {
+            try { computed = +evaluate(q.answer_formula, values).toFixed(4); }
+            catch (e) { console.error('Formula error:', e); }
+          }
+          if (!formulas) break;
+          shuffled = shuffleWithIndex(formulas);
+          opts = shuffled.map(([f]) => {
             let val;
             try { val = +evaluate(f.formula, values).toFixed(2); } catch { val = f.fallback || '?'; }
             return { answer_text: formatGeo(val), _correct: !!f.is_correct };
           });
-          cq.options = opts.map((o, i) => ({ id: i, answer_text: o.answer_text }));
-          sq.option_index_map = shuffled.map(([, orig]) => orig);  // served id → authored index
-          let correctIdx = opts.findIndex(o => o._correct);
+          if (new Set(opts.map(o => o.answer_text)).size === opts.length) break;
+        }
+
+        sq.generated_values = values;
+        sq.computed_answer  = computed ?? null;
+        cq.question_text    = fillTemplate(q.question_text, values);
+
+        if (opts) {
+          // Last resort if collisions survived every retry: drop duplicate
+          // options, keeping the correct one when texts collide.
+          const keep = [];
+          const seen = new Map();                   // text → position in keep
+          opts.forEach((o, i) => {
+            const at = seen.get(o.answer_text);
+            if (at === undefined) { seen.set(o.answer_text, keep.length); keep.push(i); }
+            else if (o._correct) keep[at] = i;      // correct replaces distractor
+          });
+          const fOpts  = keep.map(i => opts[i]);
+          const fPairs = keep.map(i => shuffled[i]);
+
+          cq.options = fOpts.map((o, i) => ({ id: i, answer_text: o.answer_text }));
+          sq.option_index_map = fPairs.map(([, orig]) => orig);  // served id → authored index
+          let correctIdx = fOpts.findIndex(o => o._correct);
           if (correctIdx < 0 && sq.computed_answer !== null) {
-            correctIdx = opts.findIndex(o =>
+            correctIdx = fOpts.findIndex(o =>
               Math.abs(parseFloat(o.answer_text) - sq.computed_answer) < 0.05
             );
           }
@@ -570,9 +613,20 @@ app.post('/api/test/start', async (req, res) => {
             [q.id]
           );
           const shuffled = shuffleWithIndex(answers);
-          cq.options = shuffled.map(([a], i) => ({ id: i, answer_text: a.answer_text }));
-          sq.correct_answer_id = shuffled.findIndex(([a]) => a.is_correct);
-          sq.option_index_map  = shuffled.map(([, orig]) => orig);
+          // Drop duplicate answer texts (authoring mistakes), keeping the
+          // correct row when texts collide.
+          const keep = [];
+          const seen = new Map();
+          shuffled.forEach(([a], i) => {
+            const text = String(a.answer_text).trim();
+            const at = seen.get(text);
+            if (at === undefined) { seen.set(text, keep.length); keep.push(i); }
+            else if (a.is_correct) keep[at] = i;
+          });
+          const fPairs = keep.map(i => shuffled[i]);
+          cq.options = fPairs.map(([a], i) => ({ id: i, answer_text: a.answer_text }));
+          sq.correct_answer_id = fPairs.findIndex(([a]) => a.is_correct);
+          sq.option_index_map  = fPairs.map(([, orig]) => orig);
         }
       }
 
