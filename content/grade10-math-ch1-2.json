@@ -1,0 +1,1345 @@
+{
+  "grade": 10,
+  "subject": "math",
+  "chapters": [
+    {
+      "title": "1. გამეორება. რიცხვები, მოქმედებები რიცხვებზე",
+      "topics": [
+        {
+          "title": "1.1. ნატურალური რიცხვები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "რას უდრის {a}-ისა და {b}-ის უდიდესი საერთო გამყოფი?",
+              "variables": { "d": { "min": 2, "max": 9 }, "p": { "min": 2, "max": 7 }, "q": { "min": 8, "max": 13 }, "a": { "formula": "d * p" }, "b": { "formula": "d * q" } },
+              "formula": "gcd(a, b)",
+              "explanation_template": "usg({a}; {b}) = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "რას უდრის {a}-ისა და {b}-ის უმცირესი საერთო ჯერადი?",
+              "variables": { "a": { "min": 2, "max": 12 }, "b": { "min": 2, "max": 12 } },
+              "formula": "lcm(a, b)",
+              "explanation_template": "usj({a}; {b}) = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "{n}-ის ციფრთა ჯამია:",
+              "variables": { "a": { "min": 1, "max": 9 }, "b": { "min": 0, "max": 9 }, "c": { "min": 0, "max": 9 }, "n": { "formula": "100 * a + 10 * b + c" } },
+              "formula": "a + b + c",
+              "explanation_template": "{a} + {b} + {c} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "ნატურალურ რიცხვთა სიმრავლეში 0 შედის? (დიახ/არა)",
+              "answer": "არა",
+              "acceptable": ["არ შედის", "არაა"],
+              "explanation": "ℕ = {1, 2, 3, ...}."
+            },
+            {
+              "type": "text",
+              "text": "რიცხვს, რომელსაც ზუსტად ორი გამყოფი აქვს, ეწოდება: (ერთი სიტყვა)",
+              "answer": "მარტივი",
+              "acceptable": ["მარტივია", "მარტივი რიცხვი"],
+              "explanation": "1 და თავად რიცხვი."
+            },
+            {
+              "type": "text",
+              "text": "12-ისა და 18-ის უდიდესი საერთო გამყოფია:",
+              "answer": "6",
+              "explanation": "6 ორივეს ყოფს."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "{a}-ისა და {b}-ის უსგ არის:",
+              "variables": { "d": { "min": 2, "max": 8 }, "p": { "min": 2, "max": 6 }, "q": { "min": 7, "max": 11 }, "a": { "formula": "d * p" }, "b": { "formula": "d * q" } },
+              "formula": "gcd(a, b)",
+              "options": ["gcd(a, b)", "lcm(a, b)", "a - b", "a + b"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რომელი რიცხვია მარტივი?",
+              "options": ["17", "15", "21", "27"],
+              "correct": 0,
+              "explanation": "17-ს მხოლოდ 1 და 17 ყოფს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "3-ზე გაყოფადობის ნიშანია:",
+              "options": ["ციფრთა ჯამი 3-ზე იყოფა", "ბოლო ციფრი 3-ია", "რიცხვი კენტია", "ბოლო ორი ციფრი 3-ზე იყოფა"],
+              "correct": 0,
+              "explanation": "კლასიკური ნიშანი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ყველაზე პატარა მარტივი რიცხვია:",
+              "options": ["2", "1", "3", "0"],
+              "correct": 0,
+              "explanation": "1 არ არის მარტივი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "8-ისა და 12-ის უმცირესი საერთო ჯერადია:",
+              "options": ["24", "96", "4", "48"],
+              "correct": 0,
+              "explanation": "24 ორივეზე იყოფა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რიცხვთა ძირითადი თეორემით ყოველი ნატურალური რიცხვი > 1 იშლება:",
+              "options": ["მარტივ მამრავლებად ერთადერთი წესით", "ორად მხოლოდ", "ნებისმიერად", "არ იშლება"],
+              "correct": 0,
+              "explanation": "არითმეტიკის ძირითადი თეორემა."
+            }
+          ]
+        },
+        {
+          "title": "1.2. მთელი რიცხვები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: ({a}) + ({b})",
+              "variables": { "a": { "min": -40, "max": -2 }, "b": { "min": -40, "max": -2 } },
+              "formula": "a + b",
+              "explanation_template": "= {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: {a} − ({b})",
+              "variables": { "a": { "min": 5, "max": 40 }, "b": { "min": -30, "max": -2 }, "nb": { "formula": "-b" } },
+              "formula": "a - b",
+              "explanation_template": "{a} + {nb} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: ({a}) · ({b})",
+              "variables": { "a": { "min": -12, "max": -2 }, "b": { "min": -12, "max": -2 } },
+              "formula": "a * b",
+              "explanation_template": "ორი უარყოფითის ნამრავლი დადებითია: {answer}."
+            },
+            {
+              "type": "text",
+              "text": "როგორ აღინიშნება მთელ რიცხვთა სიმრავლე? (სიმბოლო)",
+              "answer": "Z",
+              "acceptable": ["ℤ", "z"],
+              "explanation": "ℤ = {..., −1, 0, 1, ...}."
+            },
+            {
+              "type": "text",
+              "text": "−7-ის საპირისპირო რიცხვია:",
+              "answer": "7",
+              "explanation": "−(−7) = 7."
+            },
+            {
+              "type": "text",
+              "text": "შეადარეთ −12 და −3. ჩაწერეთ უდიდესი.",
+              "answer": "-3",
+              "acceptable": ["−3"],
+              "explanation": "−3 მარჯვნივაა ღერძზე."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "({a}) · ({b}) უდრის:",
+              "variables": { "a": { "min": -9, "max": -2 }, "b": { "min": -9, "max": -2 } },
+              "formula": "a * b",
+              "options": ["a * b", "-(a * b)", "a + b", "a - b"],
+              "explanation_template": "= {answer}."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მთელი რიცხვები მოიცავს:",
+              "options": ["დადებითს, უარყოფითს და ნულს", "მხოლოდ დადებითს", "მხოლოდ ნატურალურს", "წილადებს"],
+              "correct": 0,
+              "explanation": "ℤ სამივეს აერთიანებს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "(−15) ÷ 3 უდრის:",
+              "options": ["−5", "5", "−45", "45"],
+              "correct": 0,
+              "explanation": "სხვადასხვა ნიშნის განაყოფი უარყოფითია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ℕ და ℤ-ს შორის მიმართებაა:",
+              "options": ["ℕ ⊂ ℤ", "ℤ ⊂ ℕ", "ℕ = ℤ", "კავშირი არ არის"],
+              "correct": 0,
+              "explanation": "ნატურალური მთელის ქვესიმრავლეა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ორი მთელი რიცხვის განაყოფი ყოველთვის მთელია?",
+              "options": ["არა", "დიახ", "მხოლოდ დადებითებისთვის", "მხოლოდ ლუწებისთვის"],
+              "correct": 0,
+              "explanation": "მაგ. 3 ÷ 2 = 1,5."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "−8 + 8 უდრის:",
+              "options": ["0", "16", "−16", "8"],
+              "correct": 0,
+              "explanation": "საპირისპირო რიცხვთა ჯამი."
+            }
+          ]
+        },
+        {
+          "title": "1.3. რაციონალური რიცხვები. რაციონალური რიცხვების ჩაწერის სხვადასხვა ფორმა. პროცენტი",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "რას უდრის {n}-ის {p}%?",
+              "variables": { "k": { "min": 1, "max": 9 }, "n": { "formula": "100 * k" }, "p": { "min": 2, "max": 60 } },
+              "formula": "n * p / 100",
+              "explanation_template": "{n} · {p} ÷ 100 = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "შეკვეცეთ {a}/{b} და ჩაწერეთ მრიცხველი.",
+              "variables": { "d": { "min": 2, "max": 9 }, "p": { "min": 2, "max": 7 }, "q": { "min": 8, "max": 13 }, "a": { "formula": "d * p" }, "b": { "formula": "d * q" } },
+              "formula": "p",
+              "explanation_template": "ორივე გავყოთ {d}-ზე → {answer}."
+            },
+            {
+              "type": "text",
+              "text": "3/4 ათწილადის სახით:",
+              "answer": "0.75",
+              "acceptable": ["0,75"],
+              "explanation": "3 ÷ 4 = 0,75."
+            },
+            {
+              "type": "text",
+              "text": "0,4 პროცენტებში: (მხოლოდ რიცხვი)",
+              "answer": "40",
+              "explanation": "0,4 · 100 = 40%."
+            },
+            {
+              "type": "text",
+              "text": "200-ის 15% უდრის:",
+              "answer": "30",
+              "explanation": "200 · 0,15 = 30."
+            },
+            {
+              "type": "text",
+              "text": "რაციონალური რიცხვის ათწილადი ჩანაწერი სასრულია ან რა? (ერთი სიტყვა)",
+              "answer": "პერიოდული",
+              "acceptable": ["პერიოდულია", "პერიოდული ათწილადი"],
+              "explanation": "ეს რაციონალურობის ნიშანია."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "{n}-ის {p}% უდრის:",
+              "variables": { "k": { "min": 1, "max": 8 }, "n": { "formula": "100 * k" }, "p": { "min": 5, "max": 50 } },
+              "formula": "n * p / 100",
+              "options": ["n * p / 100", "n * p", "n / p", "n + p"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რაციონალური რიცხვი ჩაიწერება სახით:",
+              "options": ["m/n, n ≠ 0", "მხოლოდ ათწილადად", "მხოლოდ მთელად", "√m"],
+              "correct": 0,
+              "explanation": "ორი მთელის შეფარდება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "50% უდრის წილადს:",
+              "options": ["1/2", "1/4", "1/5", "5/10 არ მარტივდება"],
+              "correct": 0,
+              "explanation": "50/100 = 1/2."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "0,25 პროცენტებში:",
+              "options": ["25%", "2,5%", "0,25%", "250%"],
+              "correct": 0,
+              "explanation": "0,25 · 100 = 25%."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ფასი 20%-ით გაიზარდა. ახალი ფასი საწყისის:",
+              "options": ["120%-ია", "20%-ია", "80%-ია", "100%-ია"],
+              "correct": 0,
+              "explanation": "100% + 20%."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "1/3 ათწილადად არის:",
+              "options": ["0,333… (პერიოდული)", "0,3", "3,0", "არ ჩაიწერება"],
+              "correct": 0,
+              "explanation": "პერიოდული ათწილადი."
+            }
+          ]
+        },
+        {
+          "title": "1.4. კვადრატული ფესვი. ირაციონალური რიცხვები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ √{n}",
+              "variables": { "a": { "min": 2, "max": 30 }, "n": { "formula": "a * a" } },
+              "formula": "sqrt(n)",
+              "explanation_template": "{answer}² = {n}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ √{n} · √{m}",
+              "variables": { "a": { "min": 2, "max": 9 }, "b": { "min": 2, "max": 9 }, "n": { "formula": "a * a" }, "m": { "formula": "b * b" } },
+              "formula": "a * b",
+              "explanation_template": "= {answer}."
+            },
+            {
+              "type": "text",
+              "text": "√169 უდრის:",
+              "answer": "13",
+              "explanation": "13² = 169."
+            },
+            {
+              "type": "text",
+              "text": "√3 რაციონალურია თუ ირაციონალური?",
+              "answer": "ირაციონალური",
+              "acceptable": ["ირაციონალურია"],
+              "explanation": "ვერ ჩაიწერება წილადად."
+            },
+            {
+              "type": "text",
+              "text": "გაამარტივეთ √32 სახით a√2. ჩაწერეთ a.",
+              "answer": "4",
+              "explanation": "√32 = √(16·2) = 4√2."
+            },
+            {
+              "type": "text",
+              "text": "√(a²) უდრის |a| თუ a? ჩაწერეთ სწორი ჩანაწერი.",
+              "answer": "|a|",
+              "acceptable": ["მოდული a", "|a|"],
+              "explanation": "ფესვი არაუარყოფითია."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "√{n} უდრის:",
+              "variables": { "a": { "min": 3, "max": 25 }, "n": { "formula": "a * a" } },
+              "formula": "sqrt(n)",
+              "options": ["sqrt(n)", "n / 2", "n / 4", "n"],
+              "explanation_template": "= {answer}."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რომელი რიცხვია ირაციონალური?",
+              "options": ["π", "3,14", "22/7", "0,5"],
+              "correct": 0,
+              "explanation": "π-ს ჩანაწერი უსასრულო და არაპერიოდულია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√a · √b უდრის (a,b ≥ 0):",
+              "options": ["√(ab)", "√(a+b)", "ab", "a+b"],
+              "correct": 0,
+              "explanation": "ფესვთა ნამრავლის თვისება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უარყოფითი რიცხვის კვადრატული ფესვი ℝ-ში:",
+              "options": ["არ არსებობს", "უარყოფითია", "დადებითია", "ნულია"],
+              "correct": 0,
+              "explanation": "კვადრატი არაუარყოფითია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√8 + √2 უდრის:",
+              "options": ["3√2", "√10", "2√2", "4√2"],
+              "correct": 0,
+              "explanation": "2√2 + √2 = 3√2."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ირაციონალურ რიცხვთა ჯამი ყოველთვის ირაციონალურია?",
+              "options": ["არა", "დიახ", "მხოლოდ დადებითებისთვის", "ყოველთვის რაციონალურია"],
+              "correct": 0,
+              "explanation": "მაგ. √2 + (−√2) = 0."
+            }
+          ]
+        },
+        {
+          "title": "1.5. ნამდვილი რიცხვები და მათი თვისებები",
+          "questions": [
+            {
+              "type": "text",
+              "text": "რაციონალურ და ირაციონალურ რიცხვთა გაერთიანებაა: (ერთი სიტყვა)",
+              "answer": "ნამდვილი",
+              "acceptable": ["ნამდვილი რიცხვები", "ნამდვილია"],
+              "explanation": "ℝ."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ: {a} + {b} და შეადარეთ {b} + {a}-ს. თუ ტოლია, ჩაწერეთ ჯამი.",
+              "variables": { "a": { "min": 2, "max": 30 }, "b": { "min": 2, "max": 30 } },
+              "formula": "a + b",
+              "explanation_template": "შეკრება გადანაცვლებადია: {answer}."
+            },
+            {
+              "type": "text",
+              "text": "შეკრების გადანაცვლებადობის თვისებაა a + b = ? ჩაწერეთ მარჯვენა მხარე.",
+              "answer": "b + a",
+              "acceptable": ["b+a"],
+              "explanation": "კომუტაციურობა."
+            },
+            {
+              "type": "text",
+              "text": "რიცხვი 0 შეკრებისთვის რა ელემენტია? (ერთი სიტყვა)",
+              "answer": "ნეიტრალური",
+              "acceptable": ["ნეიტრალურია", "ნეიტრალური ელემენტი"],
+              "explanation": "a + 0 = a."
+            },
+            {
+              "type": "text",
+              "text": "რიცხვი 1 გამრავლებისთვის რა ელემენტია? (ერთი სიტყვა)",
+              "answer": "ნეიტრალური",
+              "acceptable": ["ნეიტრალურია", "ერთეული"],
+              "explanation": "a · 1 = a."
+            },
+            {
+              "type": "text",
+              "text": "ორ ნებისმიერ ნამდვილ რიცხვს შორის რამდენი ნამდვილი რიცხვია?",
+              "answer": "უსასრულოდ ბევრი",
+              "acceptable": ["უსასრულო", "უამრავი", "უსასრულოდ"],
+              "explanation": "ℝ მკვრივია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "განაწილებადობის კანონია:",
+              "options": ["a(b + c) = ab + ac", "a + b = b + a", "a · b = b · a", "a + 0 = a"],
+              "correct": 0,
+              "explanation": "დისტრიბუციულობა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სწორი ჩართულობაა:",
+              "options": ["ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ", "ℝ ⊂ ℚ", "ℚ ⊂ ℤ", "ℤ ⊂ ℕ"],
+              "correct": 0,
+              "explanation": "თანმიმდევრული გაფართოება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რიცხვი a-ს შებრუნებულია (a ≠ 0):",
+              "options": ["1/a", "−a", "a", "0"],
+              "correct": 0,
+              "explanation": "a · (1/a) = 1."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ნამდვილ რიცხვთა ღერძზე ყოველ წერტილს შეესაბამება:",
+              "options": ["ერთი ნამდვილი რიცხვი", "ორი", "მხოლოდ მთელი", "არცერთი"],
+              "correct": 0,
+              "explanation": "ურთიერთცალსახა შესაბამისობა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√(−9) არის:",
+              "options": ["არა ნამდვილი რიცხვი", "−3", "3", "0"],
+              "correct": 0,
+              "explanation": "ℝ-ში არ არსებობს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ჯგუფებადობის (ასოციაციურობის) კანონია:",
+              "options": ["(a+b)+c = a+(b+c)", "a+b = b+a", "a·1 = a", "a+0 = a"],
+              "correct": 0,
+              "explanation": "ასოციაციურობა."
+            }
+          ]
+        },
+        {
+          "title": "1.6. რიცხვის მოდული. რიცხვის მიახლოებითი მნიშვნელობა. მიახლოების აბსოლუტური ცდომილება. ფარდობითი ცდომილება",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "რას უდრის |{a}|?",
+              "variables": { "a": { "min": -50, "max": -2 } },
+              "formula": "abs(a)",
+              "explanation_template": "= {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "ზუსტი მნიშვნელობაა {x}, მიახლოებითი {y}. რას უდრის აბსოლუტური ცდომილება?",
+              "variables": { "x": { "min": 10, "max": 100 }, "d": { "min": 1, "max": 9 }, "y": { "formula": "x + d" } },
+              "formula": "abs(y - x)",
+              "explanation_template": "|{y} − {x}| = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "|−15| უდრის:",
+              "answer": "15",
+              "explanation": "მოდული არაუარყოფითია."
+            },
+            {
+              "type": "text",
+              "text": "აბსოლუტური ცდომილება 2-ია, ზუსტი მნიშვნელობა 50. რას უდრის ფარდობითი ცდომილება პროცენტებში? (მხოლოდ რიცხვი)",
+              "answer": "4",
+              "explanation": "2 ÷ 50 · 100 = 4%."
+            },
+            {
+              "type": "text",
+              "text": "რიცხვი 3,847 დაამრგვალეთ მეათედამდე.",
+              "answer": "3.8",
+              "acceptable": ["3,8"],
+              "explanation": "მეასედი 4 < 5, ამიტომ ქვემოთ."
+            },
+            {
+              "type": "text",
+              "text": "ფარდობითი ცდომილება არის აბსოლუტური ცდომილების შეფარდება რასთან? (ერთი სიტყვა)",
+              "answer": "ზუსტთან",
+              "acceptable": ["ზუსტი მნიშვნელობა", "ზუსტ მნიშვნელობასთან", "ზუსტი"],
+              "explanation": "δ = Δ / |x|."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "|{a}| უდრის:",
+              "variables": { "a": { "min": -40, "max": -2 } },
+              "formula": "abs(a)",
+              "options": ["abs(a)", "a", "-abs(a)", "0"],
+              "explanation_template": "= {answer}."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "აბსოლუტური ცდომილებაა:",
+              "options": ["|მიახლოებითი − ზუსტი|", "მიახლოებითი ÷ ზუსტი", "ზუსტი − 1", "მიახლოებითი · 100"],
+              "correct": 0,
+              "explanation": "სხვაობის მოდული."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "|x| = 5 განტოლების ამონახსნებია:",
+              "options": ["5 და −5", "5 მხოლოდ", "−5 მხოლოდ", "0"],
+              "correct": 0,
+              "explanation": "ორივე რიცხვის მოდული 5-ია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ფარდობითი ცდომილება ჩვეულებრივ გამოისახება:",
+              "options": ["პროცენტებში", "მეტრებში", "გრადუსებში", "წამებში"],
+              "correct": 0,
+              "explanation": "ის უგანზომილებო სიდიდეა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "2,346 დამრგვალებული მეასედამდე:",
+              "options": ["2,35", "2,34", "2,3", "2,4"],
+              "correct": 0,
+              "explanation": "მეათასედი 6 ≥ 5 → ზემოთ."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "|a| ≥ 0 სრულდება:",
+              "options": ["ყოველი ნამდვილი a-სთვის", "მხოლოდ დადებითისთვის", "მხოლოდ მთელისთვის", "არასდროს"],
+              "correct": 0,
+              "explanation": "მოდულის განსაზღვრება."
+            }
+          ]
+        },
+        {
+          "title": "1.7. ფესვი. რიცხვის წარმოდგენის სტანდარტული ფორმა. წილადმაჩვენებლიანი ხარისხი",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ კუბური ფესვი {n}-დან.",
+              "variables": { "a": { "min": 2, "max": 10 }, "n": { "formula": "a * a * a" } },
+              "formula": "a",
+              "explanation_template": "{a}³ = {n}."
+            },
+            {
+              "type": "text",
+              "text": "რიცხვი 45 000 სტანდარტული ფორმით არის 4,5 · 10ⁿ. ჩაწერეთ n.",
+              "answer": "4",
+              "explanation": "4,5 · 10⁴."
+            },
+            {
+              "type": "text",
+              "text": "რიცხვი 0,0007 სტანდარტული ფორმით არის 7 · 10ⁿ. ჩაწერეთ n.",
+              "answer": "-4",
+              "acceptable": ["−4"],
+              "explanation": "7 · 10⁻⁴."
+            },
+            {
+              "type": "text",
+              "text": "რას უდრის 9^(1/2)?",
+              "answer": "3",
+              "explanation": "a^(1/2) = √a."
+            },
+            {
+              "type": "text",
+              "text": "რას უდრის 8^(1/3)?",
+              "answer": "2",
+              "explanation": "კუბური ფესვი 8-დან."
+            },
+            {
+              "type": "text",
+              "text": "სტანდარტულ ფორმაში a · 10ⁿ, a რომელ შუალედშია? ჩაწერეთ ქვედა საზღვარი.",
+              "answer": "1",
+              "explanation": "1 ≤ a < 10."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "კუბური ფესვი {n}-დან:",
+              "variables": { "a": { "min": 2, "max": 9 }, "n": { "formula": "a * a * a" } },
+              "formula": "a",
+              "options": ["a", "n / 3", "a * a", "n / a"],
+              "explanation_template": "= {answer}."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "a^(1/n) უდრის:",
+              "options": ["ⁿ√a", "aⁿ", "1/aⁿ", "n·a"],
+              "correct": 0,
+              "explanation": "წილადმაჩვენებლიანი ხარისხის განსაზღვრება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "a^(m/n) უდრის:",
+              "options": ["ⁿ√(aᵐ)", "aᵐⁿ", "m/n · a", "ⁿ√a · m"],
+              "correct": 0,
+              "explanation": "მრიცხველი ხარისხია, მნიშვნელი — ფესვის მაჩვენებელი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "3 · 10⁸ ჩვეულებრივი ჩანაწერით:",
+              "options": ["300 000 000", "30 000 000", "3 000 000 000", "38"],
+              "correct": 0,
+              "explanation": "8 ნული."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "16^(3/4) უდრის:",
+              "options": ["8", "12", "4", "64"],
+              "correct": 0,
+              "explanation": "⁴√16 = 2; 2³ = 8."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სტანდარტული ფორმა გამოიყენება:",
+              "options": ["ძალიან დიდი და ძალიან მცირე რიცხვებისთვის", "მხოლოდ მთელებისთვის", "მხოლოდ წილადებისთვის", "არასდროს"],
+              "correct": 0,
+              "explanation": "მოკლე ჩანაწერისთვის."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "2. სიმრავლეთა თეორიის ელემენტები, გამონათქვამების ლოგიკა",
+      "topics": [
+        {
+          "title": "2.1. სიმრავლე, ქვესიმრავლე. სიმრავლეთა მოცემის ხერხები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "სიმრავლეს აქვს {n} ელემენტი. რამდენი ქვესიმრავლე აქვს?",
+              "variables": { "n": { "min": 1, "max": 7 } },
+              "formula": "2 ^ n",
+              "explanation_template": "2^{n} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "A = {1; 2; 3; 4}. რამდენი ელემენტია?",
+              "answer": "4",
+              "acceptable": ["ოთხი"],
+              "explanation": "ოთხი ჩამოთვლილი ელემენტი."
+            },
+            {
+              "type": "text",
+              "text": "ცარიელი სიმრავლის ელემენტთა რაოდენობაა:",
+              "answer": "0",
+              "acceptable": ["ნული"],
+              "explanation": "∅-ს ელემენტი არ აქვს."
+            },
+            {
+              "type": "text",
+              "text": "სიმრავლის მოცემის ხერხებია ჩამოთვლა და რა? (ერთი სიტყვა)",
+              "answer": "თვისება",
+              "acceptable": ["თვისებით", "დამახასიათებელი თვისება", "აღწერა"],
+              "explanation": "ელემენტთა საერთო თვისების მითითებით."
+            },
+            {
+              "type": "text",
+              "text": "B = {2; 4}. A = {1; 2; 3; 4}. B არის A-ს ქვესიმრავლე? (დიახ/არა)",
+              "answer": "დიახ",
+              "acceptable": ["კი", "არის"],
+              "explanation": "B-ს ყველა ელემენტი A-შია."
+            },
+            {
+              "type": "text",
+              "text": "სამელემენტიან სიმრავლეს რამდენი ქვესიმრავლე აქვს?",
+              "answer": "8",
+              "explanation": "2³ = 8."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "{n}-ელემენტიან სიმრავლეს ქვესიმრავლეთა რაოდენობაა:",
+              "variables": { "n": { "min": 1, "max": 6 } },
+              "formula": "2 ^ n",
+              "options": ["2 ^ n", "n * 2", "n ^ 2", "n"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ცარიელი სიმრავლე ნებისმიერი სიმრავლის ქვესიმრავლეა?",
+              "options": ["დიახ", "არა", "მხოლოდ ცარიელისა", "მხოლოდ სასრულისა"],
+              "correct": 0,
+              "explanation": "∅ ⊂ A ყოველთვის."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სიმრავლეში ელემენტთა თანმიმდევრობა:",
+              "options": ["მნიშვნელობა არ აქვს", "მნიშვნელოვანია", "ანბანური უნდა იყოს", "ზრდადი უნდა იყოს"],
+              "correct": 0,
+              "explanation": "{1;2} = {2;1}."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "როგორ აღინიშნება „a ეკუთვნის A-ს“?",
+              "options": ["a ∈ A", "a ⊂ A", "a ∪ A", "a ∩ A"],
+              "correct": 0,
+              "explanation": "∈ კუთვნილების ნიშანია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "A ⊂ B ნიშნავს:",
+              "options": ["A არის B-ს ქვესიმრავლე", "A ეკუთვნის B-ს", "A = B", "A და B თანაუკვეთია"],
+              "correct": 0,
+              "explanation": "⊂ ქვესიმრავლის ნიშანია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სიმრავლე {x | x ლუწი ნატურალურია, x < 10}:",
+              "options": ["{2;4;6;8}", "{1;3;5;7;9}", "{2;4;6;8;10}", "{0;2;4;6;8}"],
+              "correct": 0,
+              "explanation": "10-ზე ნაკლები ლუწი ნატურალურები."
+            }
+          ]
+        },
+        {
+          "title": "2.2. მოქმედებები სიმრავლეებზე. ვენის დიაგრამები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "|A| = {a}, |B| = {b}, |A∩B| = {c}. რას უდრის |A∪B|?",
+              "variables": { "c": { "min": 1, "max": 5 }, "x": { "min": 1, "max": 8 }, "y": { "min": 1, "max": 8 }, "a": { "formula": "c + x" }, "b": { "formula": "c + y" } },
+              "formula": "a + b - c",
+              "explanation_template": "{a} + {b} − {c} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "A = {1;2;3}, B = {3;4}. რამდენი ელემენტია A∪B-ში?",
+              "answer": "4",
+              "explanation": "{1;2;3;4}."
+            },
+            {
+              "type": "text",
+              "text": "A = {1;2;3}, B = {3;4}. რამდენი ელემენტია A∩B-ში?",
+              "answer": "1",
+              "explanation": "მხოლოდ 3."
+            },
+            {
+              "type": "text",
+              "text": "როგორ აღინიშნება გაერთიანება? (სიმბოლო)",
+              "answer": "∪",
+              "acceptable": ["U", "u", "გაერთიანება"],
+              "explanation": "∪ გაერთიანების ნიშანია."
+            },
+            {
+              "type": "text",
+              "text": "A = {1;2;3;4}, B = {2;4}. რამდენი ელემენტია A \\ B-ში?",
+              "answer": "2",
+              "explanation": "{1;3}."
+            },
+            {
+              "type": "text",
+              "text": "თუ A ⊂ B, მაშინ A∪B რას უდრის? (A თუ B)",
+              "answer": "B",
+              "acceptable": ["b", "სიმრავლე B"],
+              "explanation": "დიდი სიმრავლე შთანთქავს."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "|A| = {a}, |B| = {b}, |A∩B| = {c}. |A∪B| უდრის:",
+              "variables": { "c": { "min": 1, "max": 4 }, "x": { "min": 1, "max": 7 }, "y": { "min": 1, "max": 7 }, "a": { "formula": "c + x" }, "b": { "formula": "c + y" } },
+              "formula": "a + b - c",
+              "options": ["a + b - c", "a + b", "a + b + c", "a - b"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "A∩B არის:",
+              "options": ["საერთო ელემენტების სიმრავლე", "ყველა ელემენტი", "A-ს ელემენტები მხოლოდ", "ცარიელი ყოველთვის"],
+              "correct": 0,
+              "explanation": "თანაკვეთის განსაზღვრება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ვენის დიაგრამაზე გადამკვეთი არე გამოსახავს:",
+              "options": ["თანაკვეთას", "გაერთიანებას", "სხვაობას", "დამატებას"],
+              "correct": 0,
+              "explanation": "საერთო ელემენტები."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "A \\ B არის:",
+              "options": ["A-ს ელემენტები, რომლებიც B-ში არ არის", "საერთო ელემენტები", "ყველა ელემენტი", "B-ს ელემენტები"],
+              "correct": 0,
+              "explanation": "სიმრავლეთა სხვაობა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ A∩B = ∅, სიმრავლეები არიან:",
+              "options": ["თანაუკვეთი", "ტოლი", "ქვესიმრავლეები", "უსასრულო"],
+              "correct": 0,
+              "explanation": "საერთო ელემენტი არ აქვთ."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "A∪A უდრის:",
+              "options": ["A", "∅", "2A", "უსასრულოს"],
+              "correct": 0,
+              "explanation": "იდემპოტენტურობა."
+            }
+          ]
+        },
+        {
+          "title": "2.3. ამოცანების ამოხსნა ვენის დიაგრამების გამოყენებით",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "კლასში {a} სწავლობს ინგლისურს, {b} გერმანულს, {c} ორივეს. რამდენი მოსწავლეა სულ?",
+              "variables": { "c": { "min": 2, "max": 8 }, "x": { "min": 3, "max": 12 }, "y": { "min": 3, "max": 12 }, "a": { "formula": "c + x" }, "b": { "formula": "c + y" } },
+              "formula": "a + b - c",
+              "explanation_template": "{a} + {b} − {c} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "20 მოსწავლიდან 12 თამაშობს ფეხბურთს, 8 კალათბურთს, 3 ორივეს. რამდენი თამაშობს რომელიმეს?",
+              "answer": "17",
+              "explanation": "12 + 8 − 3 = 17."
+            },
+            {
+              "type": "text",
+              "text": "30 მოსწავლიდან 18 სწავლობს მათემატიკას, 15 ფიზიკას, 8 ორივეს. რამდენი სწავლობს რომელიმეს?",
+              "answer": "25",
+              "explanation": "18 + 15 − 8 = 25."
+            },
+            {
+              "type": "text",
+              "text": "იმავე ამოცანაში (30 მოსწავლე, 25 რომელიმეს) რამდენი არცერთს?",
+              "answer": "5",
+              "explanation": "30 − 25 = 5."
+            },
+            {
+              "type": "text",
+              "text": "ვენის დიაგრამაზე მართკუთხედი გამოსახავს რა სიმრავლეს? (ერთი სიტყვა)",
+              "answer": "უნივერსალურ",
+              "acceptable": ["უნივერსალური", "უნივერსუმს", "უნივერსალური სიმრავლე"],
+              "explanation": "ყველა განსახილველი ელემენტი."
+            },
+            {
+              "type": "text",
+              "text": "25 მოსწავლიდან 15 ცურავს, 10 დარბის, 5 ორივეს. რამდენი მხოლოდ ცურავს?",
+              "answer": "10",
+              "explanation": "15 − 5 = 10."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "{a} სწავლობს A-ს, {b} B-ს, {c} ორივეს. სულ არიან:",
+              "variables": { "c": { "min": 2, "max": 6 }, "x": { "min": 3, "max": 10 }, "y": { "min": 3, "max": 10 }, "a": { "formula": "c + x" }, "b": { "formula": "c + y" } },
+              "formula": "a + b - c",
+              "options": ["a + b - c", "a + b", "a + b + c", "a - b + c"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ჩართვა-გამორიცხვის ფორმულაა:",
+              "options": ["|A∪B| = |A| + |B| − |A∩B|", "|A∪B| = |A| + |B|", "|A∪B| = |A∩B|", "|A∪B| = |A| · |B|"],
+              "correct": 0,
+              "explanation": "საერთო ნაწილი ერთხელ ითვლება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "20 კაციდან 14 სვამს ჩაის, 9 ყავას, 5 ორივეს. მხოლოდ ჩაის სვამს:",
+              "options": ["9", "14", "5", "4"],
+              "correct": 0,
+              "explanation": "14 − 5 = 9."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ A და B თანაუკვეთია, |A∪B| უდრის:",
+              "options": ["|A| + |B|", "|A| − |B|", "|A| · |B|", "0"],
+              "correct": 0,
+              "explanation": "საერთო ელემენტი არ არის."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ვენის დიაგრამა ეხმარება:",
+              "options": ["სიმრავლეთა მიმართებების თვალსაჩინოებაში", "გამრავლებაში", "გაზომვაში", "დამრგვალებაში"],
+              "correct": 0,
+              "explanation": "ის ვიზუალური ინსტრუმენტია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სამი სიმრავლისთვის ვენის დიაგრამაზე რამდენი არეა?",
+              "options": ["8 (ცარიელის ჩათვლით)", "3", "6", "4"],
+              "correct": 0,
+              "explanation": "2³ = 8 არე."
+            }
+          ]
+        },
+        {
+          "title": "2.4. სიმრავლის კლასებად დაყოფა",
+          "questions": [
+            {
+              "type": "text",
+              "text": "სიმრავლის დაყოფისას კლასები ერთმანეთს უნდა კვეთდეს? (დიახ/არა)",
+              "answer": "არა",
+              "acceptable": ["არ უნდა", "არაა"],
+              "explanation": "კლასები წყვილ-წყვილად თანაუკვეთია."
+            },
+            {
+              "type": "text",
+              "text": "კლასების გაერთიანება უნდა იძლეოდეს რას? (ერთი სიტყვა)",
+              "answer": "სიმრავლეს",
+              "acceptable": ["მთელ სიმრავლეს", "საწყის სიმრავლეს", "სიმრავლე"],
+              "explanation": "დაყოფა სრული უნდა იყოს."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "{n} ელემენტი დავყავით {k} თანაბარ კლასად. რამდენი ელემენტია თითოში?",
+              "variables": { "k": { "min": 2, "max": 8 }, "m": { "min": 2, "max": 10 }, "n": { "formula": "k * m" } },
+              "formula": "n / k",
+              "explanation_template": "{n} ÷ {k} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "ნატურალური რიცხვები 2-ზე გაყოფის ნაშთით დაიყოფა რამდენ კლასად?",
+              "answer": "2",
+              "acceptable": ["ორი"],
+              "explanation": "ლუწი და კენტი."
+            },
+            {
+              "type": "text",
+              "text": "3-ზე გაყოფის ნაშთით რამდენ კლასად იყოფა მთელი რიცხვები?",
+              "answer": "3",
+              "acceptable": ["სამი"],
+              "explanation": "ნაშთები 0, 1, 2."
+            },
+            {
+              "type": "text",
+              "text": "მოსწავლეთა სქესის მიხედვით დაყოფა კლასებადაა? (დიახ/არა)",
+              "answer": "დიახ",
+              "acceptable": ["კი", "არის"],
+              "explanation": "კლასები არ იკვეთება და ავსებს მთელს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სიმრავლის კლასებად დაყოფის პირობაა:",
+              "options": ["კლასები არ იკვეთება და ავსებს მთელს", "კლასები იკვეთება", "კლასები ტოლია", "კლასი ერთია"],
+              "correct": 0,
+              "explanation": "ტიხრის განსაზღვრება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ნატურალურ რიცხვთა დაყოფა ლუწ და კენტ რიცხვებად:",
+              "options": ["კლასებად დაყოფაა", "არ არის დაყოფა", "სამ კლასს იძლევა", "იკვეთება"],
+              "correct": 0,
+              "explanation": "ორი თანაუკვეთი კლასი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თანაბარნაშთიან რიცხვთა კლასს ეწოდება:",
+              "options": ["ნაშთთა კლასი", "ქვესიმრავლე", "გაერთიანება", "თანაკვეთა"],
+              "correct": 0,
+              "explanation": "მოდულური არითმეტიკის ცნება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "5-ზე გაყოფის ნაშთით მთელი რიცხვები იყოფა:",
+              "options": ["5 კლასად", "4 კლასად", "6 კლასად", "2 კლასად"],
+              "correct": 0,
+              "explanation": "ნაშთები 0–4."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "დაყოფისას თითოეული ელემენტი ხვდება:",
+              "options": ["ზუსტად ერთ კლასში", "ორ კლასში", "ყველა კლასში", "არცერთში"],
+              "correct": 0,
+              "explanation": "კლასები არ იკვეთება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ტიხრის კლასები შეიძლება იყოს ცარიელი?",
+              "options": ["არა", "დიახ", "მხოლოდ ერთი", "ყოველთვის"],
+              "correct": 0,
+              "explanation": "ცარიელი კლასი აზრს კარგავს."
+            }
+          ]
+        },
+        {
+          "title": "2.5. ცნება. მსჯელობა. მიმართებები ცნებებს შორის",
+          "questions": [
+            {
+              "type": "text",
+              "text": "ცნების შინაარსი არის მისი დამახასიათებელი რა? (ერთი სიტყვა)",
+              "answer": "თვისებები",
+              "acceptable": ["თვისება", "ნიშნები", "თვისებებია"],
+              "explanation": "შინაარსი ნიშან-თვისებათა ერთობლიობაა."
+            },
+            {
+              "type": "text",
+              "text": "ცნების მოცულობა არის იმ ობიექტთა სიმრავლე, რომლებზეც ცნება რა? (ერთი სიტყვა)",
+              "answer": "ვრცელდება",
+              "acceptable": ["ვრცელდებაა", "მიესადაგება"],
+              "explanation": "მოცულობა ობიექტთა სიმრავლეა."
+            },
+            {
+              "type": "text",
+              "text": "„კვადრატი“ და „მართკუთხედი“ — რომელია უფრო ზოგადი? (ერთი სიტყვა)",
+              "answer": "მართკუთხედი",
+              "acceptable": ["მართკუთხედია"],
+              "explanation": "ყოველი კვადრატი მართკუთხედია."
+            },
+            {
+              "type": "text",
+              "text": "თუ ცნების შინაარსი იზრდება, მოცულობა როგორ იცვლება? (ერთი სიტყვა)",
+              "answer": "მცირდება",
+              "acceptable": ["კლებულობს", "მცირდებაა"],
+              "explanation": "შებრუნებული დამოკიდებულება."
+            },
+            {
+              "type": "text",
+              "text": "„ყველა ადამიანი მოკვდავია, სოკრატე ადამიანია, ამიტომ სოკრატე მოკვდავია“ — ეს რა ტიპის მსჯელობაა? (ერთი სიტყვა)",
+              "answer": "დედუქციური",
+              "acceptable": ["დედუქცია", "დედუქციურია"],
+              "explanation": "ზოგადიდან კერძოსკენ."
+            },
+            {
+              "type": "text",
+              "text": "„პარალელოგრამი“ და „რომბი“ — რომელია კერძო? (ერთი სიტყვა)",
+              "answer": "რომბი",
+              "acceptable": ["რომბია"],
+              "explanation": "რომბი პარალელოგრამის სახეობაა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ცნების მოცულობა და შინაარსი დაკავშირებულია:",
+              "options": ["შებრუნებულად", "პირდაპირ", "არ არის დაკავშირებული", "ტოლია"],
+              "correct": 0,
+              "explanation": "მეტი ნიშანი — ნაკლები ობიექტი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "„კვადრატი ⊂ მართკუთხედი“ მიმართებაა:",
+              "options": ["გვარ-სახეობრივი", "თანაუკვეთი", "ტოლობის", "წინააღმდეგობრივი"],
+              "correct": 0,
+              "explanation": "სახეობა შედის გვარში."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "დედუქციური მსჯელობა მიდის:",
+              "options": ["ზოგადიდან კერძოსკენ", "კერძოდან ზოგადისკენ", "წრიულად", "შემთხვევით"],
+              "correct": 0,
+              "explanation": "დედუქციის განსაზღვრება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "„ლუწი რიცხვი“ და „კენტი რიცხვი“ ცნებები:",
+              "options": ["თანაუკვეთია", "ერთმანეთში შედის", "ტოლია", "იკვეთება"],
+              "correct": 0,
+              "explanation": "საერთო ელემენტი არ აქვთ."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "განსაზღვრება უნდა იყოს:",
+              "options": ["ზუსტი და არაწრიული", "მოკლე ნებისმიერ ფასად", "მაგალითებით მხოლოდ", "ბუნდოვანი"],
+              "correct": 0,
+              "explanation": "წრიული განსაზღვრება უვარგისია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ინდუქციური მსჯელობის დასკვნა არის:",
+              "options": ["სავარაუდო", "ყოველთვის ჭეშმარიტი", "ყოველთვის მცდარი", "აქსიომა"],
+              "correct": 0,
+              "explanation": "ინდუქცია არ იძლევა გარანტიას."
+            }
+          ]
+        },
+        {
+          "title": "2.6. გამონათქვამი. ოპერაციები გამონათქვამებზე",
+          "questions": [
+            {
+              "type": "text",
+              "text": "წინადადებას, რომელიც ჭეშმარიტია ან მცდარი, ეწოდება: (ერთი სიტყვა)",
+              "answer": "გამონათქვამი",
+              "acceptable": ["გამონათქვამია"],
+              "explanation": "გამონათქვამს ჭეშმარიტების მნიშვნელობა აქვს."
+            },
+            {
+              "type": "text",
+              "text": "A ჭეშმარიტია, B მცდარი. რა არის A და B (კონიუნქცია)? ჩაწერეთ: ჭეშმარიტი / მცდარი",
+              "answer": "მცდარი",
+              "acceptable": ["მცდარია", "false"],
+              "explanation": "კონიუნქცია ჭეშმარიტია მხოლოდ ორივეს ჭეშმარიტებისას."
+            },
+            {
+              "type": "text",
+              "text": "A ჭეშმარიტია, B მცდარი. რა არის A ან B (დიზიუნქცია)? ჩაწერეთ: ჭეშმარიტი / მცდარი",
+              "answer": "ჭეშმარიტი",
+              "acceptable": ["ჭეშმარიტია", "true"],
+              "explanation": "დიზიუნქცია ჭეშმარიტია, თუ ერთი მაინც ჭეშმარიტია."
+            },
+            {
+              "type": "text",
+              "text": "A ჭეშმარიტია. რა არის არა-A? ჩაწერეთ: ჭეშმარიტი / მცდარი",
+              "answer": "მცდარი",
+              "acceptable": ["მცდარია"],
+              "explanation": "უარყოფა ცვლის მნიშვნელობას."
+            },
+            {
+              "type": "text",
+              "text": "„2 + 2 = 5“ ჭეშმარიტია თუ მცდარი?",
+              "answer": "მცდარი",
+              "acceptable": ["მცდარია"],
+              "explanation": "2 + 2 = 4."
+            },
+            {
+              "type": "text",
+              "text": "ორი გამონათქვამისთვის ჭეშმარიტების ცხრილს რამდენი სტრიქონი აქვს?",
+              "answer": "4",
+              "explanation": "2² = 4 კომბინაცია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "კონიუნქცია (A და B) ჭეშმარიტია, როცა:",
+              "options": ["ორივე ჭეშმარიტია", "ერთი მაინც ჭეშმარიტია", "ორივე მცდარია", "ყოველთვის"],
+              "correct": 0,
+              "explanation": "ლოგიკური „და“."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "დიზიუნქცია (A ან B) მცდარია, როცა:",
+              "options": ["ორივე მცდარია", "ერთი მცდარია", "ორივე ჭეშმარიტია", "არასდროს"],
+              "correct": 0,
+              "explanation": "ლოგიკური „ან“."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "„არა (არა A)“ უდრის:",
+              "options": ["A", "არა A", "ჭეშმარიტს", "მცდარს"],
+              "correct": 0,
+              "explanation": "ორმაგი უარყოფა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სამი გამონათქვამის ჭეშმარიტების ცხრილს აქვს:",
+              "options": ["8 სტრიქონი", "6", "3", "4"],
+              "correct": 0,
+              "explanation": "2³ = 8."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რომელი წინადადებაა გამონათქვამი?",
+              "options": ["„5 > 3“", "„დახურე კარი!“", "„როგორ ხარ?“", "„x + 1“"],
+              "correct": 0,
+              "explanation": "მხოლოდ პირველს აქვს ჭეშმარიტების მნიშვნელობა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "დე მორგანის კანონია:",
+              "options": ["არა(A და B) = არა A ან არა B", "არა(A და B) = არა A და არა B", "A და B = A ან B", "არა A = A"],
+              "correct": 0,
+              "explanation": "უარყოფა ცვლის ოპერაციას."
+            }
+          ]
+        },
+        {
+          "title": "2.7. პირობითი გამონათქვამი. ტოლფასობის გამონათქვამი",
+          "questions": [
+            {
+              "type": "text",
+              "text": "„თუ A, მაშინ B“ სახის გამონათქვამს ეწოდება: (ერთი სიტყვა)",
+              "answer": "პირობითი",
+              "acceptable": ["პირობითია", "იმპლიკაცია"],
+              "explanation": "იმპლიკაცია."
+            },
+            {
+              "type": "text",
+              "text": "„A მაშინ და მხოლოდ მაშინ, როცა B“ სახის გამონათქვამს ეწოდება: (ერთი სიტყვა)",
+              "answer": "ტოლფასობა",
+              "acceptable": ["ტოლფასობის", "ეკვივალენცია", "ტოლფასობაა"],
+              "explanation": "ეკვივალენცია."
+            },
+            {
+              "type": "text",
+              "text": "პირობით გამონათქვამში „თუ A, მაშინ B“ — A-ს ეწოდება: (ერთი სიტყვა)",
+              "answer": "პირობა",
+              "acceptable": ["პირობაა", "წინაპირობა"],
+              "explanation": "B კი დასკვნაა."
+            },
+            {
+              "type": "text",
+              "text": "„თუ A, მაშინ B“ მცდარია მხოლოდ მაშინ, როცა A ჭეშმარიტია და B რა? (ერთი სიტყვა)",
+              "answer": "მცდარი",
+              "acceptable": ["მცდარია"],
+              "explanation": "მხოლოდ ეს კომბინაცია აძლევს მცდარს."
+            },
+            {
+              "type": "text",
+              "text": "„თუ A მაშინ B“-ს შებრუნებულია: თუ B მაშინ რა? (ერთი ასო)",
+              "answer": "A",
+              "acceptable": ["a"],
+              "explanation": "შებრუნებული იმპლიკაცია."
+            },
+            {
+              "type": "text",
+              "text": "ტოლფასობა ჭეშმარიტია, როცა ორივე გამონათქვამს აქვს იგივე რა? (ერთი სიტყვა)",
+              "answer": "მნიშვნელობა",
+              "acceptable": ["ჭეშმარიტების მნიშვნელობა", "მნიშვნელობაა"],
+              "explanation": "ორივე ჭეშმარიტი ან ორივე მცდარი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "„თუ A, მაშინ B“ მცდარია, როცა:",
+              "options": ["A ჭეშმარიტია, B მცდარი", "ორივე ჭეშმარიტია", "ორივე მცდარია", "A მცდარია"],
+              "correct": 0,
+              "explanation": "იმპლიკაციის ჭეშმარიტების ცხრილი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ A მცდარია, „თუ A მაშინ B“:",
+              "options": ["ჭეშმარიტია ნებისმიერი B-სთვის", "მცდარია", "დამოკიდებულია B-ზე", "აზრს კარგავს"],
+              "correct": 0,
+              "explanation": "მცდარი პირობიდან ნებისმიერი დასკვნა „ჭეშმარიტია“."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ტოლფასობა A ⟺ B ჭეშმარიტია, როცა:",
+              "options": ["ორივეს ერთი და იგივე მნიშვნელობა აქვს", "A ჭეშმარიტია", "B მცდარია", "ყოველთვის"],
+              "correct": 0,
+              "explanation": "ეკვივალენციის განსაზღვრება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თეორემაში „თუ A მაშინ B“, A არის:",
+              "options": ["საკმარისი პირობა B-სთვის", "აუცილებელი პირობა", "ტოლფასი", "დასკვნა"],
+              "correct": 0,
+              "explanation": "A-დან გამომდინარეობს B."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "„თუ A მაშინ B“-ს კონტრაპოზიციაა:",
+              "options": ["თუ არა B, მაშინ არა A", "თუ B მაშინ A", "თუ არა A მაშინ არა B", "A და B"],
+              "correct": 0,
+              "explanation": "კონტრაპოზიცია ტოლფასია საწყისისა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "შებრუნებული თეორემა ყოველთვის ჭეშმარიტია?",
+              "options": ["არა", "დიახ", "მხოლოდ გეომეტრიაში", "მხოლოდ ალგებრაში"],
+              "correct": 0,
+              "explanation": "საჭიროებს ცალკე დამტკიცებას."
+            }
+          ]
+        },
+        {
+          "title": "2.8. ალგორითმი",
+          "questions": [
+            {
+              "type": "text",
+              "text": "ამოცანის ამოხსნის ზუსტ, ნაბიჯ-ნაბიჯ მითითებათა თანმიმდევრობას ეწოდება: (ერთი სიტყვა)",
+              "answer": "ალგორითმი",
+              "acceptable": ["ალგორითმია"],
+              "explanation": "ალგორითმის განსაზღვრება."
+            },
+            {
+              "type": "text",
+              "text": "ალგორითმის თვისებაა დისკრეტულობა, განსაზღვრულობა და რა? (ერთი სიტყვა)",
+              "answer": "შედეგიანობა",
+              "acceptable": ["შედეგიანობაა", "სასრულობა", "მასობრივობა"],
+              "explanation": "ალგორითმი სასრულ ნაბიჯში უნდა დასრულდეს."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "ალგორითმი: აიღე {a}, გაამრავლე {k}-ზე, შედეგს დაუმატე {b}. რას მიიღებ?",
+              "variables": { "a": { "min": 2, "max": 15 }, "k": { "min": 2, "max": 8 }, "b": { "min": 1, "max": 20 } },
+              "formula": "a * k + b",
+              "explanation_template": "{a} · {k} + {b} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "ევკლიდეს ალგორითმი პოულობს ორი რიცხვის რას? (აბრევიატურა ან სიტყვა)",
+              "answer": "უსგ",
+              "acceptable": ["უდიდეს საერთო გამყოფს", "usg", "უდიდესი საერთო გამყოფი"],
+              "explanation": "ევკლიდეს ალგორითმი უსგ-ს პოულობს."
+            },
+            {
+              "type": "text",
+              "text": "ალგორითმის ჩაწერის ხერხია სიტყვიერი, ბლოკ-სქემა და რა? (ერთი სიტყვა)",
+              "answer": "პროგრამა",
+              "acceptable": ["პროგრამით", "კოდი", "პროგრამის ენა"],
+              "explanation": "პროგრამირების ენაზე ჩაწერა."
+            },
+            {
+              "type": "text",
+              "text": "ალგორითმი: აიღე 10, გაყავი 2-ზე, დაუმატე 3. შედეგია:",
+              "answer": "8",
+              "explanation": "10 ÷ 2 = 5; 5 + 3 = 8."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "ალგორითმი: {a}-ს გაამრავლე {k}-ზე და დაუმატე {b}. შედეგია:",
+              "variables": { "a": { "min": 2, "max": 12 }, "k": { "min": 2, "max": 7 }, "b": { "min": 1, "max": 15 } },
+              "formula": "a * k + b",
+              "options": ["a * k + b", "a + k * b", "(a + b) * k", "a * (k + b)"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ალგორითმის აუცილებელი თვისებაა:",
+              "options": ["სასრულობა", "სილამაზე", "სიგრძე", "სირთულე"],
+              "correct": 0,
+              "explanation": "ალგორითმი უნდა დასრულდეს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ბლოკ-სქემაში რომბი აღნიშნავს:",
+              "options": ["პირობის შემოწმებას", "მოქმედებას", "დასაწყისს", "დასასრულს"],
+              "correct": 0,
+              "explanation": "განშტოების ბლოკი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ალგორითმის განსაზღვრულობა ნიშნავს:",
+              "options": ["ყოველი ნაბიჯი ცალსახად გასაგებია", "ნაბიჯები ბევრია", "შედეგი შემთხვევითია", "ალგორითმი გრძელია"],
+              "correct": 0,
+              "explanation": "ორაზროვნება დაუშვებელია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ციკლი ალგორითმში ნიშნავს:",
+              "options": ["მოქმედების გამეორებას", "დასრულებას", "პირობას", "შეყვანას"],
+              "correct": 0,
+              "explanation": "განმეორებადი ნაბიჯები."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ალგორითმის მასობრივობა ნიშნავს:",
+              "options": ["გამოსადეგია ამოცანათა კლასისთვის", "ბევრი ნაბიჯი აქვს", "ბევრი ადამიანი იყენებს", "სწრაფია"],
+              "correct": 0,
+              "explanation": "ერთი ალგორითმი — მრავალი საწყისი მონაცემი."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

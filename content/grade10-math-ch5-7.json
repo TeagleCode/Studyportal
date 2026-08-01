@@ -1,0 +1,1176 @@
+{
+  "grade": 10,
+  "subject": "math",
+  "chapters": [
+    {
+      "title": "5. ალგებრული გამოსახულება",
+      "topics": [
+        {
+          "title": "5.1. ცვლადი, ცვლადების გამოყენების მაგალითები; ფორმულა",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "მართკუთხედის გვერდებია {a} და {b}. ფორმულით S = ab რას უდრის ფართობი?",
+              "variables": { "a": { "min": 2, "max": 18 }, "b": { "min": 2, "max": 18 } },
+              "formula": "a * b",
+              "explanation_template": "S = {a} · {b} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "ფორმულით s = vt: v = {v} კმ/სთ, t = {t} სთ. რას უდრის s?",
+              "variables": { "v": { "min": 30, "max": 110 }, "t": { "min": 2, "max": 8 } },
+              "formula": "v * t",
+              "explanation_template": "s = {answer} კმ."
+            },
+            {
+              "type": "text",
+              "text": "ასოს, რომელიც სხვადასხვა მნიშვნელობას ღებულობს, ეწოდება: (ერთი სიტყვა)",
+              "answer": "ცვლადი",
+              "acceptable": ["ცვლადია"],
+              "explanation": "ცვლადის განსაზღვრება."
+            },
+            {
+              "type": "text",
+              "text": "კვადრატის პერიმეტრის ფორმულაა P = 4a. თუ a = 7, P უდრის:",
+              "answer": "28",
+              "explanation": "4 · 7 = 28."
+            },
+            {
+              "type": "text",
+              "text": "ფორმულა C = 2πr აღწერს წრეწირის რას? (ერთი სიტყვა)",
+              "answer": "სიგრძეს",
+              "acceptable": ["სიგრძე", "სიგრძეა", "გარშემოწერილობას"],
+              "explanation": "წრეწირის სიგრძე."
+            },
+            {
+              "type": "text",
+              "text": "ფორმულაში S = ab, თუ S = 36 და a = 4, b უდრის:",
+              "answer": "9",
+              "explanation": "36 ÷ 4 = 9."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "S = ab. a = {a}, b = {b}. S უდრის:",
+              "variables": { "a": { "min": 2, "max": 15 }, "b": { "min": 2, "max": 15 } },
+              "formula": "a * b",
+              "options": ["a * b", "a + b", "2 * (a + b)", "a / b"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ფორმულა არის:",
+              "options": ["სიდიდეთა შორის კავშირის ჩანაწერი", "რიცხვი", "ცვლადი", "განტოლების ფესვი"],
+              "correct": 0,
+              "explanation": "ფორმულა დამოკიდებულებას აღწერს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მუდმივი სიდიდე არის:",
+              "options": ["π", "x", "y", "n"],
+              "correct": 0,
+              "explanation": "π მუდმივია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ფორმულიდან v = s/t გამომდინარეობს:",
+              "options": ["s = v·t", "s = v/t", "t = v·s", "s = v + t"],
+              "correct": 0,
+              "explanation": "ორივე მხარე t-ზე გავამრავლოთ."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ცვლადების გამოყენება საშუალებას გვაძლევს:",
+              "options": ["ზოგადი კანონზომიერება ჩავწეროთ", "მხოლოდ კონკრეტული ამოცანა ამოვხსნათ", "გავზომოთ", "დავამრგვალოთ"],
+              "correct": 0,
+              "explanation": "ალგებრის ძალა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "P = 2(a+b) ფორმულაში a = 3, b = 5. P უდრის:",
+              "options": ["16", "8", "15", "30"],
+              "correct": 0,
+              "explanation": "2 · 8 = 16."
+            }
+          ]
+        },
+        {
+          "title": "5.2. ალგებრული გამოსახულება. ალგებრული გამოსახულების მნიშვნელობა",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ {a}x + {b}, როცა x = {x}.",
+              "variables": { "a": { "min": 2, "max": 9 }, "b": { "min": 1, "max": 20 }, "x": { "min": 1, "max": 10 } },
+              "formula": "a * x + b",
+              "explanation_template": "{a}·{x} + {b} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ x² + {b}, როცა x = {x}.",
+              "variables": { "b": { "min": 1, "max": 15 }, "x": { "min": 2, "max": 10 } },
+              "formula": "x * x + b",
+              "explanation_template": "{x}² + {b} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ {a}(x + {b}), როცა x = {x}.",
+              "variables": { "a": { "min": 2, "max": 8 }, "b": { "min": 1, "max": 10 }, "x": { "min": 1, "max": 10 } },
+              "formula": "a * (x + b)",
+              "explanation_template": "{a}·({x}+{b}) = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "გამოთვალეთ 3x − 5, როცა x = 4.",
+              "answer": "7",
+              "explanation": "12 − 5 = 7."
+            },
+            {
+              "type": "text",
+              "text": "გამოსახულება 1/(x−2) რომელი x-ისთვის არ არის განსაზღვრული?",
+              "answer": "2",
+              "explanation": "მნიშვნელი ნულდება."
+            },
+            {
+              "type": "text",
+              "text": "გამოთვალეთ 2a + 3b, როცა a = 5, b = 2.",
+              "answer": "16",
+              "explanation": "10 + 6 = 16."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "{a}x + {b}, როცა x = {x}:",
+              "variables": { "a": { "min": 2, "max": 8 }, "b": { "min": 1, "max": 15 }, "x": { "min": 1, "max": 9 } },
+              "formula": "a * x + b",
+              "options": ["a * x + b", "a + x + b", "a * (x + b)", "a * x - b"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ალგებრული გამოსახულება შეიცავს:",
+              "options": ["ცვლადებს და მოქმედებებს", "მხოლოდ რიცხვებს", "მხოლოდ ტოლობას", "მხოლოდ ფრჩხილებს"],
+              "correct": 0,
+              "explanation": "ცვლადის არსებობა აუცილებელია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "გამოსახულების დასაშვებ მნიშვნელობათა არეა:",
+              "options": ["x-ის მნიშვნელობები, რომლებზეც გამოსახულებას აზრი აქვს", "ყველა რიცხვი ყოველთვის", "მხოლოდ მთელი რიცხვები", "ცარიელი"],
+              "correct": 0,
+              "explanation": "მაგ. მნიშვნელი ≠ 0."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√(x−3) აზრიანია, როცა:",
+              "options": ["x ≥ 3", "x > 3", "x ≤ 3", "ყოველთვის"],
+              "correct": 0,
+              "explanation": "ქვეფესვული არაუარყოფითი უნდა იყოს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "x² + 1 გამოსახულების მნიშვნელობა x = −2-ის დროს:",
+              "options": ["5", "−3", "3", "−5"],
+              "correct": 0,
+              "explanation": "4 + 1 = 5."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ორი გამოსახულება ტოლფასია, თუ:",
+              "options": ["ყველა დასაშვები x-ისთვის ტოლი მნიშვნელობა აქვს", "ერთი x-ისთვის ტოლია", "მსგავსად გამოიყურება", "ერთნაირი სიგრძისაა"],
+              "correct": 0,
+              "explanation": "იგივურობა."
+            }
+          ]
+        },
+        {
+          "title": "5.3. ერთწევრი და მრავალწევრი. მოქმედებები ერთწევრებზე და მრავალწევრებზე. შემოკლებული გამრავლების ფორმულები",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გაამარტივეთ {a}x + {b}x. ჩაწერეთ კოეფიციენტი.",
+              "variables": { "a": { "min": 2, "max": 15 }, "b": { "min": 2, "max": 15 } },
+              "formula": "a + b",
+              "explanation_template": "({a}+{b})x = {answer}x."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "(x + {a})² = x² + ?x + {a}². ჩაწერეთ შუა კოეფიციენტი.",
+              "variables": { "a": { "min": 1, "max": 12 } },
+              "formula": "2 * a",
+              "explanation_template": "2 · {a} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "(x − {a})(x + {a}) = x² − ?. ჩაწერეთ გამოკლებული რიცხვი.",
+              "variables": { "a": { "min": 2, "max": 12 } },
+              "formula": "a * a",
+              "explanation_template": "{a}² = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "(a + b)² = a² + 2ab + ?. ჩაწერეთ ბოლო წევრი.",
+              "answer": "b²",
+              "acceptable": ["b^2", "b2"],
+              "explanation": "კვადრატის ფორმულა."
+            },
+            {
+              "type": "text",
+              "text": "გაამარტივეთ: 5x² − 2x². ჩაწერეთ კოეფიციენტი.",
+              "answer": "3",
+              "explanation": "5 − 2 = 3."
+            },
+            {
+              "type": "text",
+              "text": "(x + 3)² გახსნისას შუა წევრის კოეფიციენტია:",
+              "answer": "6",
+              "explanation": "2 · 3 = 6."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "(x + {a})² შუა წევრის კოეფიციენტია:",
+              "variables": { "a": { "min": 1, "max": 10 } },
+              "formula": "2 * a",
+              "options": ["2 * a", "a", "a * a", "a + 2"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "(a − b)² უდრის:",
+              "options": ["a² − 2ab + b²", "a² − b²", "a² + b²", "a² − 2ab − b²"],
+              "correct": 0,
+              "explanation": "სხვაობის კვადრატი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "a² − b² უდრის:",
+              "options": ["(a−b)(a+b)", "(a−b)²", "(a+b)²", "a·b"],
+              "correct": 0,
+              "explanation": "კვადრატთა სხვაობა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ერთწევრი არის:",
+              "options": ["რიცხვთა და ცვლადთა ნამრავლი", "ორი წევრის ჯამი", "განტოლება", "წილადი"],
+              "correct": 0,
+              "explanation": "მაგ. 3x²y."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "მრავალწევრის ხარისხი განისაზღვრება:",
+              "options": ["უმაღლესი წევრის ხარისხით", "წევრთა რაოდენობით", "კოეფიციენტით", "თავისუფალი წევრით"],
+              "correct": 0,
+              "explanation": "მაგ. x³ + x → ხარისხი 3."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "(a + b)³ გახსნისას წევრთა რაოდენობაა:",
+              "options": ["4", "3", "2", "6"],
+              "correct": 0,
+              "explanation": "a³ + 3a²b + 3ab² + b³."
+            }
+          ]
+        },
+        {
+          "title": "5.4. კვადრატული სამწევრი. კვადრატული სამწევრის დაშლა მამრავლებად",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "x² + {b}x + {c} = (x − {x1})(x − {x2}). ჩაწერეთ ფესვთა ჯამი.",
+              "variables": { "x1": { "min": 1, "max": 9 }, "x2": { "min": 1, "max": 9 }, "b": { "formula": "-(x1 + x2)" }, "c": { "formula": "x1 * x2" } },
+              "formula": "x1 + x2",
+              "explanation_template": "ვიეტით ჯამი = −b = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "x² + {b}x + {c} სამწევრის ფესვთა ნამრავლია:",
+              "variables": { "x1": { "min": 1, "max": 9 }, "x2": { "min": 1, "max": 9 }, "b": { "formula": "-(x1 + x2)" }, "c": { "formula": "x1 * x2" } },
+              "formula": "x1 * x2",
+              "explanation_template": "ვიეტით ნამრავლი = c = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "x² − 5x + 6 დაშალეთ მამრავლებად. ჩაწერეთ უდიდესი ფესვი.",
+              "answer": "3",
+              "explanation": "(x−2)(x−3)."
+            },
+            {
+              "type": "text",
+              "text": "კვადრატული სამწევრის დისკრიმინანტია D = b² − 4ac. თუ a=1, b=5, c=6, D უდრის:",
+              "answer": "1",
+              "explanation": "25 − 24 = 1."
+            },
+            {
+              "type": "text",
+              "text": "x² − 9 დაშალეთ მამრავლებად. ჩაწერეთ დადებითი ფესვი.",
+              "answer": "3",
+              "explanation": "(x−3)(x+3)."
+            },
+            {
+              "type": "text",
+              "text": "თუ D < 0, კვადრატული სამწევრი ნამდვილ რიცხვებში იშლება? (დიახ/არა)",
+              "answer": "არა",
+              "acceptable": ["არ იშლება", "არაა"],
+              "explanation": "ნამდვილი ფესვები არ არსებობს."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "x² + {b}x + {c} ფესვთა ჯამია:",
+              "variables": { "x1": { "min": 1, "max": 8 }, "x2": { "min": 1, "max": 8 }, "b": { "formula": "-(x1 + x2)" }, "c": { "formula": "x1 * x2" } },
+              "formula": "x1 + x2",
+              "options": ["-b", "b", "c", "-c"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "კვადრატული სამწევრის დაშლის ფორმულაა:",
+              "options": ["a(x − x₁)(x − x₂)", "(x + x₁)(x + x₂)", "a(x² + x₁x₂)", "x₁ · x₂"],
+              "correct": 0,
+              "explanation": "ფესვებით დაშლა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "x² + 7x + 12 იშლება:",
+              "options": ["(x+3)(x+4)", "(x−3)(x−4)", "(x+2)(x+6)", "(x+1)(x+12)"],
+              "correct": 0,
+              "explanation": "3 + 4 = 7, 3 · 4 = 12."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ D = 0, სამწევრი იშლება:",
+              "options": ["სრულ კვადრატად", "ორ სხვადასხვა მამრავლად", "არ იშლება", "სამ მამრავლად"],
+              "correct": 0,
+              "explanation": "a(x − x₀)²."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ვიეტის თეორემით x₁ · x₂ უდრის (a = 1):",
+              "options": ["c", "−c", "b", "−b"],
+              "correct": 0,
+              "explanation": "ფესვთა ნამრავლი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "x² − 4 იშლება:",
+              "options": ["(x−2)(x+2)", "(x−2)²", "(x+2)²", "არ იშლება"],
+              "correct": 0,
+              "explanation": "კვადრატთა სხვაობა."
+            }
+          ]
+        },
+        {
+          "title": "5.5. ალგებრული წილადები. მოქმედებები ალგებრულ წილადებზე",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "გამოთვალეთ {a}/{b} + {c}/{b} (ჩაწერეთ ათწილადი ან მთელი)",
+              "variables": { "b": { "min": 2, "max": 9 }, "a": { "min": 1, "max": 8 }, "c": { "min": 1, "max": 8 } },
+              "formula": "(a + c) / b",
+              "explanation_template": "({a}+{c}) ÷ {b} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "ალგებრული წილადი განსაზღვრული არ არის, როცა მნიშვნელი უდრის:",
+              "answer": "0",
+              "acceptable": ["ნული"],
+              "explanation": "ნულზე გაყოფა დაუშვებელია."
+            },
+            {
+              "type": "text",
+              "text": "წილადი (x²−4)/(x−2) შეკვეცის შემდეგ უდრის x + ?. ჩაწერეთ რიცხვი.",
+              "answer": "2",
+              "explanation": "(x−2)(x+2)/(x−2) = x+2."
+            },
+            {
+              "type": "text",
+              "text": "1/x + 1/y = (y + x)/? ჩაწერეთ მნიშვნელი.",
+              "answer": "xy",
+              "acceptable": ["x*y", "x·y", "xy"],
+              "explanation": "საერთო მნიშვნელი."
+            },
+            {
+              "type": "text",
+              "text": "წილადი 6x/(3x) შეიკვეცება რამდენად? ჩაწერეთ შედეგი.",
+              "answer": "2",
+              "explanation": "6/3 = 2, x იკვეცება."
+            },
+            {
+              "type": "text",
+              "text": "წილადების გამრავლებისას მრიცხველი მრავლდება მრიცხველზე და მნიშვნელი რაზე? (ერთი სიტყვა)",
+              "answer": "მნიშვნელზე",
+              "acceptable": ["მნიშვნელი", "მნიშვნელზე"],
+              "explanation": "(a/b)·(c/d) = ac/bd."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "(a/b) ÷ (c/d) უდრის:",
+              "options": ["(a·d)/(b·c)", "(a·c)/(b·d)", "(a+d)/(b+c)", "(a−c)/(b−d)"],
+              "correct": 0,
+              "explanation": "შებრუნებულზე გამრავლება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წილადი x/(x−3) განუსაზღვრელია, როცა:",
+              "options": ["x = 3", "x = 0", "x = −3", "ყოველთვის განსაზღვრულია"],
+              "correct": 0,
+              "explanation": "მნიშვნელი ნულდება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წილადების შესაკრებად საჭიროა:",
+              "options": ["საერთო მნიშვნელი", "საერთო მრიცხველი", "ტოლი წილადები", "არაფერი"],
+              "correct": 0,
+              "explanation": "მნიშვნელების გათანაბრება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "(x² − 1)/(x + 1) შეკვეცის შემდეგ:",
+              "options": ["x − 1", "x + 1", "x", "1"],
+              "correct": 0,
+              "explanation": "(x−1)(x+1)/(x+1)."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წილადის შეკვეცისას მრიცხველი და მნიშვნელი იყოფა:",
+              "options": ["საერთო მამრავლზე", "ნებისმიერ რიცხვზე", "ნულზე", "სხვადასხვა რიცხვზე"],
+              "correct": 0,
+              "explanation": "მხოლოდ საერთო მამრავლზე."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "(2/x) · (x/3) უდრის:",
+              "options": ["2/3", "2x/3", "6/x", "x/6"],
+              "correct": 0,
+              "explanation": "x იკვეცება."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "6. განტოლება. უტოლობა",
+      "topics": [
+        {
+          "title": "6.1. ტოლობა, განტოლება. წრფივი ერთუცნობიანი განტოლება",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "ამოხსენით: {a}x + {b} = {c}",
+              "variables": { "a": { "min": 2, "max": 9 }, "b": { "min": 1, "max": 20 }, "x0": { "min": 2, "max": 15 }, "c": { "formula": "a * x0 + b" } },
+              "formula": "x0",
+              "explanation_template": "x = ({c} − {b}) ÷ {a} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "ამოხსენით: {a}x = {b}x + {c}",
+              "variables": { "b": { "min": 2, "max": 8 }, "d": { "min": 2, "max": 7 }, "a": { "formula": "b + d" }, "x0": { "min": 2, "max": 12 }, "c": { "formula": "d * x0" } },
+              "formula": "x0",
+              "explanation_template": "({a}−{b})x = {c} → x = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "ამოხსენით: 4(x − 1) = 12",
+              "answer": "4",
+              "explanation": "x − 1 = 3 → x = 4."
+            },
+            {
+              "type": "text",
+              "text": "განტოლება 0x = 5 რამდენ ფესვს იძლევა?",
+              "answer": "0",
+              "acceptable": ["ნული", "არცერთი", "არ აქვს"],
+              "explanation": "წინააღმდეგობა."
+            },
+            {
+              "type": "text",
+              "text": "განტოლება 0x = 0 რამდენ ფესვს იძლევა?",
+              "answer": "უსასრულოდ ბევრი",
+              "acceptable": ["უსასრულო", "ყველა", "უამრავი"],
+              "explanation": "ნებისმიერი x გამოდგება."
+            },
+            {
+              "type": "text",
+              "text": "განტოლების ორივე მხარეს ერთი და იმავე რიცხვის მიმატება ფესვს ცვლის? (დიახ/არა)",
+              "answer": "არა",
+              "acceptable": ["არ ცვლის", "არაა"],
+              "explanation": "ეკვივალენტური გარდაქმნა."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "{a}x + {b} = {c} ფესვია:",
+              "variables": { "a": { "min": 2, "max": 8 }, "b": { "min": 1, "max": 15 }, "x0": { "min": 2, "max": 12 }, "c": { "formula": "a * x0 + b" } },
+              "formula": "x0",
+              "options": ["(c - b) / a", "(c + b) / a", "c - b", "c / a"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრფივი განტოლების ზოგადი სახეა:",
+              "options": ["ax + b = 0, a ≠ 0", "ax² + bx + c = 0", "a/x = b", "√x = a"],
+              "correct": 0,
+              "explanation": "პირველი ხარისხი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "2x + 8 = 0 ფესვია:",
+              "options": ["−4", "4", "−8", "8"],
+              "correct": 0,
+              "explanation": "2x = −8."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ეკვივალენტური განტოლებები არიან ისინი, რომლებსაც აქვთ:",
+              "options": ["ერთი და იგივე ფესვები", "ერთნაირი სახე", "ერთნაირი კოეფიციენტები", "ერთნაირი სიგრძე"],
+              "correct": 0,
+              "explanation": "ამონახსნთა სიმრავლე ემთხვევა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "განტოლების ორივე მხარის ნულზე გამრავლება:",
+              "options": ["დაუშვებელია", "დასაშვებია", "ფესვს არ ცვლის", "ამარტივებს"],
+              "correct": 0,
+              "explanation": "ინფორმაცია იკარგება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "3(x + 2) = 3x + 6 არის:",
+              "options": ["იგივურობა", "ერთფესვიანი", "უფესვო", "კვადრატული"],
+              "correct": 0,
+              "explanation": "ყველა x აკმაყოფილებს."
+            }
+          ]
+        },
+        {
+          "title": "6.2. კვადრატული განტოლება. რაციონალური განტოლება",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "x² + {b}x + {c} = 0. ჩაწერეთ ფესვთა ჯამი.",
+              "variables": { "x1": { "min": 1, "max": 9 }, "x2": { "min": 1, "max": 9 }, "b": { "formula": "-(x1 + x2)" }, "c": { "formula": "x1 * x2" } },
+              "formula": "x1 + x2",
+              "explanation_template": "ვიეტით = −b = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "x² − {s}x + {p} = 0. ერთი ფესვია {x1}. მეორე ფესვია:",
+              "variables": { "x1": { "min": 1, "max": 8 }, "x2": { "min": 1, "max": 8 }, "s": { "formula": "x1 + x2" }, "p": { "formula": "x1 * x2" } },
+              "formula": "x2",
+              "explanation_template": "{s} − {x1} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "x² − 7x + 10 = 0. ჩაწერეთ უდიდესი ფესვი.",
+              "answer": "5",
+              "explanation": "ფესვებია 2 და 5."
+            },
+            {
+              "type": "text",
+              "text": "დისკრიმინანტია D = b² − 4ac. a=1, b=4, c=4 → D უდრის:",
+              "answer": "0",
+              "acceptable": ["ნული"],
+              "explanation": "16 − 16 = 0."
+            },
+            {
+              "type": "text",
+              "text": "x² = 49 განტოლების დადებითი ფესვია:",
+              "answer": "7",
+              "explanation": "x = ±7."
+            },
+            {
+              "type": "text",
+              "text": "რაციონალურ განტოლებაში ფესვი უნდა შემოწმდეს, რომ მნიშვნელი არ იყოს რის ტოლი?",
+              "answer": "0",
+              "acceptable": ["ნული"],
+              "explanation": "გარეშე ფესვის თავიდან ასაცილებლად."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "x² + {b}x + {c} = 0 ფესვთა ნამრავლია:",
+              "variables": { "x1": { "min": 1, "max": 8 }, "x2": { "min": 1, "max": 8 }, "b": { "formula": "-(x1 + x2)" }, "c": { "formula": "x1 * x2" } },
+              "formula": "x1 * x2",
+              "options": ["c", "-c", "b", "-b"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "კვადრატული განტოლების ფესვთა ფორმულაა:",
+              "options": ["x = (−b ± √D)/(2a)", "x = (b ± √D)/(2a)", "x = −b/(2a)", "x = √D/a"],
+              "correct": 0,
+              "explanation": "სტანდარტული ფორმულა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ D > 0, ფესვთა რაოდენობაა:",
+              "options": ["2", "1", "0", "უსასრულო"],
+              "correct": 0,
+              "explanation": "ორი განსხვავებული ფესვი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "x² − 6x + 9 = 0 ფესვია:",
+              "options": ["3 (ორჯერადი)", "3 და −3", "9", "ფესვი არ აქვს"],
+              "correct": 0,
+              "explanation": "(x−3)² = 0."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რაციონალური განტოლების ამოხსნისას წარმოქმნილი გარეშე ფესვი:",
+              "options": ["უნდა უარვყოთ", "მისაღებია", "ორმაგდება", "იგნორირდება ყოველთვის"],
+              "correct": 0,
+              "explanation": "ის მნიშვნელს ანულებს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "x² + 1 = 0 ნამდვილ რიცხვებში:",
+              "options": ["ფესვი არ აქვს", "ერთი ფესვი აქვს", "ორი ფესვი აქვს", "უსასრულო ფესვი"],
+              "correct": 0,
+              "explanation": "D = −4 < 0."
+            }
+          ]
+        },
+        {
+          "title": "6.3. ირაციონალური განტოლება. მოდულის შემცველი განტოლება",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "ამოხსენით: √x = {a}",
+              "variables": { "a": { "min": 2, "max": 12 } },
+              "formula": "a * a",
+              "explanation_template": "x = {a}² = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "|x| = 7. ჩაწერეთ დადებითი ფესვი.",
+              "answer": "7",
+              "explanation": "x = ±7."
+            },
+            {
+              "type": "text",
+              "text": "√x = 5. x უდრის:",
+              "answer": "25",
+              "explanation": "ორივე მხარე კვადრატში."
+            },
+            {
+              "type": "text",
+              "text": "|x − 3| = 0. x უდრის:",
+              "answer": "3",
+              "explanation": "მოდული ნულია მხოლოდ ნულისთვის."
+            },
+            {
+              "type": "text",
+              "text": "√x = −2 რამდენ ფესვს იძლევა?",
+              "answer": "0",
+              "acceptable": ["ნული", "არცერთი", "არ აქვს"],
+              "explanation": "ფესვი არაუარყოფითია."
+            },
+            {
+              "type": "text",
+              "text": "ირაციონალური განტოლების ამოხსნის შემდეგ ფესვი აუცილებლად უნდა რა? (ერთი სიტყვა)",
+              "answer": "შემოწმდეს",
+              "acceptable": ["შემოწმება", "შემოწმდება"],
+              "explanation": "კვადრატში აყვანა გარეშე ფესვს ქმნის."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "√x = {a}. x უდრის:",
+              "variables": { "a": { "min": 2, "max": 10 } },
+              "formula": "a * a",
+              "options": ["a * a", "a", "a / 2", "2 * a"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "|x| = a (a > 0) ამონახსნებია:",
+              "options": ["x = a და x = −a", "x = a მხოლოდ", "x = −a მხოლოდ", "ფესვი არ აქვს"],
+              "correct": 0,
+              "explanation": "ორივე მოდულით a-ს იძლევა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "|x| = −3:",
+              "options": ["ფესვი არ აქვს", "x = 3", "x = −3", "x = 0"],
+              "correct": 0,
+              "explanation": "მოდული უარყოფითი ვერ იქნება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ირაციონალური განტოლების ამოხსნისას ორივე მხარე:",
+              "options": ["აჰყავთ კვადრატში", "იყოფა ნულზე", "მრავლდება 0-ზე", "იკვეცება"],
+              "correct": 0,
+              "explanation": "ფესვის მოსაცილებლად."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "√(x+1) = 3 ამონახსნია:",
+              "options": ["8", "9", "2", "10"],
+              "correct": 0,
+              "explanation": "x + 1 = 9 → x = 8."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "|x − 2| = 5 ამონახსნებია:",
+              "options": ["7 და −3", "7 მხოლოდ", "3 და −7", "5 და −5"],
+              "correct": 0,
+              "explanation": "x − 2 = ±5."
+            }
+          ]
+        },
+        {
+          "title": "6.4. წრფივი უტოლობა. წრფივ უტოლობათა სისტემა",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "უტოლობის x + {a} > {c} ამონახსნია x > ? ჩაწერეთ რიცხვი.",
+              "variables": { "a": { "min": 2, "max": 20 }, "b": { "min": 1, "max": 25 }, "c": { "formula": "a + b" } },
+              "formula": "c - a",
+              "explanation_template": "x > {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "სისტემა: x > {a}, x < {b}. რამდენი მთელი რიცხვი აკმაყოფილებს?",
+              "variables": { "a": { "min": 1, "max": 10 }, "k": { "min": 2, "max": 9 }, "b": { "formula": "a + k" } },
+              "formula": "b - a - 1",
+              "explanation_template": "= {answer}."
+            },
+            {
+              "type": "text",
+              "text": "უტოლობის 3x < 21 ამონახსნია x < ? ჩაწერეთ რიცხვი.",
+              "answer": "7",
+              "explanation": "21 ÷ 3."
+            },
+            {
+              "type": "text",
+              "text": "უტოლობის −2x > 8 ამონახსნია x < ? ჩაწერეთ რიცხვი.",
+              "answer": "-4",
+              "acceptable": ["−4"],
+              "explanation": "უარყოფითზე გაყოფა ნიშანს ცვლის."
+            },
+            {
+              "type": "text",
+              "text": "სისტემა: x > 3, x < 8. რამდენი მთელი რიცხვია ამონახსნი?",
+              "answer": "4",
+              "explanation": "4, 5, 6, 7."
+            },
+            {
+              "type": "text",
+              "text": "უტოლობათა სისტემის ამონახსნი შუალედების რა? (ერთი სიტყვა)",
+              "answer": "თანაკვეთა",
+              "acceptable": ["თანაკვეთაა", "გადაკვეთა"],
+              "explanation": "საერთო ნაწილი."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "სისტემა x > {a}, x < {b}. მთელ ამონახსნთა რაოდენობაა:",
+              "variables": { "a": { "min": 1, "max": 8 }, "k": { "min": 2, "max": 8 }, "b": { "formula": "a + k" } },
+              "formula": "b - a - 1",
+              "options": ["b - a - 1", "b - a", "b + a", "b - a + 1"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უარყოფითზე გამრავლებისას უტოლობის ნიშანი:",
+              "options": ["იცვლება საპირისპიროდ", "არ იცვლება", "ქრება", "ორმაგდება"],
+              "correct": 0,
+              "explanation": "ძირითადი წესი."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სისტემა x > 5, x < 2:",
+              "options": ["ამონახსნი არ აქვს", "x > 5", "x < 2", "ყველა x"],
+              "correct": 0,
+              "explanation": "შუალედები არ იკვეთება."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "x ≥ 2 და x ≤ 6 ჩაიწერება:",
+              "options": ["2 ≤ x ≤ 6", "x ≤ 2", "x ≥ 6", "ამონახსნი არ აქვს"],
+              "correct": 0,
+              "explanation": "ორმაგი უტოლობა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უტოლობის ამონახსნთა გამოსახვა მოსახერხებელია:",
+              "options": ["რიცხვით ღერძზე", "ცხრილში", "წრიულ დიაგრამაზე", "ჰისტოგრამაზე"],
+              "correct": 0,
+              "explanation": "შუალედები თვალსაჩინოა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "5x − 10 ≥ 0 ამონახსნია:",
+              "options": ["x ≥ 2", "x ≤ 2", "x > 2", "x < 2"],
+              "correct": 0,
+              "explanation": "5x ≥ 10."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "7. ორუცნობიანი განტოლებები, განტოლებათა და უტოლობათა სისტემები",
+      "topics": [
+        {
+          "title": "7.1. წრფივი ორუცნობიანი განტოლება",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "განტოლებაში x + y = {s} იპოვეთ y, როცა x = {x}.",
+              "variables": { "x": { "min": 1, "max": 20 }, "y0": { "min": 1, "max": 20 }, "s": { "formula": "x + y0" } },
+              "formula": "y0",
+              "explanation_template": "y = {s} − {x} = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "განტოლებაში {a}x + {b}y = {c} იპოვეთ y, როცა x = {x}.",
+              "variables": { "a": { "min": 2, "max": 8 }, "b": { "min": 2, "max": 6 }, "x": { "min": 1, "max": 8 }, "y0": { "min": 1, "max": 8 }, "c": { "formula": "a * x + b * y0" } },
+              "formula": "y0",
+              "explanation_template": "y = ({c} − {a}·{x}) ÷ {b} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "წრფივ ორუცნობიან განტოლებას რამდენი ამონახსნი აქვს?",
+              "answer": "უსასრულოდ ბევრი",
+              "acceptable": ["უსასრულო", "უამრავი"],
+              "explanation": "ამონახსნები წრფეს ქმნის."
+            },
+            {
+              "type": "text",
+              "text": "2x + y = 10. თუ x = 3, y უდრის:",
+              "answer": "4",
+              "explanation": "6 + y = 10."
+            },
+            {
+              "type": "text",
+              "text": "ax + by = c განტოლების გრაფიკია: (ერთი სიტყვა)",
+              "answer": "წრფე",
+              "acceptable": ["წრფეა", "სწორი ხაზი"],
+              "explanation": "წრფივი განტოლების გრაფიკი."
+            },
+            {
+              "type": "text",
+              "text": "წყვილი (2; 3) აკმაყოფილებს x + y = 5? (დიახ/არა)",
+              "answer": "დიახ",
+              "acceptable": ["კი", "აკმაყოფილებს"],
+              "explanation": "2 + 3 = 5."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "x + y = {s}. y უდრის:",
+              "variables": { "x": { "min": 2, "max": 15 }, "y0": { "min": 2, "max": 15 }, "s": { "formula": "x + y0" } },
+              "formula": "y0",
+              "options": ["s - x", "s + x", "s * x", "x - s"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრფივი ორუცნობიანი განტოლების ზოგადი სახეა:",
+              "options": ["ax + by = c", "ax² + by = c", "a/x + b/y = c", "ax = b"],
+              "correct": 0,
+              "explanation": "ორივე უცნობი პირველ ხარისხში."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "განტოლების ამონახსნია:",
+              "options": ["რიცხვთა წყვილი", "ერთი რიცხვი", "წრფე", "სამი რიცხვი"],
+              "correct": 0,
+              "explanation": "(x; y)."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "რომელი წყვილი აკმაყოფილებს 2x + y = 8?",
+              "options": ["(3; 2)", "(2; 3)", "(1; 5)", "(4; 1)"],
+              "correct": 0,
+              "explanation": "6 + 2 = 8."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "x + y = 0 გრაფიკი გადის:",
+              "options": ["სათავეზე", "(1;1)-ზე", "(0;1)-ზე", "(1;0)-ზე"],
+              "correct": 0,
+              "explanation": "0 + 0 = 0."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "განტოლება 0x + 0y = 3:",
+              "options": ["ამონახსნი არ აქვს", "უსასრულო ამონახსნი", "ერთი ამონახსნი", "წრფეა"],
+              "correct": 0,
+              "explanation": "მარცხენა მხარე ყოველთვის 0-ია."
+            }
+          ]
+        },
+        {
+          "title": "7.2. ორუცნობიან განტოლებათა სისტემა",
+          "questions": [
+            {
+              "type": "text", "parametric": true,
+              "text": "სისტემა: x + y = {s}, x − y = {d}. რას უდრის x?",
+              "variables": { "x0": { "min": 3, "max": 22 }, "y0": { "min": 1, "max": 12 }, "s": { "formula": "x0 + y0" }, "d": { "formula": "x0 - y0" } },
+              "formula": "x0",
+              "explanation_template": "2x = {s}+{d} → x = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "სისტემა: x + y = {s}, x − y = {d}. რას უდრის y?",
+              "variables": { "x0": { "min": 3, "max": 22 }, "y0": { "min": 1, "max": 12 }, "s": { "formula": "x0 + y0" }, "d": { "formula": "x0 - y0" } },
+              "formula": "y0",
+              "explanation_template": "2y = {s}−{d} → y = {answer}."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "სისტემა: y = {k}x, x + y = {s}. რას უდრის x?",
+              "variables": { "k": { "min": 1, "max": 5 }, "x0": { "min": 2, "max": 12 }, "s": { "formula": "x0 + k * x0" } },
+              "formula": "x0",
+              "explanation_template": "({k}+1)x = {s} → x = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "სისტემა: x + y = 12, x − y = 4. x უდრის:",
+              "answer": "8",
+              "explanation": "2x = 16."
+            },
+            {
+              "type": "text",
+              "text": "სისტემის ამოხსნის ხერხებია ჩასმა, შეკრება და რა? (ერთი სიტყვა)",
+              "answer": "გრაფიკული",
+              "acceptable": ["გრაფიკულია", "გრაფიკული ხერხი"],
+              "explanation": "სამი ძირითადი ხერხი."
+            },
+            {
+              "type": "text",
+              "text": "თუ სისტემის წრფეები პარალელურია, ამონახსნთა რაოდენობაა:",
+              "answer": "0",
+              "acceptable": ["ნული", "არცერთი", "არ აქვს"],
+              "explanation": "არ იკვეთება."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "სისტემა x + y = {s}, x − y = {d}. x უდრის:",
+              "variables": { "x0": { "min": 3, "max": 20 }, "y0": { "min": 1, "max": 10 }, "s": { "formula": "x0 + y0" }, "d": { "formula": "x0 - y0" } },
+              "formula": "x0",
+              "options": ["(s + d) / 2", "(s - d) / 2", "s + d", "s - d"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 2
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სისტემის ამონახსნია წყვილი, რომელიც აკმაყოფილებს:",
+              "options": ["ორივე განტოლებას", "მხოლოდ პირველს", "მხოლოდ მეორეს", "რომელიმეს"],
+              "correct": 0,
+              "explanation": "ერთდროულად."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ წრფეები ემთხვევა, სისტემას აქვს:",
+              "options": ["უსასრულოდ ბევრი ამონახსნი", "ერთი", "არცერთი", "ორი"],
+              "correct": 0,
+              "explanation": "ყველა წერტილი საერთოა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სისტემა x + y = 5, x − y = 1 ამონახსნია:",
+              "options": ["(3; 2)", "(2; 3)", "(4; 1)", "(1; 4)"],
+              "correct": 0,
+              "explanation": "3+2=5, 3−2=1."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ჩასმის ხერხი მოსახერხებელია, როცა:",
+              "options": ["ერთი უცნობი გამოსახულია მეორით", "კოეფიციენტები ტოლია", "სამი უცნობია", "განტოლება ერთია"],
+              "correct": 0,
+              "explanation": "პირდაპირ ჩასასმელია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "შეკრების ხერხი მოსახერხებელია, როცა კოეფიციენტები:",
+              "options": ["ტოლი ან საპირისპიროა", "წილადებია", "ნულია", "სხვადასხვაა"],
+              "correct": 0,
+              "explanation": "უცნობი მაშინვე ქრება."
+            }
+          ]
+        },
+        {
+          "title": "7.3. წრფივ ორუცნობიან უტოლობათა სისტემა",
+          "questions": [
+            {
+              "type": "text",
+              "text": "წრფივი ორუცნობიანი უტოლობის ამონახსნთა სიმრავლეა: (ერთი სიტყვა)",
+              "answer": "ნახევარსიბრტყე",
+              "acceptable": ["ნახევარსიბრტყეა", "ნახევარი სიბრტყე"],
+              "explanation": "წრფე ყოფს სიბრტყეს."
+            },
+            {
+              "type": "text",
+              "text": "უტოლობათა სისტემის ამონახსნი სიბრტყეზეა ნახევარსიბრტყეთა რა? (ერთი სიტყვა)",
+              "answer": "თანაკვეთა",
+              "acceptable": ["თანაკვეთაა", "გადაკვეთა"],
+              "explanation": "საერთო არე."
+            },
+            {
+              "type": "text",
+              "text": "უტოლობა x + y > 4. აკმაყოფილებს (3; 2)? (დიახ/არა)",
+              "answer": "დიახ",
+              "acceptable": ["კი", "აკმაყოფილებს"],
+              "explanation": "5 > 4."
+            },
+            {
+              "type": "text",
+              "text": "მკაცრი უტოლობისას სასაზღვრო წრფე იხაზება: (ერთი სიტყვა)",
+              "answer": "წყვეტილად",
+              "acceptable": ["წყვეტილი", "პუნქტირით"],
+              "explanation": "საზღვარი არ შედის."
+            },
+            {
+              "type": "text",
+              "text": "ნახევარსიბრტყის შესარჩევად ვსვამთ საკონტროლო რას? (ერთი სიტყვა)",
+              "answer": "წერტილს",
+              "acceptable": ["წერტილი", "წერტილს"],
+              "explanation": "ჩვეულებრივ (0;0)."
+            },
+            {
+              "type": "text",
+              "text": "უტოლობა y ≤ x. აკმაყოფილებს (5; 2)? (დიახ/არა)",
+              "answer": "დიახ",
+              "acceptable": ["კი", "აკმაყოფილებს"],
+              "explanation": "2 ≤ 5."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრფივი ორუცნობიანი უტოლობის ამონახსნია:",
+              "options": ["ნახევარსიბრტყე", "წრფე", "წერტილი", "წრეწირი"],
+              "correct": 0,
+              "explanation": "წრფის ერთი მხარე."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "არამკაცრი უტოლობისას სასაზღვრო წრფე:",
+              "options": ["შედის ამონახსნებში", "არ შედის", "არ იხაზება", "წყვეტილია"],
+              "correct": 0,
+              "explanation": "≤ და ≥ საზღვარსაც რთავს."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "სისტემის ამონახსნთა არეს ეწოდება:",
+              "options": ["დასაშვებ ამონახსნთა არე", "წრფე", "წერტილი", "სექტორი"],
+              "correct": 0,
+              "explanation": "ხაზოვან დაპროგრამებაში."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "უტოლობა x ≥ 0 და y ≥ 0 გამოსახავს:",
+              "options": ["I მეოთხედს", "II მეოთხედს", "III მეოთხედს", "მთელ სიბრტყეს"],
+              "correct": 0,
+              "explanation": "ორივე კოორდინატი არაუარყოფითია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ სისტემის ნახევარსიბრტყეები არ იკვეთება:",
+              "options": ["ამონახსნი არ არსებობს", "ამონახსნია მთელი სიბრტყე", "ამონახსნი წრფეა", "ამონახსნი წერტილია"],
+              "correct": 0,
+              "explanation": "ცარიელი თანაკვეთა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "დასაშვებ ამონახსნთა არე ჩვეულებრივ არის:",
+              "options": ["ამოზნექილი მრავალკუთხედი", "წრეწირი", "პარაბოლა", "წერტილი"],
+              "correct": 0,
+              "explanation": "ნახევარსიბრტყეთა თანაკვეთა."
+            }
+          ]
+        },
+        {
+          "title": "7.4. წრფივი დაპროგრამების ამოცანების ამოხსნის მაგალითები",
+          "questions": [
+            {
+              "type": "text",
+              "text": "წრფივი დაპროგრამების ამოცანაში ოპტიმუმი მიიღწევა დასაშვები არის რომელ ნაწილში? (ერთი სიტყვა)",
+              "answer": "წვეროში",
+              "acceptable": ["წვერო", "წვეროზე", "კუთხეში"],
+              "explanation": "ოპტიმუმი მრავალკუთხედის წვეროშია."
+            },
+            {
+              "type": "text", "parametric": true,
+              "text": "მიზნის ფუნქციაა F = {a}x + {b}y. რას უდრის F წერტილში ({x}; {y})?",
+              "variables": { "a": { "min": 2, "max": 9 }, "b": { "min": 2, "max": 9 }, "x": { "min": 1, "max": 10 }, "y": { "min": 1, "max": 10 } },
+              "formula": "a * x + b * y",
+              "explanation_template": "{a}·{x} + {b}·{y} = {answer}."
+            },
+            {
+              "type": "text",
+              "text": "F = 3x + 2y. რას უდრის F წერტილში (4; 5)?",
+              "answer": "22",
+              "explanation": "12 + 10 = 22."
+            },
+            {
+              "type": "text",
+              "text": "წრფივი დაპროგრამების ამოცანაში ოპტიმიზაციას ექვემდებარება რა ფუნქცია? (ერთი სიტყვა)",
+              "answer": "მიზნის",
+              "acceptable": ["მიზნობრივი", "მიზნის ფუნქცია"],
+              "explanation": "მაქსიმიზაცია ან მინიმიზაცია."
+            },
+            {
+              "type": "text",
+              "text": "შეზღუდვები წრფივ დაპროგრამებაში იწერება რის სახით? (ერთი სიტყვა)",
+              "answer": "უტოლობების",
+              "acceptable": ["უტოლობა", "უტოლობებით", "უტოლობები"],
+              "explanation": "წრფივი უტოლობების სისტემა."
+            },
+            {
+              "type": "text",
+              "text": "F = x + y. წვეროებია (0;0), (0;4), (3;0). რას უდრის მაქსიმუმი?",
+              "answer": "4",
+              "explanation": "(0;4)-ში F = 4."
+            },
+            {
+              "type": "multiple_choice", "parametric": true,
+              "text": "F = {a}x + {b}y. F({x}; {y}) უდრის:",
+              "variables": { "a": { "min": 2, "max": 8 }, "b": { "min": 2, "max": 8 }, "x": { "min": 1, "max": 9 }, "y": { "min": 1, "max": 9 } },
+              "formula": "a * x + b * y",
+              "options": ["a * x + b * y", "a * y + b * x", "(a + b) * (x + y)", "a * b * x * y"],
+              "explanation_template": "= {answer}.",
+              "difficulty": 1
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრფივი დაპროგრამების ამოცანის ოპტიმუმი მიიღწევა:",
+              "options": ["დასაშვები არის წვეროში", "არის ცენტრში", "არის გარეთ", "სათავეში ყოველთვის"],
+              "correct": 0,
+              "explanation": "ძირითადი თეორემა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "დასაშვები არე განისაზღვრება:",
+              "options": ["შეზღუდვების სისტემით", "მიზნის ფუნქციით", "წვეროებით მხოლოდ", "შემთხვევით"],
+              "correct": 0,
+              "explanation": "უტოლობათა სისტემა."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "წრფივი დაპროგრამება გამოიყენება:",
+              "options": ["რესურსების ოპტიმალური განაწილებისთვის", "გაზომვისთვის", "დამრგვალებისთვის", "სტატისტიკისთვის მხოლოდ"],
+              "correct": 0,
+              "explanation": "მოგების მაქსიმიზაცია, ხარჯის მინიმიზაცია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "თუ დასაშვები არე ცარიელია, ამოცანას:",
+              "options": ["ამონახსნი არ აქვს", "უსასრულო ამონახსნი აქვს", "ერთი ამონახსნი აქვს", "ყოველთვის აქვს ამონახსნი"],
+              "correct": 0,
+              "explanation": "შეზღუდვები ურთიერთგამომრიცხავია."
+            },
+            {
+              "type": "multiple_choice",
+              "text": "ოპტიმუმის საპოვნელად საკმარისია შევამოწმოთ:",
+              "options": ["ყველა წვერო", "ყველა წერტილი", "ცენტრი", "სათავე"],
+              "correct": 0,
+              "explanation": "წვეროთა სასრული რაოდენობა."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
