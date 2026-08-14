@@ -32,3 +32,10 @@ fi
 
 echo "▶ opening tunnel… (the https://…trycloudflare.com line below is your public URL)"
 exec cloudflared tunnel --url http://localhost:3000
+
+# NOTE: the site now runs as systemd user services instead of this script:
+#   systemctl --user status studyportal            # web server
+#   systemctl --user status studyportal-tunnel     # public URL
+#   cat ~/.local/share/studyportal-url.txt         # current public URL
+# They auto-start at boot (linger enabled). The URL changes whenever the
+# tunnel restarts — re-read the file above after a reboot.
